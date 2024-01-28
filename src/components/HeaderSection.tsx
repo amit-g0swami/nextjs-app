@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -12,7 +13,7 @@ const navigation = [
   { name: "Help", href: "#help" },
 ];
 
-export const Header = () => {
+export const HeaderSection = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -24,10 +25,12 @@ export const Header = () => {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
+            <Image src="/assets/logo.jpeg" alt="" width={32} height={32} />
+            <link
+              rel="icon"
+              href="/icon?<generated>"
+              type="image/<generated>"
+              sizes="<generated>"
             />
           </a>
         </div>
