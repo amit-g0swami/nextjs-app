@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { BackGroundDiv } from "@/components/BackGroundDiv";
-import { UserIcon, BuildingStorefrontIcon } from "@heroicons/react/20/solid";
+import {
+  UserCircleIcon,
+  BuildingStorefrontIcon,
+} from "@heroicons/react/20/solid";
 
 type CardProps = {
   icon: JSX.Element;
@@ -57,7 +60,7 @@ export default function LoginPage() {
                   type="seller"
                 />
                 <Card
-                  icon={<UserIcon className="h-32" />}
+                  icon={<UserCircleIcon className="h-32" />}
                   title="Customer Login"
                   description="Unlock endless possibilities and personalized experiences. Login to
             access exclusive features tailored just for you."

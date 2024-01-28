@@ -9,10 +9,10 @@ import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
 const navigation = [
-  { name: "About", href: "#about" },
-  { name: "Features", href: "#features" },
-  { name: "Marketplace", href: "#marketplace" },
-  { name: "Help", href: "#help" },
+  { name: "About", href: "#about", showAlert: false },
+  { name: "Features", href: "#features", showAlert: true },
+  { name: "Marketplace", href: "#marketplace", showAlert: true },
+  { name: "Help", href: "#help", showAlert: true },
 ];
 
 export const HeaderSection = () => {
@@ -22,6 +22,10 @@ export const HeaderSection = () => {
   const [navigationData, _setNavigationData] = useState(
     session?.user ? [] : navigation
   );
+
+  const showAlert = () => {
+    alert("Comming Soon!");
+  };
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -53,13 +57,14 @@ export const HeaderSection = () => {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigationData.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
+              onClick={item.showAlert ? showAlert : undefined}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -108,13 +113,14 @@ export const HeaderSection = () => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigationData.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
+                    onClick={item.showAlert ? showAlert : undefined}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="py-6">
