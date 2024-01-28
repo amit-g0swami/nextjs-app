@@ -8,6 +8,7 @@ export const ProtectedBoundary = ({ children }: { children: ReactNode }) => {
   const { data: session } = useSession();
 
   if (session?.user === null) {
+    console.log(session);
     redirect("/login");
   }
 

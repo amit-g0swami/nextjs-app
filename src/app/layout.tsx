@@ -5,6 +5,7 @@ import { HeaderSection } from "@/components/HeaderSection";
 import { AboutSection } from "@/components/AboutSection";
 
 import Providers from "@/components/Providers";
+import { ProtectedBoundary } from "@/templates/ProtectedBoundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +23,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <HeaderSection />
-          {children}
-          <AboutSection />
+          <ProtectedBoundary>
+            <HeaderSection />
+            {children}
+            <AboutSection />
+          </ProtectedBoundary>
         </Providers>
       </body>
     </html>
