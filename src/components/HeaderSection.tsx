@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { signOut, useSession } from "next-auth/react";
 
 const navigation = [
   { name: "About", href: "#about" },
@@ -15,9 +16,16 @@ const navigation = [
 
 export const HeaderSection = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
+      <div className="flex gap-4 ml-auto">
+        <p className="text-sky-600">{session?.user?.name}</p>
+        <button onClick={() => signOut()} className="text-red-600">
+          Sign Out
+        </button>
+      </div>
       <nav
         className="flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
