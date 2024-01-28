@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { HeaderSection } from "@/components/HeaderSection";
-import { AboutSection } from "@/components/AboutSection";
 
 import Providers from "@/components/Providers";
 import { ProtectedBoundary } from "@/templates/ProtectedBoundary";
@@ -26,7 +25,6 @@ export default async function RootLayout({
           <ProtectedBoundary>
             <HeaderSection />
             {children}
-            <AboutSection />
           </ProtectedBoundary>
         </Providers>
       </body>

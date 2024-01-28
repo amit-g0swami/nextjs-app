@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { signOut, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 const navigation = [
   { name: "About", href: "#about" },
@@ -15,17 +16,15 @@ const navigation = [
 ];
 
 export const HeaderSection = () => {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
+  const [navigationData, _setNavigationData] = useState(
+    session?.user ? [] : navigation
+  );
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
-      <div className="flex gap-4 ml-auto">
-        <p className="text-sky-600">{session?.user?.name}</p>
-        <button onClick={() => signOut()} className="text-red-600">
-          Sign Out
-        </button>
-      </div>
       <nav
         className="flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -53,7 +52,7 @@ export const HeaderSection = () => {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
+          {navigationData.map((item) => (
             <a
               key={item.name}
               href={item.href}
@@ -64,12 +63,23 @@ export const HeaderSection = () => {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            href="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {session?.user ? (
+            <button
+              className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={() => signOut()}
+            >
+              Logout
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          ) : (
+            <Link
+              href={pathname === "/login" ? "/" : "/login"}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              {pathname === "/login" ? "Go Home" : "Login"}{" "}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
       <Dialog
@@ -83,11 +93,7 @@ export const HeaderSection = () => {
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+              <Image src="/assets/logo.jpeg" alt="" width={32} height={32} />
             </a>
             <button
               type="button"
@@ -101,7 +107,7 @@ export const HeaderSection = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
+                {navigationData.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
@@ -112,12 +118,22 @@ export const HeaderSection = () => {
                 ))}
               </div>
               <div className="py-6">
-                <Link
-                  href="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>
+                {session?.user ? (
+                  <button
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                    onClick={() => signOut()}
+                  >
+                    Logout
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
+                ) : (
+                  <Link
+                    href={pathname === "/login" ? "/" : "/login"}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    {pathname === "/login" ? "Go Home" : "Login"}
+                  </Link>
+                )}
               </div>
             </div>
           </div>
