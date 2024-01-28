@@ -2,6 +2,7 @@
 
 import { BackGroundDiv } from "@/components/BackGroundDiv";
 import { UserIcon, BuildingStorefrontIcon } from "@heroicons/react/20/solid";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 type CardProps = {
   icon: JSX.Element;
@@ -29,11 +30,16 @@ const Card = ({ icon, title, description }: Readonly<CardProps>) => (
 );
 
 export default function LoginPage() {
+  const { data, status } = useSession();
+
   return (
     <div className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl rounded-3xl sm:mt-18 lg:mx-0 lg:flex lg:max-w-none justify-center">
+            <button onClick={() => signIn("google")}>
+              sign in with gooogle
+            </button>
             <Card
               icon={<BuildingStorefrontIcon className="h-32" />}
               title="Seller Login"

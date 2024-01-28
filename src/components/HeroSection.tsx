@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BackGroundDiv } from "./BackGroundDiv";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export const HeroSection = () => {
   return (
@@ -19,6 +20,12 @@ export const HeroSection = () => {
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Data to enrich your online business
             </h1>
+            <button
+              className="bg-indigo-600 px-3 py-2"
+              onClick={() => signIn()}
+            >
+              sign in with gooogle
+            </button>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Empowering Tomorrow, One Byte at a Time: Your Trusted Partner in
               Cutting-Edge Data Management Solutions.
