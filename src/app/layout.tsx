@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import { HeaderSection } from "@/components/HeaderSection";
 
 import Providers from "@/components/Providers";
-import { ProtectedBoundary } from "@/templates/ProtectedBoundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +21,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <ProtectedBoundary>
-            <HeaderSection />
-            {children}
-          </ProtectedBoundary>
+          <HeaderSection />
+          {children}
         </Providers>
       </body>
     </html>

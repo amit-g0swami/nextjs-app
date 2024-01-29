@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
@@ -19,9 +19,17 @@ export const HeaderSection = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
-  const [navigationData, _setNavigationData] = useState(
-    session?.user ? [] : navigation
+  const [navigationData, setNavigationData] = useState<[] | typeof navigation>(
+    []
   );
+
+  useEffect(() => {
+    if (session?.user) {
+      setNavigationData([]);
+    } else {
+      setNavigationData(navigation);
+    }
+  }, [session?.user]);
 
   const showAlert = () => {
     alert("Comming Soon!");

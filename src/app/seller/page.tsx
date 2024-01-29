@@ -1,9 +1,10 @@
 "use client";
 
 import { BackGroundDiv } from "@/components/BackGroundDiv";
+import withAuth from "@/withAuth";
 import { useSession } from "next-auth/react";
 
-export default function SellerPage() {
+const SellerPage = () => {
   const { data: session } = useSession();
 
   return (
@@ -13,4 +14,6 @@ export default function SellerPage() {
       </BackGroundDiv>
     </div>
   );
-}
+};
+
+export default withAuth(SellerPage);

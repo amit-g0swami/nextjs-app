@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { BackGroundDiv } from "@/components/BackGroundDiv";
 import {
   UserCircleIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/20/solid";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 type CardProps = {
   icon: JSX.Element;
@@ -42,8 +44,16 @@ const Card = ({
 );
 
 export default function LoginPage() {
+  const { data: session } = useSession();
   const [loginType, setLoginType] = useState<string | null>(null);
   const setType = (type: string) => setLoginType(type);
+
+  useEffect(() => {
+    if (session?.user !== null && session?.user !== undefined) {
+      return redirect("/seller");
+    }
+  }, [session?.user]);
+
   return (
     <div className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>
