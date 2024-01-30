@@ -9,7 +9,10 @@ export interface IUserLoginPayload {
 
 const userLogin = async (userData: IUserLoginPayload) => {
   try {
-    const { data } = await axios.post("/login", userData);
+    const { data } = await axios.post(
+      "http://localhost:8000/api/login",
+      userData
+    );
     console.log("Login successful:", data);
     return data;
   } catch (error) {

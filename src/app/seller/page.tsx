@@ -15,6 +15,7 @@ const SellerPage = () => {
   const useLoginMutate = useCreateUserMutation();
 
   const { getItem } = useLocalStorage("loggedInType");
+  // removeItem();
 
   useEffect(() => {
     if (getItem() !== USER_TYPE.SELLER) {
