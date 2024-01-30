@@ -9,6 +9,8 @@ import {
 } from "@heroicons/react/20/solid";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { useCreateUserMutation } from "@/hooks/useLoginMutation";
+import { IUserLoginPayload } from "@/services/userService";
 
 type CardProps = {
   icon: JSX.Element;
@@ -47,12 +49,23 @@ export default function LoginPage() {
   const { data: session } = useSession();
   const [loginType, setLoginType] = useState<string | null>(null);
   const setType = (type: string) => setLoginType(type);
+  const useLoginMutate = useCreateUserMutation();
 
   useEffect(() => {
     if (session?.user !== null && session?.user !== undefined) {
       return redirect("/seller");
     }
   }, [session?.user]);
+
+  const handleSignIn = async () => {
+    await signIn();
+    const userDataPayload: IUserLoginPayload = {
+      name: session?.user?.name,
+      email: session?.user?.email,
+      createdAs: loginType,
+    };
+    useLoginMutate.mutate();
+  };
 
   return (
     <div className="bg-white py-24 sm:py-32 h-screen">
@@ -67,7 +80,7 @@ export default function LoginPage() {
                   description="Elevate your business journey! Sign in to your seller account
             and explore tools designed to boost your sales."
                   setLoginType={setType}
-                  type="seller"
+                  type="SELLER"
                 />
                 <Card
                   icon={<UserCircleIcon className="h-32" />}
@@ -75,7 +88,7 @@ export default function LoginPage() {
                   description="Unlock endless possibilities and personalized experiences. Login to
             access exclusive features tailored just for you."
                   setLoginType={setType}
-                  type="customer"
+                  type="CUSTOMER"
                 />
               </>
             ) : (
@@ -83,7 +96,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   className="w-auto rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 items-center justify-center flex"
-                  onClick={() => signIn()}
+                  onClick={() => handleSignIn()}
                 >
                   Sign in with Google
                 </button>
