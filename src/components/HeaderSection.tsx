@@ -7,6 +7,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 const navigation = [
   { name: "About", href: "#about", showAlert: false },
@@ -22,6 +23,7 @@ export const HeaderSection = () => {
   const [navigationData, setNavigationData] = useState<[] | typeof navigation>(
     []
   );
+  const { removeItem } = useLocalStorage("loggedInType");
 
   useEffect(() => {
     if (session?.user) {
@@ -33,6 +35,11 @@ export const HeaderSection = () => {
 
   const showAlert = () => {
     alert("Comming Soon!");
+  };
+
+  const handleSignOut = async () => {
+    await removeItem();
+    signOut();
   };
 
   return (
@@ -79,7 +86,7 @@ export const HeaderSection = () => {
           {session?.user ? (
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={() => signOut()}
+              onClick={() => handleSignOut()}
             >
               Logout
               <span aria-hidden="true">&rarr;</span>

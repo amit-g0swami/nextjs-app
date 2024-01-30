@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseUrl = process.env.BASE_URL;
-
 export interface IUserLoginPayload {
   name: string | null | undefined;
   email: string | null | undefined;
@@ -10,7 +9,8 @@ export interface IUserLoginPayload {
 
 const userLogin = async (userData: IUserLoginPayload) => {
   try {
-    const { data } = await axios.post(baseUrl + "/login", userData);
+    const { data } = await axios.post("/login", userData);
+    console.log("Login successful:", data);
     return data;
   } catch (error) {
     console.error("Error during login request:", error);

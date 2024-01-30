@@ -6,6 +6,9 @@ import { signOut } from "next-auth/react";
 export const useCreateUserMutation = () => {
   const { setUser } = useZustandStore();
   return useMutation({
+    mutationFn: (userData: IUserLoginPayload) => {
+      return UserService.userLogin(userData);
+    },
     onSuccess: (data: IUser) => {
       console.log("User created successfully:", data);
       setUser(data);

@@ -7,17 +7,16 @@ import {
   UserCircleIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/20/solid";
-import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { useCreateUserMutation } from "@/hooks/useLoginMutation";
-import { IUserLoginPayload } from "@/services/userService";
+import { USER_TYPE } from "@/store";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 type CardProps = {
   icon: JSX.Element;
   title: string;
   description: string;
-  setLoginType: (type: string) => void;
-  type: string;
+  setLoginType: (type: USER_TYPE) => void;
+  type: USER_TYPE;
 };
 
 const Card = ({
@@ -46,26 +45,24 @@ const Card = ({
 );
 
 export default function LoginPage() {
-  const { data: session } = useSession();
-  const [loginType, setLoginType] = useState<string | null>(null);
-  const setType = (type: string) => setLoginType(type);
-  const useLoginMutate = useCreateUserMutation();
+  const [loginType, setLoginType] = useState<USER_TYPE | null>(null);
+  const { setItem, getItem } = useLocalStorage("loggedInType");
+
+  const setType = (type: USER_TYPE) => {
+    setItem(type);
+    setLoginType(type);
+  };
 
   useEffect(() => {
-    if (session?.user !== null && session?.user !== undefined) {
+    if (getItem() === USER_TYPE.SELLER) {
       return redirect("/seller");
     }
-  }, [session?.user]);
+    if (getItem() === USER_TYPE.CUSTOMER) {
+      return redirect("/customer");
+    }
+  }, []);
 
-  const handleSignIn = async () => {
-    await signIn();
-    const userDataPayload: IUserLoginPayload = {
-      name: session?.user?.name,
-      email: session?.user?.email,
-      createdAs: loginType,
-    };
-    useLoginMutate.mutate();
-  };
+  const handleSignIn = () => signIn();
 
   return (
     <div className="bg-white py-24 sm:py-32 h-screen">
@@ -80,7 +77,7 @@ export default function LoginPage() {
                   description="Elevate your business journey! Sign in to your seller account
             and explore tools designed to boost your sales."
                   setLoginType={setType}
-                  type="SELLER"
+                  type={USER_TYPE.SELLER}
                 />
                 <Card
                   icon={<UserCircleIcon className="h-32" />}
@@ -88,7 +85,7 @@ export default function LoginPage() {
                   description="Unlock endless possibilities and personalized experiences. Login to
             access exclusive features tailored just for you."
                   setLoginType={setType}
-                  type="CUSTOMER"
+                  type={USER_TYPE.CUSTOMER}
                 />
               </>
             ) : (
