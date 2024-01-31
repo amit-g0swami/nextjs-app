@@ -15,17 +15,22 @@ const SellerPage = () => {
   const useLoginMutate = useCreateUserMutation();
 
   const { getItem } = useLocalStorage("loggedInType");
-  // removeItem();
 
   useEffect(() => {
-    if (getItem() !== USER_TYPE.SELLER) {
+    const loggedInType = getItem();
+    if (loggedInType !== USER_TYPE.SELLER) {
       return redirect("/");
     }
-    if (session && session.user !== null && session.user !== undefined) {
+  }, []);
+
+  useEffect(() => {
+    const loggedInType = getItem();
+    const user = session?.user;
+    if (user && user !== null && user !== undefined) {
       const userDataPayload: IUserLoginPayload = {
-        name: session.user.name,
-        email: session.user.email,
-        createdAs: getItem(),
+        name: user.name,
+        email: user.email,
+        createdAs: loggedInType,
       };
       useLoginMutate.mutate(userDataPayload);
     }
@@ -34,7 +39,9 @@ const SellerPage = () => {
   return (
     <div className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>
-        <h4 className="text-4xl text-neutral-800">{session?.user?.name}</h4>
+        <h6 className="text-2xl text-neutral-800">
+          Seller: {session?.user?.name}
+        </h6>
       </BackGroundDiv>
     </div>
   );

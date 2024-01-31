@@ -13,7 +13,6 @@ const userLogin = async (userData: IUserLoginPayload) => {
       "http://localhost:8000/api/login",
       userData
     );
-    console.log("Login successful:", data);
     return data;
   } catch (error) {
     console.error("Error during login request:", error);

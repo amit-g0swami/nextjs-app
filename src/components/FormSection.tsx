@@ -8,10 +8,10 @@ type FormSectionProps = {
 };
 
 const validationSchema = Joi.object({
-  address: Joi.string().required(),
+  streetAddress: Joi.string().required(),
   city: Joi.string().required(),
   state: Joi.string().required(),
-  pinCode: Joi.string().required(),
+  zipCode: Joi.string().required(),
 });
 
 export const FormSection = ({ getFormData }: FormSectionProps) => {
@@ -43,11 +43,11 @@ export const FormSection = ({ getFormData }: FormSectionProps) => {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="address"
+                  name="streetAddress"
                   className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  value={values["address"] || ""}
+                  value={values["streetAddress"] || ""}
                   onChange={(e) =>
-                    setValues({ ...values, address: e.target.value })
+                    setValues({ ...values, streetAddress: e.target.value })
                   }
                 />
               </div>
@@ -103,11 +103,11 @@ export const FormSection = ({ getFormData }: FormSectionProps) => {
               <div className="mt-2">
                 <input
                   type="number"
-                  name="pinCode"
+                  name="zipCode"
                   className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  value={values["pinCode"] || ""}
+                  value={values["zipCode"] || ""}
                   onChange={(e) =>
-                    setValues({ ...values, pinCode: e.target.value })
+                    setValues({ ...values, zipCode: e.target.value })
                   }
                 />
               </div>

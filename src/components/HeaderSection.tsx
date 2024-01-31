@@ -38,8 +38,8 @@ export const HeaderSection = () => {
   };
 
   const handleSignOut = async () => {
-    await removeItem();
-    signOut();
+    removeItem();
+    await signOut();
   };
 
   return (
