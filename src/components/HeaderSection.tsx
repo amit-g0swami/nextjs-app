@@ -52,7 +52,13 @@ export const HeaderSection = () => {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <Image src="/assets/logo.png" alt="" width={98} height={98} />
+            <Image
+              src="/assets/logo.png"
+              alt=""
+              width={98}
+              height={98}
+              priority
+            />
             <link
               rel="icon"
               href="/icon?<generated>"
@@ -113,8 +119,14 @@ export const HeaderSection = () => {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <Image src="/assets/logo.jpeg" alt="" width={32} height={32} />
+              <span className="sr-only">Shippiviot</span>
+              <Image
+                src="/assets/logo.png"
+                alt=""
+                width={98}
+                height={98}
+                priority
+              />
             </a>
             <button
               type="button"

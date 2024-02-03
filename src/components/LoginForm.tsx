@@ -23,9 +23,10 @@ export default function LoginForm({ disabled = false }: ILoginFormProps) {
           <Image
             className="mx-auto"
             alt="Logo"
-            src={"/assets/logo.png"}
+            src="/assets/logo.png"
             width={120}
             height={120}
+            priority
           />
           <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
@@ -110,7 +111,13 @@ export default function LoginForm({ disabled = false }: ILoginFormProps) {
             className="flex items-center gap-2 w-full mt-6 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed"
             onClick={() => handleSignIn()}
           >
-            <Image src="/assets/search.png" alt="" width={18} height={18} />
+            <Image
+              src="/assets/search.png"
+              alt=""
+              width={18}
+              height={18}
+              priority
+            />
             Sign in with Google
           </button>
         </div>
