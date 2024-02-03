@@ -7,6 +7,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { UserAuth } from "@/context/AuthContext";
+import toast from "react-hot-toast";
 
 const navigation = [
   { name: "About", href: "#about", showAlert: false },
@@ -32,7 +33,7 @@ export const HeaderSection = () => {
   }, [user]);
 
   const showAlert = () => {
-    alert("Comming Soon!");
+    toast("Comming Soon!");
   };
 
   const handleSignOut = () => {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Joi, { ValidationErrorItem } from "joi";
+import toast from "react-hot-toast";
 
 type FormSectionProps = {
   getFormData: (data: Record<string, string | number>) => void;
@@ -21,7 +22,7 @@ export const FormSection = ({ getFormData }: FormSectionProps) => {
     const result = validationSchema.validate(values, { abortEarly: true });
     if (result.error) {
       result.error.details.map((data: ValidationErrorItem) => {
-        alert(data.message);
+        toast(data.message);
       });
     } else {
       getFormData(values);
