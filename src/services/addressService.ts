@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const baseUrl = process.env.BASE_URL;
 
@@ -14,6 +15,7 @@ const addressCreate = async (addressPayload: IAddressPayload) => {
       `http://localhost:8000/api/address/${id}`,
       address
     );
+    toast(data.message);
     return data;
   } catch (error) {
     console.error("Error during login request:", error);
