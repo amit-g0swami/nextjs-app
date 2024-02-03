@@ -2,7 +2,7 @@
 
 import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SessionProvider } from "next-auth/react";
+import { AuthContextProvider } from "./AuthContext";
 
 interface Props {
   children: ReactNode;
@@ -21,7 +21,7 @@ const queryClient = new QueryClient({
 const Providers = (props: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <SessionProvider>{props.children}</SessionProvider>;
+      <AuthContextProvider>{props.children}</AuthContextProvider>
     </QueryClientProvider>
   );
 };

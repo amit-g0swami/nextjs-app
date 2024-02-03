@@ -1,8 +1,8 @@
-import useZustandStore, { IUser } from "@/store";
 import UserService, { IUserLoginPayload } from "@/services/userService";
+import { IUser } from "@/store";
 import { useMutation } from "@tanstack/react-query";
-import { signOut } from "next-auth/react";
 import { useLocalStorage } from "./useLocalStorage";
+import { UserAuth } from "@/context/AuthContext";
 
 export interface IResponse {
   message: string;
@@ -10,22 +10,17 @@ export interface IResponse {
 }
 
 export const useCreateUserMutation = () => {
-  const { setUser } = useZustandStore();
-  const { removeItem } = useLocalStorage("loggedInType");
   const { setItem } = useLocalStorage("userDetails");
+  const { logOut } = UserAuth();
   return useMutation({
     mutationFn: (userData: IUserLoginPayload) => {
       return UserService.userLogin(userData);
     },
     onSuccess: (data: IResponse) => {
       setItem(JSON.stringify(data.user._id));
-      console.log("User created successfully:", data);
     },
     onError: () => {
-      console.error("Error creating user");
-      removeItem();
-      setUser(null);
-      signOut();
+      logOut();
     },
   });
 };

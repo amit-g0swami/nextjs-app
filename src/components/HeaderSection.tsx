@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { UserAuth } from "@/context/AuthContext";
 
 const navigation = [
   { name: "About", href: "#about", showAlert: false },
@@ -19,27 +18,29 @@ const navigation = [
 export const HeaderSection = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { data: session } = useSession();
   const [navigationData, setNavigationData] = useState<[] | typeof navigation>(
     []
   );
-  const { removeItem } = useLocalStorage("loggedInType");
+  const { user, logOut } = UserAuth();
 
   useEffect(() => {
-    if (session?.user) {
+    if (user) {
       setNavigationData([]);
     } else {
       setNavigationData(navigation);
     }
-  }, [session?.user]);
+  }, [user]);
 
   const showAlert = () => {
     alert("Comming Soon!");
   };
 
-  const handleSignOut = async () => {
-    removeItem();
-    await signOut();
+  const handleSignOut = () => {
+    try {
+      logOut();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -51,7 +52,7 @@ export const HeaderSection = () => {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <Image src="/assets/logo.jpeg" alt="" width={32} height={32} />
+            <Image src="/assets/logo.png" alt="" width={98} height={98} />
             <link
               rel="icon"
               href="/icon?<generated>"
@@ -83,7 +84,7 @@ export const HeaderSection = () => {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {session?.user ? (
+          {user ? (
             <button
               className="text-sm font-semibold leading-6 text-gray-900"
               onClick={() => handleSignOut()}
@@ -139,10 +140,10 @@ export const HeaderSection = () => {
                 ))}
               </div>
               <div className="py-6">
-                {session?.user ? (
+                {user ? (
                   <button
                     className="text-sm font-semibold leading-6 text-gray-900"
-                    onClick={() => signOut()}
+                    onClick={() => handleSignOut()}
                   >
                     Logout
                     <span aria-hidden="true">&rarr;</span>

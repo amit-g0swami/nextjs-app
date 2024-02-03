@@ -1,10 +1,10 @@
 "use client";
 
-import Joi from "joi";
 import { useState } from "react";
+import Joi, { ValidationErrorItem } from "joi";
 
 type FormSectionProps = {
-  getFormData: (data: any) => void;
+  getFormData: (data: Record<string, string | number>) => void;
 };
 
 const validationSchema = Joi.object({
@@ -15,12 +15,12 @@ const validationSchema = Joi.object({
 });
 
 export const FormSection = ({ getFormData }: FormSectionProps) => {
-  const [values, setValues] = useState<any>({});
+  const [values, setValues] = useState<Record<string, string | number>>({});
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const result = validationSchema.validate(values, { abortEarly: true });
     if (result.error) {
-      result.error.details.map((data: any) => {
+      result.error.details.map((data: ValidationErrorItem) => {
         alert(data.message);
       });
     } else {

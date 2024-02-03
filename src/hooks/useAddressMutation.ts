@@ -6,11 +6,7 @@ export const useAddressMutation = () => {
     mutationFn: (addressData: IAddressPayload) => {
       return AddressService.addressCreate(addressData);
     },
-    onSuccess: () => {
-      console.log("Address created successfully");
-    },
-    onError: () => {
-      console.error("Error creating address");
-    },
+    onSuccess: () => {},
+    onError: () => {},
   });
 };

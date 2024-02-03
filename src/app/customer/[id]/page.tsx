@@ -7,12 +7,13 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
 
 export default function CustomerFormPage() {
-  const useAddressMutate = useAddressMutation();
   const { getItem } = useLocalStorage("userDetails");
+
+  const useAddressMutate = useAddressMutation();
   const params = useParams();
   const userID = JSON.parse(getItem() as string);
 
-  const getFormData = (data: Record<string, string>) => {
+  const getFormData = (data: Record<string, string | number>) => {
     const addressPayload = {
       id: params?.id,
       address: {

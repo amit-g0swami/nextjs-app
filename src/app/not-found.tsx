@@ -1,5 +1,5 @@
-import { BackGroundDiv } from "@/components/BackGroundDiv";
 import Link from "next/link";
+import { BackGroundDiv } from "@/components/BackGroundDiv";
 
 export default function NotFound() {
   return (
