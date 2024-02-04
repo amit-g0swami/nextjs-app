@@ -21,10 +21,10 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    if (getItem() === USER_TYPE.SELLER) {
+    if (getItem() === USER_TYPE.SELLER && user) {
       redirect("/seller");
     }
-    if (getItem() === USER_TYPE.CUSTOMER) {
+    if (getItem() === USER_TYPE.CUSTOMER && user) {
       redirect("/customer");
     }
   }, [user]);
