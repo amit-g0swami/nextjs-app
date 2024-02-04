@@ -14,6 +14,7 @@ export default function LoginPage() {
   const { user } = UserAuth();
 
   const { setItem, getItem } = useLocalStorage("loggedInType");
+  const { getItem: getUserDetails } = useLocalStorage("userDetails");
 
   const setType = (type: USER_TYPE) => {
     setItem(type);
@@ -22,7 +23,8 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (getItem() === USER_TYPE.SELLER && user) {
-      redirect("/seller");
+      const sellerId = JSON.parse(getUserDetails() as string);
+      redirect(`/seller/${sellerId}`);
     }
     if (getItem() === USER_TYPE.CUSTOMER && user) {
       redirect("/customer");

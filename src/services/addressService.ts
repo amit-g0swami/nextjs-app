@@ -1,20 +1,17 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const baseUrl = process.env.BASE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export interface IAddressPayload {
   id: string | string[];
   address: Record<string, any>;
 }
 
-const addressCreate = async (addressPayload: IAddressPayload) => {
+const createAddress = async (addressPayload: IAddressPayload) => {
   try {
     const { id, address } = addressPayload;
-    const { data } = await axios.post(
-      `http://localhost:8000/api/address/${id}`,
-      address
-    );
+    const { data } = await axios.post(`${baseUrl}/address/${id}`, address);
     toast(data.message);
     return data;
   } catch (error) {
@@ -23,8 +20,8 @@ const addressCreate = async (addressPayload: IAddressPayload) => {
   }
 };
 
-const AddressService = {
-  addressCreate,
+const CustomerService = {
+  createAddress,
 };
 
-export default AddressService;
+export default CustomerService;

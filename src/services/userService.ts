@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = process.env.BASE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export interface IUserLoginPayload {
   name: string | null | undefined;
   email: string | null | undefined;
@@ -9,10 +9,7 @@ export interface IUserLoginPayload {
 
 const userLogin = async (userData: IUserLoginPayload) => {
   try {
-    const { data } = await axios.post(
-      "http://localhost:8000/api/login",
-      userData
-    );
+    const { data } = await axios.post(`${baseUrl}/login`, userData);
     return data;
   } catch (error) {
     console.error("Error during login request:", error);

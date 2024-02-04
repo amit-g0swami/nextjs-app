@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 export const useAddressMutation = () => {
   return useMutation({
     mutationFn: (addressData: IAddressPayload) => {
-      return AddressService.addressCreate(addressData);
+      return AddressService.createAddress(addressData);
     },
     onSuccess: () => {},
     onError: () => {},
