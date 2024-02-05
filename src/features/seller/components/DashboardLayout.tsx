@@ -23,7 +23,7 @@ const getSelectedComponent = (id: number) => {
     case 1:
       return <CreateOrder />;
     default:
-      return <SellerProfile />;
+      return null;
   }
 };
 

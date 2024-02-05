@@ -13,7 +13,7 @@ const SellerPage = () => {
 
   useEffect(() => {
     const loggedInType = getItem();
-    if (loggedInType !== USER_TYPE.SELLER) {
+    if (loggedInType !== USER_TYPE.SELLER || user === null) {
       return redirect("/");
     }
   }, [user]);

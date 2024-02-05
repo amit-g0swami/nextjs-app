@@ -1,7 +1,6 @@
 "use client";
 
 import Joi from "joi";
-import { useState } from "react";
 import { Form } from "@/components/molecules/form";
 import { FormInput } from "@/components/molecules/form-input";
 
@@ -14,8 +13,6 @@ export const CustomerAddressForm = ({
   getFormData,
   validationSchema,
 }: CustomerAddressFormProps) => {
-  const [values, setValues] = useState<Record<string, string | number>>({});
-
   return (
     <Form getFormData={getFormData} validationSchema={validationSchema}>
       <h4 className="text-4xl text-neutral-800">Please enter your address</h4>

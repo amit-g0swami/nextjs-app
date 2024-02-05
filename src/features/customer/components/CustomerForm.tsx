@@ -1,9 +1,11 @@
+"use client";
+
+import Joi from "joi";
 import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { useAddressMutation } from "@/features/customer/hooks/useAddressMutation";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
 import { CustomerAddressForm } from "./CustomerAddressForm";
-import Joi from "joi";
 
 const validationSchema = Joi.object({
   streetAddress: Joi.string().required(),
