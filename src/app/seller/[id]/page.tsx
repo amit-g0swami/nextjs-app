@@ -18,7 +18,7 @@ const SellerPage = () => {
     }
   }, [user]);
 
-  return <SellerComponent user={user} />;
+  return <SellerComponent />;
 };
 
 export default SellerPage;
