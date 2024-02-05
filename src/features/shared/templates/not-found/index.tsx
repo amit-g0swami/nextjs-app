@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BackGroundDiv } from "@/components/shared/BackGroundDiv";
+import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 
 export const NotFoundComponent = () => {
   return (

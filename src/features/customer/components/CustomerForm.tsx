@@ -1,7 +1,7 @@
-import { BackGroundDiv } from "@/components/shared/BackGroundDiv";
+import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { FormSection } from "@/features/customer/components/FormSection";
 import { useAddressMutation } from "@/features/customer/hooks/useAddressMutation";
-import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
+import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
 
 export const CustomerFormComponent = () => {

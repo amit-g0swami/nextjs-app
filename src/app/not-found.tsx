@@ -1,4 +1,4 @@
-import { NotFoundComponent } from "@/features/not-found";
+import { NotFoundComponent } from "@/features/shared/templates/not-found";
 
 export default function NotFound() {
   return <NotFoundComponent />;

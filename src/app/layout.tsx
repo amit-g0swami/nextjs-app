@@ -1,10 +1,11 @@
 import "./globals.css";
-import Providers from "@/shared/providers/Providers";
+import Providers from "@/features/shared/providers/Providers";
 import HttpService from "@/services/HttpService";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { HeaderSection } from "@/features/home/components/HeaderSection";
 import { Toaster } from "react-hot-toast";
+import { ErrorBoundary } from "@/features/shared/templates/error-boundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +24,12 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Toaster position="top-center" />
-        <Providers>
-          <HeaderSection />
-          {children}
-        </Providers>
+        <ErrorBoundary>
+          <Providers>
+            <HeaderSection />
+            {children}
+          </Providers>
+        </ErrorBoundary>
       </body>
     </html>
   );

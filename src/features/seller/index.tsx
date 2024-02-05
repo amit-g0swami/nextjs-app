@@ -1,4 +1,4 @@
-import { BackGroundDiv } from "@/components/shared/BackGroundDiv";
+import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { User } from "firebase/auth";
 
 type SellerProps = {

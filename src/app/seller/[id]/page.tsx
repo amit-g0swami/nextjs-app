@@ -1,8 +1,8 @@
 "use client";
 
-import { UserAuth } from "@/shared/contexts/AuthContext";
+import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { useEffect } from "react";
-import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
+import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { USER_TYPE } from "@/store";
 import { redirect } from "next/navigation";
 import { SellerComponent } from "@/features/seller";

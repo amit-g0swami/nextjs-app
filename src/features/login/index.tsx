@@ -1,5 +1,5 @@
 import { LoginForm } from "./components/LoginForm";
-import { BackGroundDiv } from "@/components/shared/BackGroundDiv";
+import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { Card } from "@/features/login/components/CardComponent";
 import { USER_TYPE } from "@/store";
 

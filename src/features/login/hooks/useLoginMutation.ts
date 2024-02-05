@@ -1,8 +1,8 @@
 import AuthService, { IUserLoginPayload } from "@/features/login/user.service";
 import { IUser } from "@/store";
 import { useMutation } from "@tanstack/react-query";
-import { useLocalStorage } from "../../../shared/hooks/useLocalStorage";
-import { UserAuth } from "@/shared/contexts/AuthContext";
+import { useLocalStorage } from "../../shared/hooks/useLocalStorage";
+import { UserAuth } from "@/features/shared/contexts/AuthContext";
 
 export interface IResponse {
   message: string;

@@ -1,11 +1,11 @@
 "use client";
 
-import { BackGroundDiv } from "@/components/shared/BackGroundDiv";
-import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
+import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
+import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { USER_TYPE } from "@/store";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-import { UserAuth } from "@/shared/contexts/AuthContext";
+import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { CustomerComponent } from "@/features/customer";
 
 const CustomerPage = () => {

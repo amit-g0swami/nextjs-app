@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { UserAuth } from "@/shared/contexts/AuthContext";
+import { UserAuth } from "@/features/shared/contexts/AuthContext";
 
 interface ILoginFormProps {
   disabled?: boolean;

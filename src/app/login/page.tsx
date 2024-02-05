@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { USER_TYPE } from "@/store";
-import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
+import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { redirect } from "next/navigation";
-import { UserAuth } from "@/shared/contexts/AuthContext";
+import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { LoginComponent } from "@/features/login";
 
 export default function LoginPage() {
