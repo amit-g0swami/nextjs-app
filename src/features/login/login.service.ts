@@ -1,7 +1,7 @@
 import HttpService from "@/services/HttpService";
-import axios from "axios";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 export interface IUserLoginPayload {
   name: string | null | undefined;
   email: string | null | undefined;

@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { useCreateUserMutation } from "@/features/login/hooks/useLoginMutation";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
-import { IUserLoginPayload } from "@/features/login/user.service";
+import { IUserLoginPayload } from "@/features/login/login.service";
 
 interface IAuthContext {
   user: User | null;
