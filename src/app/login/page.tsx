@@ -21,9 +21,10 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (
-      getItem() === USER_TYPE.SELLER &&
-      user !== null &&
-      getUserDetails() !== null
+      (getItem() === USER_TYPE.SELLER &&
+        user !== null &&
+        getUserDetails() !== null) ||
+      undefined
     ) {
       const sellerId = JSON.parse(getUserDetails() as string);
       redirect(`/seller/${sellerId}`);
