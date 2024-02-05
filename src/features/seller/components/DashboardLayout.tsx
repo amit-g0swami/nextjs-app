@@ -1,23 +1,39 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { CreateOrder } from "./CreateOrder";
-import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import { useState } from "react";
+import { SellerProfile } from "./SellerProfile";
 
 const navigation = [
-  { name: "Create Order", href: "#", current: true },
   {
     name: "Seller Profile",
-    href: "#",
-    current: false,
+    id: 0,
   },
+  { name: "Create Order", id: 1 },
 ];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+const getSelectedComponent = (id: number) => {
+  switch (id) {
+    case 0:
+      return <SellerProfile />;
+    case 1:
+      return <CreateOrder />;
+    default:
+      return <SellerProfile />;
+  }
+};
+
 export default function DashboardLayout() {
-  const { user } = UserAuth();
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  const handleTabClick = (id: number) => {
+    setSelectedTab(id);
+  };
+
   return (
     <div className="bg-white pt-0 sm:pt-10 h-screen">
       <div className="relative isolate px-0 pt-20 lg:pt-12 md:pt-10">
@@ -43,18 +59,17 @@ export default function DashboardLayout() {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="hidden md:block">
-                      <div className="ml-0 flex items-baseline space-x-4">
+                      <div className="ml-0 flex space-x-4 items-center">
                         {navigation.map((item) => (
                           <a
                             key={item.name}
-                            href={item.href}
                             className={classNames(
-                              item.current
+                              item.id === selectedTab
                                 ? "bg-indigo-600 text-white"
                                 : "text-gray-600 hover:bg-indigo-500 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
+                              "rounded-md px-3 py-2 text-sm font-medium cursor-pointer"
                             )}
-                            aria-current={item.current ? "page" : undefined}
+                            onClick={() => handleTabClick(item.id)}
                           >
                             {item.name}
                           </a>
@@ -89,30 +104,17 @@ export default function DashboardLayout() {
                     <Disclosure.Button
                       key={item.name}
                       as="a"
-                      href={item.href}
                       className={classNames(
-                        item.current
+                        item.id === selectedTab
                           ? "bg-indigo-600 text-white"
                           : "text-gray-600 hover:bg-indigo-500 hover:text-white",
                         "block rounded-md px-3 py-2 text-base font-medium"
                       )}
-                      aria-current={item.current ? "page" : undefined}
+                      onClick={() => handleTabClick(item.id)}
                     >
                       {item.name}
                     </Disclosure.Button>
                   ))}
-                </div>
-                <div className="border-t border-gray-700 pb-3 pt-4">
-                  <div className="flex items-center px-5">
-                    <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-gray-600">
-                        {user?.displayName}
-                      </div>
-                      <div className="text-sm font-medium leading-none text-gray-400">
-                        {user?.email}
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </Disclosure.Panel>
             </>
@@ -121,7 +123,7 @@ export default function DashboardLayout() {
 
         <main>
           <div className="mx-auto max-w-7xl py-6 px-0 sm:px-6 lg:px-0">
-            <CreateOrder />
+            {getSelectedComponent(selectedTab)}
           </div>
         </main>
       </div>
