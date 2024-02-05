@@ -1,7 +1,10 @@
 "use client";
 
+import withCustomerOnly from "@/utils/withCustomerOnly";
 import { CustomerFormComponent } from "@/features/customer/components/CustomerForm";
 
-export default function CustomerFormPage() {
+const CustomerFormPage = () => {
   return <CustomerFormComponent />;
-}
+};
+
+export default withCustomerOnly(CustomerFormPage);

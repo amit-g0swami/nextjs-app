@@ -1,5 +1,5 @@
-import { USER_TYPE } from "@/store";
 import Image from "next/image";
+import { USER_TYPE } from "@/shared/shared.interface";
 
 type CardProps = {
   icon: string;

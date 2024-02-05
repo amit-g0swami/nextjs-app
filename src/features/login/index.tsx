@@ -1,7 +1,7 @@
 import { LoginForm } from "./components/LoginForm";
 import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { Card } from "@/features/login/components/CardComponent";
-import { USER_TYPE } from "@/store";
+import { USER_TYPE } from "@/shared/shared.interface";
 
 type LoginComponentProps = {
   loginType: USER_TYPE | null;

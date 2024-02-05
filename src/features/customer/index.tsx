@@ -1,11 +1,8 @@
 import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
-import { User } from "firebase/auth";
+import { UserAuth } from "../shared/contexts/AuthContext";
 
-export interface CustomerProps {
-  user: User | null;
-}
-
-export const CustomerComponent = ({ user }: CustomerProps) => {
+export const CustomerComponent = () => {
+  const { user } = UserAuth();
   return (
     <div className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>
