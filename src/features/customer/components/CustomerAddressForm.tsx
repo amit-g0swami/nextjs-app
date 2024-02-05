@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import Joi, { ValidationErrorItem } from "joi";
 import { useState } from "react";
 
-type FormSectionProps = {
+type CustomerAddressFormProps = {
   getFormData: (data: Record<string, string | number>) => void;
 };
 
@@ -15,7 +15,9 @@ const validationSchema = Joi.object({
   zipCode: Joi.string().required(),
 });
 
-export const FormSection = ({ getFormData }: FormSectionProps) => {
+export const CustomerAddressForm = ({
+  getFormData,
+}: CustomerAddressFormProps) => {
   const [values, setValues] = useState<Record<string, string | number>>({});
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
