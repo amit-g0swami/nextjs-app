@@ -4,87 +4,243 @@ import Joi from "joi";
 import { Form } from "@/components/molecules/form";
 import { FormInput } from "@/components/molecules/form-input";
 import { PAYMENT_TYPE } from "@/shared/shared.interface";
+import { FormRadioInput } from "@/components/molecules/form-radio";
 
 const createOrderSchema = Joi.object({
-  buyerDetails: Joi.object({
-    fullName: Joi.string().required(),
-    email: Joi.string().required(),
-    mobileNumber: Joi.string()
-      .pattern(/^\d{10}$/)
-      .required(),
-  }).required(),
-  orderPlaced: Joi.object({
-    completeAddress: Joi.string().required(),
-    landMark: Joi.string().required(),
-    pinCode: Joi.string()
-      .pattern(/^\d{6}$/)
-      .required(),
-    city: Joi.string().required(),
-    state: Joi.string().required(),
-    country: Joi.string().required(),
-  }).required(),
-  orderDetails: Joi.array()
-    .items(
-      Joi.object({
-        productName: Joi.string().required(),
-        quantity: Joi.number().required(),
-        unitPrice: Joi.number().required(),
-        totalAmount: Joi.number().required(),
-      })
-    )
+  fullName: Joi.string().required(),
+  email: Joi.string().required(),
+  mobileNumber: Joi.string()
+    .pattern(/^\d{10}$/)
     .required(),
-  packageDetails: Joi.object({
-    deadWeight: Joi.number().required(),
-    packageDimension: Joi.object({
-      length: Joi.number().required(),
-      width: Joi.number().required(),
-      height: Joi.number().required(),
-    }).required(),
-  }).required(),
-  paymentDetails: Joi.object({
-    paymentMode: Joi.string()
-      .valid(PAYMENT_TYPE.COD, PAYMENT_TYPE.PREPAID)
-      .required(),
-  }).required(),
+  completeAddress: Joi.string().required(),
+  landMark: Joi.string().required(),
+  pinCode: Joi.string()
+    .pattern(/^\d{6}$/)
+    .required(),
+  city: Joi.string().required(),
+  state: Joi.string().required(),
+  country: Joi.string().required(),
+  productName: Joi.string().required(),
+  quantity: Joi.number().required(),
+  unitPrice: Joi.number().required(),
+  totalAmount: Joi.number().required(),
+  deadWeight: Joi.number().required(),
+  length: Joi.number().required(),
+  width: Joi.number().required(),
+  height: Joi.number().required(),
+  paymentMode: Joi.string()
+    .valid(PAYMENT_TYPE.COD, PAYMENT_TYPE.PREPAID)
+    .required(),
 });
 
 export const CreateOrder = () => {
   const getFormData = (data: Record<string, string | number | boolean>) => {
-    console.log(data);
+    const buyerDetails = {
+      fullName: data.fullName,
+      email: data.email,
+      mobileNumber: data.mobileNumber,
+    };
+    const orderPlaced = {
+      completeAddress: data.completeAddress,
+      landMark: data.landMark,
+      pinCode: data.pinCode,
+      city: data.city,
+      state: data.state,
+      country: data.country,
+    };
+    const orderDetails = [
+      {
+        productName: data.productName,
+        quantity: data.quantity,
+        unitPrice: data.unitPrice,
+        totalAmount: data.totalAmount,
+      },
+    ];
+    const packageDetails = {
+      deadWeight: data.deadWeight,
+      packageDimension: {
+        length: data.length,
+        width: data.width,
+        height: data.height,
+      },
+    };
+    const paymentDetails = {
+      paymentMode: data.paymentMode,
+    };
+    const orderPayload = {
+      buyerDetails,
+      orderPlaced,
+      orderDetails,
+      packageDetails,
+      paymentDetails,
+    };
+    console.log(orderPayload);
   };
 
   return (
     <Form getFormData={getFormData} validationSchema={createOrderSchema}>
-      <h4 className="text-xl text-neutral-800">Create Order</h4>
-      <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <FormInput
-              className="col-span-full"
-              label="Street address"
-              name="streetAddress"
-              labelRequired
-            />
-            <FormInput
-              className="sm:col-span-2 sm:col-start-1"
-              label="City"
-              name="city"
-              labelRequired
-            />
-            <FormInput
-              className="sm:col-span-2"
-              label="State / Province"
-              name="state"
-              labelRequired
-            />
-            <FormInput
-              className="sm:col-span-2"
-              label="ZIP / Postal code"
-              name="zipCode"
-              type="number"
-              labelRequired
-            />
-          </div>
+      <div className="pb-6">
+        <h2 className="text-base font-semibold leading-7 text-gray-900">
+          Personal Information
+        </h2>
+        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <FormInput
+            className="sm:col-span-2 sm:col-start-1"
+            label="Full Name"
+            name="fullName"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Email address"
+            name="email"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Mobile Number"
+            name="mobileNumber"
+            labelRequired
+            type="number"
+          />
+        </div>
+      </div>
+
+      <div className="pb-6">
+        <h2 className="text-base font-semibold leading-7 text-gray-900">
+          Where order is placed
+        </h2>
+        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <FormInput
+            className="sm:col-span-2 sm:col-start-1"
+            label="Complete Address"
+            name="completeAddress"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="landmark"
+            name="landMark"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Pincode"
+            name="pinCode"
+            type="number"
+            labelRequired
+          />
+        </div>
+        <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <FormInput
+            className="sm:col-span-2 sm:col-start-1"
+            label="City"
+            name="city"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="State"
+            name="state"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Country"
+            name="country"
+            labelRequired
+          />
+        </div>
+      </div>
+
+      <div className="pb-6">
+        <h2 className="text-base font-semibold leading-7 text-gray-900">
+          Order Details
+        </h2>
+        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+          <FormInput
+            className="sm:col-span-2 sm:col-start-1"
+            label="Product Name"
+            name="productName"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Quantity"
+            name="quantity"
+            type="number"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Unit Price"
+            name="unitPrice"
+            type="number"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Total Amount"
+            name="totalAmount"
+            type="number"
+            labelRequired
+          />
+        </div>
+      </div>
+
+      <div className="pb-6">
+        <h2 className="text-base font-semibold leading-7 text-gray-900">
+          Package Details
+        </h2>
+        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+          <FormInput
+            className="sm:col-span-2 sm:col-start-1"
+            label="Dead weight"
+            name="deadWeight"
+            type="number"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Length (in cm)"
+            name="length"
+            type="number"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Width (in cm)"
+            name="width"
+            type="number"
+            labelRequired
+          />
+          <FormInput
+            className="sm:col-span-2"
+            label="Height (in cm)"
+            name="height"
+            type="number"
+            labelRequired
+          />
+        </div>
+      </div>
+
+      <div className="pb-6">
+        <h2 className="text-base font-semibold leading-7 text-gray-900">
+          Payment Details
+        </h2>
+        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+          <FormRadioInput
+            name="paymentMode"
+            label="Prepaid"
+            labelRequired
+            value={PAYMENT_TYPE.PREPAID}
+          />
+          <FormRadioInput
+            name="paymentMode"
+            label="COD"
+            labelRequired
+            value={PAYMENT_TYPE.COD}
+          />
         </div>
       </div>
 

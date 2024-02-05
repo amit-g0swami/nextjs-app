@@ -122,7 +122,7 @@ export default function DashboardLayout() {
         </Disclosure>
 
         <main>
-          <div className="mx-auto max-w-7xl py-6 px-0 sm:px-6 lg:px-0">
+          <div className="mx-auto max-w-7xl py-6 px-6 sm:px-6 lg:px-0">
             {getSelectedComponent(selectedTab)}
           </div>
         </main>
