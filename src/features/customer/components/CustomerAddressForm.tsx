@@ -1,120 +1,52 @@
 "use client";
 
-import toast from "react-hot-toast";
-import Joi, { ValidationErrorItem } from "joi";
+import Joi from "joi";
 import { useState } from "react";
+import { Form } from "@/components/molecules/form";
+import { FormInput } from "@/components/molecules/form-input";
 
 type CustomerAddressFormProps = {
-  getFormData: (data: Record<string, string | number>) => void;
+  getFormData: (data: Record<string, string | number | boolean>) => void;
+  validationSchema: Joi.ObjectSchema;
 };
-
-const validationSchema = Joi.object({
-  streetAddress: Joi.string().required(),
-  city: Joi.string().required(),
-  state: Joi.string().required(),
-  zipCode: Joi.string().required(),
-});
 
 export const CustomerAddressForm = ({
   getFormData,
+  validationSchema,
 }: CustomerAddressFormProps) => {
   const [values, setValues] = useState<Record<string, string | number>>({});
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const result = validationSchema.validate(values, { abortEarly: true });
-    if (result.error) {
-      result.error.details.map((data: ValidationErrorItem) => {
-        toast(data.message);
-      });
-    } else {
-      getFormData(values);
-    }
-  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <Form getFormData={getFormData} validationSchema={validationSchema}>
       <h4 className="text-4xl text-neutral-800">Please enter your address</h4>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="col-span-full">
-              <label
-                htmlFor="street-address"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Street address
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="streetAddress"
-                  className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  value={values["streetAddress"] || ""}
-                  onChange={(e) =>
-                    setValues({ ...values, streetAddress: e.target.value })
-                  }
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2 sm:col-start-1">
-              <label
-                htmlFor="city"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                City
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="city"
-                  className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  value={values["city"] || ""}
-                  onChange={(e) =>
-                    setValues({ ...values, city: e.target.value })
-                  }
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="region"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                State / Province
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="state"
-                  className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  value={values["state"] || ""}
-                  onChange={(e) =>
-                    setValues({ ...values, state: e.target.value })
-                  }
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="postal-code"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                ZIP / Postal code
-              </label>
-              <div className="mt-2">
-                <input
-                  type="number"
-                  name="zipCode"
-                  className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  value={values["zipCode"] || ""}
-                  onChange={(e) =>
-                    setValues({ ...values, zipCode: e.target.value })
-                  }
-                />
-              </div>
-            </div>
+            <FormInput
+              className="col-span-full"
+              label="Street address"
+              name="streetAddress"
+              labelRequired
+            />
+            <FormInput
+              className="sm:col-span-2 sm:col-start-1"
+              label="City"
+              name="city"
+              labelRequired
+            />
+            <FormInput
+              className="sm:col-span-2"
+              label="State / Province"
+              name="state"
+              labelRequired
+            />
+            <FormInput
+              className="sm:col-span-2"
+              label="ZIP / Postal code"
+              name="zipCode"
+              type="number"
+              labelRequired
+            />
           </div>
         </div>
       </div>
@@ -127,6 +59,6 @@ export const CustomerAddressForm = ({
           Submit
         </button>
       </div>
-    </form>
+    </Form>
   );
 };

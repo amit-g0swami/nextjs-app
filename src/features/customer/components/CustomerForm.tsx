@@ -3,6 +3,14 @@ import { useAddressMutation } from "@/features/customer/hooks/useAddressMutation
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
 import { CustomerAddressForm } from "./CustomerAddressForm";
+import Joi from "joi";
+
+const validationSchema = Joi.object({
+  streetAddress: Joi.string().required(),
+  city: Joi.string().required(),
+  state: Joi.string().required(),
+  zipCode: Joi.string().required(),
+});
 
 export const CustomerFormComponent = () => {
   const { getItem } = useLocalStorage("userDetails");
@@ -11,7 +19,7 @@ export const CustomerFormComponent = () => {
   const params = useParams();
   const userID = JSON.parse(getItem() as string);
 
-  const getFormData = (data: Record<string, string | number>) => {
+  const getFormData = (data: Record<string, string | number | boolean>) => {
     const addressPayload = {
       id: params?.id,
       address: {
@@ -25,7 +33,10 @@ export const CustomerFormComponent = () => {
   return (
     <div className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>
-        <CustomerAddressForm getFormData={getFormData} />
+        <CustomerAddressForm
+          getFormData={getFormData}
+          validationSchema={validationSchema}
+        />
       </BackGroundDiv>
     </div>
   );
