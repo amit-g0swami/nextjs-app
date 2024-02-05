@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import Joi, { ValidationErrorItem } from "joi";
 import toast from "react-hot-toast";
+import Joi, { ValidationErrorItem } from "joi";
+import { useState } from "react";
 
 type FormSectionProps = {
   getFormData: (data: Record<string, string | number>) => void;

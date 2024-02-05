@@ -1,11 +1,12 @@
 "use client";
 
-import { BackGroundDiv } from "@/components/BackGroundDiv";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { BackGroundDiv } from "@/components/shared/BackGroundDiv";
+import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
 import { USER_TYPE } from "@/store";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-import { UserAuth } from "@/context/AuthContext";
+import { UserAuth } from "@/shared/contexts/AuthContext";
+import { CustomerComponent } from "@/features/customer";
 
 const CustomerPage = () => {
   const { getItem } = useLocalStorage("loggedInType");
@@ -18,13 +19,7 @@ const CustomerPage = () => {
     }
   }, [user]);
 
-  return (
-    <div className="bg-white py-24 sm:py-32 h-screen">
-      <BackGroundDiv>
-        <h6 className="text-2xl text-neutral-800">User: {user?.displayName}</h6>
-      </BackGroundDiv>
-    </div>
-  );
+  return <CustomerComponent user={user} />;
 };
 
 export default CustomerPage;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BackGroundDiv } from "./BackGroundDiv";
+import { BackGroundDiv } from "../../../components/shared/BackGroundDiv";
 
 export const HeroSection = () => {
   return (

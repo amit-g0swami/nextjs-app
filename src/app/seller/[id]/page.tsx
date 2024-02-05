@@ -1,11 +1,11 @@
 "use client";
 
-import { BackGroundDiv } from "@/components/BackGroundDiv";
-import { UserAuth } from "@/context/AuthContext";
+import { UserAuth } from "@/shared/contexts/AuthContext";
 import { useEffect } from "react";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
 import { USER_TYPE } from "@/store";
 import { redirect } from "next/navigation";
+import { SellerComponent } from "@/features/seller";
 
 const SellerPage = () => {
   const { getItem } = useLocalStorage("loggedInType");
@@ -18,15 +18,7 @@ const SellerPage = () => {
     }
   }, [user]);
 
-  return (
-    <div className="bg-white py-24 sm:py-32 h-screen">
-      <BackGroundDiv>
-        <h6 className="text-2xl text-neutral-800">
-          Seller: {user?.displayName}
-        </h6>
-      </BackGroundDiv>
-    </div>
-  );
+  return <SellerComponent user={user} />;
 };
 
 export default SellerPage;

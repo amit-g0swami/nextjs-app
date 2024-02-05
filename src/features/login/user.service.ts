@@ -1,3 +1,4 @@
+import HttpService from "@/services/HttpService";
 import axios from "axios";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -9,7 +10,7 @@ export interface IUserLoginPayload {
 
 const userLogin = async (userData: IUserLoginPayload) => {
   try {
-    const { data } = await axios.post(`${baseUrl}/login`, userData);
+    const { data } = await HttpService.post(`${baseUrl}/login`, userData);
     return data;
   } catch (error) {
     console.error("Error during login request:", error);
@@ -17,8 +18,8 @@ const userLogin = async (userData: IUserLoginPayload) => {
   }
 };
 
-const UserService = {
+const AuthService = {
   userLogin,
 };
 
-export default UserService;
+export default AuthService;

@@ -1,13 +1,7 @@
 "use client";
 
-import { AboutSection } from "@/components/AboutSection";
-import { HeroSection } from "@/components/HeroSection";
+import { HomeComponent } from "@/features/home";
 
 export default function Home() {
-  return (
-    <>
-      <HeroSection />
-      <AboutSection />
-    </>
-  );
+  return <HomeComponent />;
 }

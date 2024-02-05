@@ -1,9 +1,9 @@
 import "./globals.css";
+import Providers from "@/shared/providers/Providers";
+import HttpService from "@/services/HttpService";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { HeaderSection } from "@/components/HeaderSection";
-
-import Providers from "@/context/Providers";
+import { HeaderSection } from "@/features/home/components/HeaderSection";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,6 +18,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  HttpService.configure();
   return (
     <html lang="en">
       <body className={inter.className}>

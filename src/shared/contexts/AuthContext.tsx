@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, ReactNode } from "react";
-import { auth } from "../config/firebase";
+import { auth } from "../../config/firebase";
 import {
   signInWithPopup,
   signOut,
@@ -7,9 +7,9 @@ import {
   GoogleAuthProvider,
   User,
 } from "firebase/auth";
-import { useCreateUserMutation } from "@/hooks/useLoginMutation";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { IUserLoginPayload } from "@/services/userService";
+import { useCreateUserMutation } from "@/features/login/hooks/useLoginMutation";
+import { useLocalStorage } from "@/shared/hooks/useLocalStorage";
+import { IUserLoginPayload } from "@/features/login/user.service";
 
 interface IAuthContext {
   user: User | null;

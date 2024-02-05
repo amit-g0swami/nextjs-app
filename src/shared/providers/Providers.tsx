@@ -2,7 +2,7 @@
 
 import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AuthContextProvider } from "./AuthContext";
+import { AuthContextProvider } from "../contexts/AuthContext";
 
 interface Props {
   children: ReactNode;
