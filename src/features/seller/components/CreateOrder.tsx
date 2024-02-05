@@ -5,6 +5,9 @@ import { Form } from "@/components/molecules/form";
 import { FormInput } from "@/components/molecules/form-input";
 import { PAYMENT_TYPE } from "@/shared/shared.interface";
 import { FormRadioInput } from "@/components/molecules/form-radio";
+import { useParams } from "next/navigation";
+import { useCreateOrderMutation } from "../hooks/useCreateOrderMutation";
+import { ICreateOrderPayload } from "../seller.interface";
 
 const createOrderSchema = Joi.object({
   fullName: Joi.string().required(),
@@ -34,6 +37,11 @@ const createOrderSchema = Joi.object({
 });
 
 export const CreateOrder = () => {
+  const params = useParams();
+  const sellerId = params?.id;
+
+  const useCreateOrderMutate = useCreateOrderMutation();
+
   const getFormData = (data: Record<string, string | number | boolean>) => {
     const buyerDetails = {
       fullName: data.fullName,
@@ -68,13 +76,15 @@ export const CreateOrder = () => {
       paymentMode: data.paymentMode,
     };
     const orderPayload = {
+      sellerId,
       buyerDetails,
       orderPlaced,
       orderDetails,
       packageDetails,
       paymentDetails,
-    };
-    console.log(orderPayload);
+    } as ICreateOrderPayload;
+
+    useCreateOrderMutate.mutate(orderPayload);
   };
 
   return (

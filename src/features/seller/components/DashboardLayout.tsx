@@ -1,7 +1,7 @@
+import useSellerStore from "../store/seller.store";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { CreateOrder } from "./CreateOrder";
-import { useState } from "react";
 import { SellerProfile } from "./SellerProfile";
 
 const navigation = [
@@ -28,7 +28,8 @@ const getSelectedComponent = (id: number) => {
 };
 
 export default function DashboardLayout() {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const { selectedTab } = useSellerStore();
+  const { setSelectedTab } = useSellerStore();
 
   const handleTabClick = (id: number) => {
     setSelectedTab(id);
