@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import { ROUTES } from "@/shared/shared.interface";
 
 const navigation = [
   { name: "About", href: "#about", showAlert: false },
@@ -50,7 +51,7 @@ export const HeaderSection = () => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <a href={ROUTES.HOME} className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <Image
               src="/assets/logo.png"
@@ -100,10 +101,10 @@ export const HeaderSection = () => {
             </button>
           ) : (
             <Link
-              href={pathname === "/login" ? "/" : "/login"}
+              href={pathname === ROUTES.LOGIN ? ROUTES.HOME : ROUTES.LOGIN}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              {pathname === "/login" ? "Go Home" : "Login"}{" "}
+              {pathname === ROUTES.LOGIN ? "Go Home" : "Login"}{" "}
               <span aria-hidden="true">&rarr;</span>
             </Link>
           )}
@@ -140,7 +141,7 @@ export const HeaderSection = () => {
                       key={item.name}
                       href={item.href}
                       onClick={item.showAlert ? showAlert : undefined}
-                      className="-mx-3 block rounded-sm px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+                      className="-mx-3 block rounded-sm px-3 py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
                     >
                       {item.name}
                     </Link>
@@ -157,10 +158,12 @@ export const HeaderSection = () => {
                     </button>
                   ) : (
                     <Link
-                      href={pathname === "/login" ? "/" : "/login"}
+                      href={
+                        pathname === ROUTES.LOGIN ? ROUTES.HOME : ROUTES.LOGIN
+                      }
                       className="-mx-3 block rounded-sm px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
                     >
-                      {pathname === "/login" ? "Go Home" : "Login"}{" "}
+                      {pathname === ROUTES.LOGIN ? "Go Home" : "Login"}{" "}
                       <span aria-hidden="true">&rarr;</span>
                     </Link>
                   )}
