@@ -1,6 +1,5 @@
 "use client";
 
-import toast from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -10,10 +9,10 @@ import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { ROUTES } from "@/shared/shared.interface";
 
 const navigation = [
-  { name: "About", href: "#about", showAlert: false },
-  { name: "Features", href: "#features", showAlert: true },
-  { name: "Marketplace", href: "#marketplace", showAlert: true },
-  { name: "Help", href: "#help", showAlert: true },
+  { name: "About", href: "#about" },
+  { name: "Features", href: "#features" },
+  { name: "Marketplace", href: "#marketplace" },
+  { name: "Help", href: "#help" },
 ];
 
 export const HeaderSection = () => {
@@ -25,16 +24,11 @@ export const HeaderSection = () => {
   const { user, logOut } = UserAuth();
 
   useEffect(() => {
-    if (user) {
-      setNavigationData([]);
-    } else {
-      setNavigationData(navigation);
+    if (!user) {
+      return setNavigationData(navigation);
     }
+    return setNavigationData([]);
   }, [user]);
-
-  const showAlert = () => {
-    toast("Coming Soon!");
-  };
 
   const handleSignOut = () => {
     try {
@@ -83,7 +77,6 @@ export const HeaderSection = () => {
             <Link
               key={item.name}
               href={item.href}
-              onClick={item.showAlert ? showAlert : undefined}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               {item.name}
@@ -140,7 +133,6 @@ export const HeaderSection = () => {
                     <Link
                       key={item.name}
                       href={item.href}
-                      onClick={item.showAlert ? showAlert : undefined}
                       className="-mx-3 block rounded-sm px-3 py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
                     >
                       {item.name}
