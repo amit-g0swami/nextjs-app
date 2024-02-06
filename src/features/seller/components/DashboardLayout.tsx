@@ -1,5 +1,4 @@
 import useSellerStore from "../store/seller.store";
-import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { CreateOrder } from "./CreateOrder";
 import { SellerProfile } from "./SellerProfile";
@@ -28,11 +27,15 @@ const getSelectedComponent = (id: number) => {
 };
 
 export default function DashboardLayout() {
-  const { selectedTab } = useSellerStore();
-  const { setSelectedTab } = useSellerStore();
+  const { isTabOpen, selectedTab, setIsTabOpen, setSelectedTab } =
+    useSellerStore();
 
   const handleTabClick = (id: number) => {
     setSelectedTab(id);
+  };
+
+  const toggleMenu = () => {
+    setIsTabOpen(!isTabOpen);
   };
 
   return (
@@ -50,77 +53,69 @@ export default function DashboardLayout() {
             }}
           />
         </div>
-        <Disclosure
-          as="nav"
-          className="bg-gray-50 ring-1 ring-inset ring-gray-900/5"
-        >
-          {({ open }) => (
-            <>
-              <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-0">
-                <div className="flex h-16 items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="hidden md:block">
-                      <div className="ml-0 flex space-x-4 items-center">
-                        {navigation.map((item) => (
-                          <a
-                            key={item.name}
-                            className={classNames(
-                              item.id === selectedTab
-                                ? "bg-indigo-600 text-white"
-                                : "text-gray-600 hover:bg-indigo-500 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium cursor-pointer"
-                            )}
-                            onClick={() => handleTabClick(item.id)}
-                          >
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex md:hidden">
-                    {/* Mobile menu button */}
-                    <Disclosure.Button className="sm:mr-2 relative inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-gray-400 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="absolute -inset-0.5" />
-                      <span className="sr-only">Open main menu</span>
-                      {open ? (
-                        <XMarkIcon
-                          className="block h-6 w-6"
-                          aria-hidden="true"
-                        />
-                      ) : (
-                        <Bars3Icon
-                          className="block h-6 w-6"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </Disclosure.Button>
+        <nav className="bg-gray-50 ring-1 ring-inset ring-gray-900/5">
+          <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-0">
+            <div className="flex h-16 items-center justify-between">
+              <div className="flex items-center">
+                <div className="hidden md:block">
+                  <div className="ml-0 flex space-x-4 items-center">
+                    {navigation.map((item) => (
+                      <a
+                        key={item.id}
+                        className={classNames(
+                          item.id === selectedTab
+                            ? "bg-indigo-600 text-white"
+                            : "text-gray-600 hover:bg-indigo-500 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium cursor-pointer"
+                        )}
+                        onClick={() => handleTabClick(item.id)}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
                   </div>
                 </div>
               </div>
+              <div className="flex md:hidden">
+                <button
+                  onClick={toggleMenu}
+                  className="sm:mr-2 relative inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-gray-400 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                >
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Open main menu</span>
+                  {isTabOpen ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
 
-              <Disclosure.Panel className="md:hidden">
-                <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                  {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      className={classNames(
-                        item.id === selectedTab
-                          ? "bg-indigo-600 text-white"
-                          : "text-gray-600 hover:bg-indigo-500 hover:text-white",
-                        "block rounded-md px-3 py-2 text-base font-medium"
-                      )}
-                      onClick={() => handleTabClick(item.id)}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
-                </div>
-              </Disclosure.Panel>
-            </>
-          )}
-        </Disclosure>
+        <div className="md:hidden">
+          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+            {isTabOpen && (
+              <>
+                {navigation.map((item) => (
+                  <a
+                    key={item.id}
+                    className={classNames(
+                      item.id === selectedTab
+                        ? "bg-indigo-600 text-white"
+                        : "text-gray-600 hover:bg-indigo-500 hover:text-white",
+                      "block rounded-md px-3 py-2 text-base font-medium"
+                    )}
+                    onClick={() => handleTabClick(item.id)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
 
         <main>
           <div className="mx-auto max-w-7xl py-6 px-6 sm:px-6 lg:px-0">

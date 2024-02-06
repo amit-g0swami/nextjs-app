@@ -1,12 +1,10 @@
-"use client";
-
-import toast from "react-hot-toast";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import toast from "react-hot-toast";
 
 const navigation = [
   { name: "About", href: "#about", showAlert: false },
@@ -111,7 +109,7 @@ export const HeaderSection = () => {
       </nav>
       {mobileMenuOpen && (
         <div className="lg:hidden">
-          <div className="fixed inset-0 z-50 bg-white p-6">
+          <div className="fixed inset-0 z-50">
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Shippiviot</span>
@@ -140,7 +138,7 @@ export const HeaderSection = () => {
                       key={item.name}
                       href={item.href}
                       onClick={item.showAlert ? showAlert : undefined}
-                      className="-mx-3 block rounded-sm px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
                     </Link>
@@ -158,10 +156,9 @@ export const HeaderSection = () => {
                   ) : (
                     <Link
                       href={pathname === "/login" ? "/" : "/login"}
-                      className="-mx-3 block rounded-sm px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
-                      {pathname === "/login" ? "Go Home" : "Login"}{" "}
-                      <span aria-hidden="true">&rarr;</span>
+                      {pathname === "/login" ? "Go Home" : "Login"}
                     </Link>
                   )}
                 </div>
