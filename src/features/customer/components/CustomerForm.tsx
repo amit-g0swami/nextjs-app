@@ -6,6 +6,7 @@ import { useAddressMutation } from "@/features/customer/hooks/useAddressMutation
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
 import { CustomerAddressForm } from "./CustomerAddressForm";
+import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 
 const validationSchema = Joi.object({
   streetAddress: Joi.string().required(),
@@ -15,7 +16,7 @@ const validationSchema = Joi.object({
 });
 
 export const CustomerFormComponent = () => {
-  const { getItem } = useLocalStorage("userDetails");
+  const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS);
 
   const useAddressMutate = useAddressMutation();
   const params = useParams();

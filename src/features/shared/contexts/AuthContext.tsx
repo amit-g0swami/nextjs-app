@@ -10,6 +10,7 @@ import {
 import { useCreateUserMutation } from "@/features/login/hooks/useLoginMutation";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { IUserLoginPayload } from "@/features/login/login.service";
+import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 
 interface IAuthContext {
   user: User | null;
@@ -25,8 +26,12 @@ const AuthContext = React.createContext<IAuthContext>({
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const { getItem, removeItem } = useLocalStorage("loggedInType");
-  const { removeItem: removeUserDetails } = useLocalStorage("userDetails");
+  const { getItem, removeItem } = useLocalStorage(
+    USE_LOCAL_STORAGE.LOGGED_IN_TYPE
+  );
+  const { removeItem: removeUserDetails } = useLocalStorage(
+    USE_LOCAL_STORAGE.USER_DETAILS
+  );
   const useLoginMutate = useCreateUserMutation();
 
   const googleSignIn = () => {

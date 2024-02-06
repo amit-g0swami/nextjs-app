@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
-import { USER_TYPE } from "@/shared/shared.interface";
+import {
+  ROUTES,
+  USER_TYPE,
+  USE_LOCAL_STORAGE,
+} from "@/shared/shared.interface";
 import { redirect } from "next/navigation";
 
 interface UseLoggedOutOnlyProps {}
@@ -9,8 +13,10 @@ interface UseLoggedOutOnlyProps {}
 export function useLoggedOutOnly() {
   const [isNotLoggedIn, setIsNotLoggedIn] = useState(true);
   const { user } = UserAuth();
-  const { getItem } = useLocalStorage("loggedInType");
-  const { getItem: getUserDetails } = useLocalStorage("userDetails");
+  const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.LOGGED_IN_TYPE);
+  const { getItem: getUserDetails } = useLocalStorage(
+    USE_LOCAL_STORAGE.USER_DETAILS
+  );
 
   useEffect(() => {
     const loggedInType = getItem();
@@ -23,12 +29,12 @@ export function useLoggedOutOnly() {
     ) {
       const sellerId = JSON.parse(userDetailsString);
       setIsNotLoggedIn(false);
-      redirect(`/seller/${sellerId}`);
+      redirect(ROUTES.SELLER.replace("[id]", `${sellerId}`));
     }
 
     if (loggedInType === USER_TYPE.CUSTOMER && user) {
       setIsNotLoggedIn(false);
-      redirect("/customer");
+      redirect(ROUTES.CUSTOMER);
     }
 
     if (!user) {
