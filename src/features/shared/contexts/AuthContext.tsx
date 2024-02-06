@@ -32,36 +32,33 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const { removeItem: removeUserDetails } = useLocalStorage(
     USE_LOCAL_STORAGE.USER_DETAILS
   );
+
   const useLoginMutate = useCreateUserMutation();
 
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).then((result) => {
-      const user = result.user;
-      const loggedInType = getItem();
-      const userDataPayload: IUserLoginPayload = {
-        name: user.displayName,
-        email: user.email,
-        createdAs: loggedInType,
-      };
-      useLoginMutate.mutate(userDataPayload);
-    });
+    const { user } = await signInWithPopup(auth, provider);
+    const loggedInType = getItem();
+    const userDataPayload: IUserLoginPayload = {
+      name: user.displayName,
+      email: user.email,
+      createdAs: loggedInType,
+    };
+    useLoginMutate.mutate(userDataPayload);
   };
 
-  const logOut = () => {
-    signOut(auth).then(() => {
-      removeItem();
-      removeUserDetails();
-    });
+  const logOut = async () => {
+    await signOut(auth);
+    removeItem();
+    removeUserDetails();
     setUser(null);
   };
 
   const checkAuth = onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      setUser(currentUser);
-    } else {
-      setUser(null);
+    if (!currentUser) {
+      return setUser(null);
     }
+    return setUser(currentUser);
   });
 
   useEffect(() => {
