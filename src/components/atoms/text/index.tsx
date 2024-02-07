@@ -2,14 +2,14 @@ import React from "react";
 
 type TextProps = {
   children: React.ReactNode;
-  styles?: React.CSSProperties;
+  className?: string;
   as?: keyof JSX.IntrinsicElements;
 };
 
 export const Text: React.FC<TextProps> = ({
   children,
-  styles,
+  className,
   as = "span",
 }) => {
-  return React.createElement(as, children);
+  return React.createElement(as, { className }, children);
 };

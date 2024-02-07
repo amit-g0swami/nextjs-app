@@ -1,6 +1,9 @@
 "use client";
 
 import React, { ReactNode } from "react";
+import { Container } from "@/components/atoms/container";
+import { Text } from "@/components/atoms/text";
+import { Button } from "@/components/atoms/button";
 
 export type ErrorBoundaryProps = {
   children: ReactNode;
@@ -24,12 +27,15 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div>
-          <h2>Oops, Something went wrong!</h2>
-          <button onClick={() => this.setState({ hasError: false })}>
-            Try Again
-          </button>
-        </div>
+        <Container className="bg-white py-24 sm:py-32 h-screen flex items-center justify-center">
+          <Text as="h2" className="text-4xl text-neutral-800">
+            Oops, Something went wrong!
+          </Text>
+          <Button
+            onClick={() => this.setState({ hasError: false })}
+            btnText=" Try Again"
+          />
+        </Container>
       );
     }
     return this.props.children;

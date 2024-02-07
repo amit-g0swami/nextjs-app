@@ -1,11 +1,17 @@
 import React, { ReactNode } from "react";
 
 interface ContainerProps {
-  children: ReactNode;
-  styles?: React.CSSProperties | Record<string, string>;
+  children?: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
   onClick?: () => void;
 }
 
-export const Container = ({ children, styles, ...rest }: ContainerProps) => {
-  return React.createElement("div", { ...rest, style: styles }, children);
+export const Container = ({
+  children,
+  className,
+  style,
+  ...rest
+}: ContainerProps) => {
+  return React.createElement("div", { ...rest, style, className }, children);
 };

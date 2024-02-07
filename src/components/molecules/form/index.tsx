@@ -6,8 +6,8 @@ interface IFormProps {
   className?: string;
   validationSchema: Joi.ObjectSchema;
   initialValues?: Record<string, string | number | boolean>;
-  getFormData: (data: Record<string, string | number | boolean>) => void;
   id?: string;
+  getFormData: (data: Record<string, string | number | boolean>) => void;
 }
 
 interface IFormContext {

@@ -3,6 +3,9 @@
 import Joi from "joi";
 import { Form } from "@/components/molecules/form";
 import { FormInput } from "@/components/molecules/form-input";
+import { Button } from "@/components/atoms/button";
+import { Container } from "@/components/atoms/container";
+import { Text } from "@/components/atoms/text";
 
 type CustomerAddressFormProps = {
   getFormData: (data: Record<string, string | number | boolean>) => void;
@@ -15,10 +18,12 @@ export const CustomerAddressForm = ({
 }: CustomerAddressFormProps) => {
   return (
     <Form getFormData={getFormData} validationSchema={validationSchema}>
-      <h4 className="text-4xl text-neutral-800">Please enter your address</h4>
-      <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <Text as="h4" className="text-4xl text-neutral-800">
+        Please enter your address
+      </Text>
+      <Container className="space-y-12">
+        <Container className="border-b border-gray-900/10 pb-12">
+          <Container className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <FormInput
               className="col-span-full"
               label="Street address"
@@ -44,18 +49,13 @@ export const CustomerAddressForm = ({
               type="number"
               labelRequired
             />
-          </div>
-        </div>
-      </div>
+          </Container>
+        </Container>
+      </Container>
 
-      <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button
-          type="submit"
-          className="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Submit
-        </button>
-      </div>
+      <Container className="mt-6 flex items-center justify-end gap-x-6">
+        <Button type="submit" btnText="Submit" />
+      </Container>
     </Form>
   );
 };

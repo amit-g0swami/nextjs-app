@@ -7,6 +7,7 @@ import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
 import { CustomerAddressForm } from "./CustomerAddressForm";
 import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
+import { Container } from "@/components/atoms/container";
 
 const validationSchema = Joi.object({
   streetAddress: Joi.string().required(),
@@ -35,13 +36,13 @@ export const CustomerFormComponent = () => {
     useAddressMutate.mutate(addressPayload);
   };
   return (
-    <div className="bg-white py-24 sm:py-32 h-screen">
+    <Container className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>
         <CustomerAddressForm
           getFormData={getFormData}
           validationSchema={validationSchema}
         />
       </BackGroundDiv>
-    </div>
+    </Container>
   );
 };

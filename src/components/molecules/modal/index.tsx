@@ -5,9 +5,9 @@ import { Text } from "../../atoms/text";
 
 type ModalProps = {
   open: boolean;
-  setOpen: (open: boolean) => void;
   children: React.ReactNode;
   title: string;
+  setOpen: (open: boolean) => void;
 };
 
 export const Modal = ({ open, setOpen, children, title }: ModalProps) => {
