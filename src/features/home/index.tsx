@@ -4,7 +4,7 @@ import { HeroSection } from "@/features/home/components/HeroSection";
 import { FeaturesSection } from "./components/FeaturesSection";
 import { MarketplaceSection } from "./components/MarketPlaceSection";
 import { HelpSection } from "./components/HelpSection";
-import { FooterSection } from "./components/FooterSection";
+import { FooterSection } from "./components/footer/FooterSection";
 
 export const HomeComponent = () => {
   return (

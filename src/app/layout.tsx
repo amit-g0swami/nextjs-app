@@ -3,9 +3,9 @@ import Providers from "@/features/shared/providers/Providers";
 import HttpService from "@/services/HttpService";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { HeaderSection } from "@/features/home/components/HeaderSection";
 import { Toaster } from "react-hot-toast";
 import { ErrorBoundary } from "@/features/shared/templates/error-boundary";
+import { HeaderSection } from "@/features/home/components/header/HeaderSection";
 
 const inter = Inter({ subsets: ["latin"] });
 
