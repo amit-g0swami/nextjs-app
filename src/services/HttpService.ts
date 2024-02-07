@@ -1,33 +1,32 @@
 import axios from "axios";
 import toast from "react-hot-toast";
+import { HTTP_STATUS_CODE } from "@/shared/shared.interface";
 
 const _axios = axios.create({
   timeout: 5000,
 });
 
-const configure = () => {
-  _axios.interceptors.request.use((config): any => {
-    // if (AuthService.isLoggedIn()) {
-    //   config.headers.Authorization = `Bearer ${AuthService.getToken()}`;
-    //   return Promise.resolve(config);
-    // }
-  });
-  _axios.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {
-      if (error.response) {
-        toast(error);
-      }
+_axios.interceptors.response.use(
+  (response) => {
+    if (
+      response.data.status !== HTTP_STATUS_CODE.OK ||
+      HTTP_STATUS_CODE.CREATED ||
+      HTTP_STATUS_CODE.UPDATED
+    ) {
+      toast.error(response.data.message);
+    } else {
+      toast.success(response.data.message);
     }
-  );
-};
+    return response;
+  },
+  (error) => {
+    toast.error(error);
+  }
+);
 
 const getAxiosClient = () => _axios;
 
 const HttpService = {
-  configure,
   getAxiosClient,
   get: getAxiosClient().get,
   post: getAxiosClient().post,

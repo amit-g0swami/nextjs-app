@@ -1,5 +1,4 @@
 import HttpService from "@/services/HttpService";
-import toast from "react-hot-toast";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -15,7 +14,6 @@ const createAddress = async (addressPayload: IAddressPayload) => {
       `${baseUrl}/address/${id}`,
       address
     );
-    toast(data.message);
     return data;
   } catch (error) {
     console.error("Error during login request:", error);

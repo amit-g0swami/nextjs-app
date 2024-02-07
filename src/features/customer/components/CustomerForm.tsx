@@ -12,7 +12,9 @@ const validationSchema = Joi.object({
   streetAddress: Joi.string().required(),
   city: Joi.string().required(),
   state: Joi.string().required(),
-  zipCode: Joi.string().required(),
+  zipCode: Joi.string()
+    .required()
+    .pattern(/^\d{6}$/),
 });
 
 export const CustomerFormComponent = () => {
@@ -28,7 +30,6 @@ export const CustomerFormComponent = () => {
       address: {
         ...data,
         userId: userID,
-        sellerId: params?.id,
       },
     };
     useAddressMutate.mutate(addressPayload);

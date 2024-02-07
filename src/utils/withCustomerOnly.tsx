@@ -21,7 +21,6 @@ export function withCustomerOnly<P extends WithCustomerOnlyProps>(
     useEffect(() => {
       const loggedInType = getItem();
       if (loggedInType !== USER_TYPE.CUSTOMER || user === null) {
-        console.log(loggedInType, user);
         setIsCustomer(false);
       } else {
         setIsCustomer(true);
