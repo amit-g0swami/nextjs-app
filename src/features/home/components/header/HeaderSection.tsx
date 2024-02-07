@@ -9,10 +9,9 @@ import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { ROUTES } from "@/shared/shared.interface";
 
 const navigation = [
-  { name: "About", href: "#about" },
-  { name: "Features", href: "#features" },
-  { name: "Marketplace", href: "#marketplace" },
-  { name: "Help", href: "#help" },
+  { name: "About Us", href: "#about-us" },
+  { name: "Services", href: "#services" },
+  { name: "Suport", href: "#support" },
 ];
 
 export const HeaderSection = () => {
