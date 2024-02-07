@@ -26,14 +26,14 @@ const AuthContext = React.createContext<IAuthContext>({
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const useLoginMutate = useCreateUserMutation();
+
   const { getItem, removeItem } = useLocalStorage(
     USE_LOCAL_STORAGE.LOGGED_IN_TYPE
   );
   const { removeItem: removeUserDetails } = useLocalStorage(
     USE_LOCAL_STORAGE.USER_DETAILS
   );
-
-  const useLoginMutate = useCreateUserMutation();
 
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
@@ -62,8 +62,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    checkAuth();
-  }, [user]);
+    return checkAuth();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, googleSignIn, logOut }}>

@@ -6,7 +6,7 @@ import {
   USER_TYPE,
   USE_LOCAL_STORAGE,
 } from "@/shared/shared.interface";
-import { redirect } from "next/navigation";
+import NotFound from "@/app/not-found";
 
 interface WithCustomerOnlyProps {}
 
@@ -21,14 +21,14 @@ export function withCustomerOnly<P extends WithCustomerOnlyProps>(
     useEffect(() => {
       const loggedInType = getItem();
       if (loggedInType !== USER_TYPE.CUSTOMER || user === null) {
+        console.log(loggedInType, user);
         setIsCustomer(false);
-        redirect(ROUTES.LOGIN);
       } else {
         setIsCustomer(true);
       }
     }, [user, getItem]);
 
-    return isCustomer ? <Component {...props} /> : null;
+    return isCustomer ? <Component {...props} /> : <NotFound />;
   };
 }
 

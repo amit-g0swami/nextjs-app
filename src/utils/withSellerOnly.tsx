@@ -6,7 +6,7 @@ import {
   USER_TYPE,
   USE_LOCAL_STORAGE,
 } from "@/shared/shared.interface";
-import { redirect } from "next/navigation";
+import NotFound from "@/app/not-found";
 
 interface WithSellerOnlyProps {}
 
@@ -22,13 +22,12 @@ export function withSellerOnly<P extends WithSellerOnlyProps>(
       const loggedInType = getItem();
       if (loggedInType !== USER_TYPE.SELLER || user === null) {
         setIsSeller(false);
-        redirect(ROUTES.LOGIN);
       } else {
         setIsSeller(true);
       }
     }, [user, getItem]);
 
-    return isSeller ? <Component {...props} /> : null;
+    return isSeller ? <Component {...props} /> : <NotFound />;
   };
 }
 

@@ -53,7 +53,7 @@ export default function DashboardLayout() {
             }}
           />
         </div>
-        <nav className="bg-gray-50 ring-1 ring-inset ring-gray-900/5">
+        <nav className="ring-1 ring-inset ring-gray-900/5">
           <div className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-0">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
