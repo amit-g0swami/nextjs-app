@@ -62,7 +62,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    return checkAuth();
+    checkAuth();
   }, []);
 
   return (
