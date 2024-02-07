@@ -34,3 +34,8 @@ export enum HTTP_STATUS_CODE {
   UPDATED = 200,
   CONFLICT = 409,
 }
+
+export enum AUTH_MESSAGE {
+  USER_ALREADY_EXISTS = "User already exists",
+  USER_LOGGED_IN = "User logged in",
+}

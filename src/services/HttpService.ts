@@ -1,14 +1,18 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { HTTP_STATUS_CODE } from "@/shared/shared.interface";
+import { AUTH_MESSAGE, HTTP_STATUS_CODE } from "@/shared/shared.interface";
+
+const TIMEOUT = 5000;
 
 const _axios = axios.create({
-  timeout: 5000,
+  timeout: TIMEOUT,
 });
 
 _axios.interceptors.response.use(
   (response) => {
-    if (
+    if (response.data.message === AUTH_MESSAGE.USER_ALREADY_EXISTS) {
+      toast.success(AUTH_MESSAGE.USER_LOGGED_IN);
+    } else if (
       response.data.status !== HTTP_STATUS_CODE.OK ||
       HTTP_STATUS_CODE.CREATED ||
       HTTP_STATUS_CODE.UPDATED
