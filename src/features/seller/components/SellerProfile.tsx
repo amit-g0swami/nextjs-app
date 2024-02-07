@@ -3,6 +3,8 @@ import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
+import { Container } from "@/components/atoms/container";
+import { Text } from "@/components/atoms/text";
 
 export const SellerProfile = () => {
   const { user } = UserAuth();
@@ -16,34 +18,37 @@ export const SellerProfile = () => {
   };
 
   return (
-    <div>
-      <div className="px-4 sm:px-0">
-        <h3 className="text-base font-semibold leading-7 text-gray-900">
+    <Container>
+      <Container className="px-4 sm:px-0">
+        <Text
+          as="h3"
+          className="text-base font-semibold leading-7 text-gray-900"
+        >
           Seller Information
-        </h3>
-        <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+        </Text>
+        <Text as="p" className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
           Personal details and application.
-        </p>
-      </div>
-      <div className="mt-6 border-t border-gray-100">
+        </Text>
+      </Container>
+      <Container className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Full name
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {user?.displayName}
             </dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          </Container>
+          <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Email address
             </dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {user?.email}
             </dd>
-          </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          </Container>
+          <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">
               Seller Code
             </dt>
@@ -56,9 +61,9 @@ export const SellerProfile = () => {
                 />
               </dd>
             )}
-          </div>
+          </Container>
         </dl>
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 };
