@@ -53,7 +53,7 @@ export const HelpSection = () => {
             <div className="relative mt-16 h-80 lg:mt-8">
               <img
                 className="absolute left-0 top-0 w-[57rem] max-w-none rounded-sm bg-white/5 ring-1 ring-white/10"
-                src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
                 alt="App screenshot"
                 width={1824}
                 height={1080}
