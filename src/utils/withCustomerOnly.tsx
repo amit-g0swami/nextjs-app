@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import { useEffect, useState } from "react";
 import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
@@ -6,7 +7,6 @@ import {
   USER_TYPE,
   USE_LOCAL_STORAGE,
 } from "@/shared/shared.interface";
-import NotFound from "@/app/not-found";
 
 interface WithCustomerOnlyProps {}
 
@@ -21,10 +21,9 @@ export function withCustomerOnly<P extends WithCustomerOnlyProps>(
     useEffect(() => {
       const loggedInType = getItem();
       if (loggedInType !== USER_TYPE.CUSTOMER || user === null) {
-        setIsCustomer(false);
-      } else {
-        setIsCustomer(true);
+        return setIsCustomer(false);
       }
+      return setIsCustomer(true);
     }, [user, getItem]);
 
     return isCustomer ? <Component {...props} /> : <NotFound />;

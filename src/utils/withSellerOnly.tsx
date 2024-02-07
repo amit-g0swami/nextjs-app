@@ -1,12 +1,8 @@
+import NotFound from "@/app/not-found";
 import { useEffect, useState } from "react";
 import { UserAuth } from "@/features/shared/contexts/AuthContext";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
-import {
-  ROUTES,
-  USER_TYPE,
-  USE_LOCAL_STORAGE,
-} from "@/shared/shared.interface";
-import NotFound from "@/app/not-found";
+import { USER_TYPE, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 
 interface WithSellerOnlyProps {}
 
@@ -21,10 +17,9 @@ export function withSellerOnly<P extends WithSellerOnlyProps>(
     useEffect(() => {
       const loggedInType = getItem();
       if (loggedInType !== USER_TYPE.SELLER || user === null) {
-        setIsSeller(false);
-      } else {
-        setIsSeller(true);
+        return setIsSeller(false);
       }
+      return setIsSeller(true);
     }, [user, getItem]);
 
     return isSeller ? <Component {...props} /> : <NotFound />;
