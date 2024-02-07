@@ -63,9 +63,14 @@ export const FooterSection = () => {
               . All Rights Reserved.
             </span>
           </div>
-          <div className="flex mt-4 sm:justify-center sm:mt-0">
-            {socialLinks.map((link) => (
-              <SocialLinks href={link.href} svg={link.svg} label={link.label} />
+          <div className="hidden sm:flex justify-center mt-0">
+            {socialLinks.map((link, index) => (
+              <SocialLinks
+                key={index}
+                href={link.href}
+                svg={link.svg}
+                label={link.label}
+              />
             ))}
           </div>
         </div>
