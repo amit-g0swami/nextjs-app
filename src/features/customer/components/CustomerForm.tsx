@@ -35,6 +35,7 @@ export const CustomerFormComponent = () => {
     };
     useAddressMutate.mutate(addressPayload);
   };
+
   return (
     <Container className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>

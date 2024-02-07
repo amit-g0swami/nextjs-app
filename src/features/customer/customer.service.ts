@@ -16,7 +16,6 @@ const createAddress = async (addressPayload: IAddressPayload) => {
     );
     return data;
   } catch (error) {
-    console.error("Error during login request:", error);
     throw error;
   }
 };

@@ -27,7 +27,7 @@ export class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <Container className="bg-white py-24 sm:py-32 h-screen flex items-center justify-center">
+        <Container className="bg-white py-24 sm:py-32 h-screen flex items-center justify-center flex-col gap-3">
           <Text as="h2" className="text-4xl text-neutral-800">
             Oops, Something went wrong!
           </Text>

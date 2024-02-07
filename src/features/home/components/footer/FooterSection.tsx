@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { SocialLinks } from "./SocialLinks";
+import { Text } from "@/components/atoms/text";
+import { Container } from "@/components/atoms/container";
 
 const socialLinks = [
   {
@@ -45,9 +47,9 @@ const socialLinks = [
 export const FooterSection = () => {
   return (
     <footer className="bg-white border-t-2 border-gray-200">
-      <div className="mx-auto w-full max-w-screen-xl p-2 py-0 lg:py-2">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <div className="flex items-center justify-center gap-4">
+      <Container className="mx-auto w-full max-w-screen-xl p-2 py-0 lg:py-2">
+        <Container className="sm:flex sm:items-center sm:justify-between">
+          <Container className="flex items-center justify-center gap-4">
             <Image
               src="/assets/logo.png"
               alt=""
@@ -55,15 +57,16 @@ export const FooterSection = () => {
               height={98}
               priority
             />
-            <span className="text-sm text-gray-900 sm:text-center dark:text-gray-900">
+            <Text className="text-sm text-gray-900 sm:text-center dark:text-gray-900">
               © 2024{" "}
               <a href="https://flowbite.com/" className="hover:underline">
                 Shippivot™
               </a>
               . All Rights Reserved.
-            </span>
-          </div>
-          <div className="hidden sm:flex justify-center mt-0">
+            </Text>
+          </Container>
+
+          <Container className="hidden sm:flex justify-center mt-0">
             {socialLinks.map((link, index) => (
               <SocialLinks
                 key={index}
@@ -72,9 +75,9 @@ export const FooterSection = () => {
                 label={link.label}
               />
             ))}
-          </div>
-        </div>
-      </div>
+          </Container>
+        </Container>
+      </Container>
     </footer>
   );
 };
