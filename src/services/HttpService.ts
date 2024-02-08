@@ -13,13 +13,13 @@ _axios.interceptors.response.use(
     if (response.data.message === AUTH_MESSAGE.USER_ALREADY_EXISTS) {
       toast.success(AUTH_MESSAGE.USER_LOGGED_IN);
     } else if (
-      response.data.status !== HTTP_STATUS_CODE.OK ||
-      HTTP_STATUS_CODE.CREATED ||
-      HTTP_STATUS_CODE.UPDATED
+      response.data.status === HTTP_STATUS_CODE.OK ||
+      response.data.status === HTTP_STATUS_CODE.CREATED ||
+      response.data.status === HTTP_STATUS_CODE.UPDATED
     ) {
-      toast.error(response.data.message);
-    } else {
       toast.success(response.data.message);
+    } else {
+      toast.error(response.data.message);
     }
     return response;
   },

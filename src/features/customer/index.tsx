@@ -1,3 +1,4 @@
+import useCustomerStore from "./store/customer.store";
 import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { UserAuth } from "../shared/contexts/AuthContext";
 import { Container } from "@/components/atoms/container";
@@ -5,17 +6,29 @@ import { Text } from "@/components/atoms/text";
 import { useLocalStorage } from "../shared/hooks/useLocalStorage";
 import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
 import { Modal } from "@/components/molecules/modal";
-import useCustomerStore from "./store/customer.store";
+import { CustomSearch } from "@/components/organisms/custom-search";
+import { useGetSearchedSeller } from "./hooks/useGetSearchedSeller";
+import { useAddSellerMutation } from "./hooks/useAddSellerMutation";
 
 export const CustomerComponent = () => {
   const { user } = UserAuth();
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_SELLED_ID);
-  const sellerId = JSON.parse(getItem() as string);
+  const { getItem: getUserId } = useLocalStorage(
+    USE_LOCAL_STORAGE.USER_DETAILS
+  );
+  const sellerIdValue = getItem();
+  const userIdValue = getUserId();
+  const sellerId = sellerIdValue ? JSON.parse(sellerIdValue as string) : null;
+  const userId = userIdValue ? JSON.parse(userIdValue as string) : null;
 
   const { isAddSellerIdModelOpen } = useCustomerStore();
+  const { searchedSellerId } = useCustomerStore();
   const { setIsAddSellerIdModelOpen } = useCustomerStore();
+  const { setSearchedSellerId } = useCustomerStore();
+
+  const { data: searchedSeller } = useGetSearchedSeller(searchedSellerId);
+  const useAddSellerMutate = useAddSellerMutation();
 
   const handleAddSeller = () => {
     setIsAddSellerIdModelOpen(true);
@@ -23,6 +36,14 @@ export const CustomerComponent = () => {
 
   const handleCloseModal = () => {
     setIsAddSellerIdModelOpen(false);
+  };
+
+  const handleAddSellerMutate = (sellerId: string) => {
+    const addSellerIdPayload = {
+      userId,
+      sellerId,
+    };
+    useAddSellerMutate.mutate(addSellerIdPayload);
   };
 
   return (
@@ -61,13 +82,13 @@ export const CustomerComponent = () => {
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                   {sellerId === null ? (
-                    <div
+                    <Container
                       className="flex cursor-pointer"
                       onClick={() => handleAddSeller()}
                     >
                       <PlusCircleIcon className="mr-2 h-5 w-5" />
                       Add Seller
-                    </div>
+                    </Container>
                   ) : (
                     sellerId
                   )}
@@ -82,11 +103,29 @@ export const CustomerComponent = () => {
         isOpen={isAddSellerIdModelOpen}
         title="Add SellerId"
         content={
-          <div>
-            <Text as="p" className="text-sm leading-6 text-gray-500">
-              Add your seller Id
-            </Text>
-          </div>
+          <Container>
+            <CustomSearch
+              name="sellerId"
+              placeholder="Please Enter SellerId"
+              type="text"
+              charLimit={23}
+              getSuggestions={(value) => setSearchedSellerId(value)}
+              handleEmptyInput={() => setSearchedSellerId(null)}
+            />
+            {searchedSeller && (
+              <Container
+                className="mt-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
+                onClick={() => handleAddSellerMutate(searchedSeller._id)}
+              >
+                <Text as="h2" className="text-sm font-semibold text-gray-900">
+                  {searchedSeller.name}
+                </Text>
+                <Text as="p" className="text-xs text-gray-600">
+                  {searchedSeller.email}
+                </Text>
+              </Container>
+            )}
+          </Container>
         }
         onClose={handleCloseModal}
       />

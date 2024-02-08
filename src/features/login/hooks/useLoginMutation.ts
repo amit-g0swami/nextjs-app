@@ -21,7 +21,6 @@ export const useCreateUserMutation = () => {
       return AuthService.userLogin(userData);
     },
     onSuccess: (data: IResponse) => {
-      console.log(data);
       setItem(JSON.stringify(data.user._id));
       if (data.user.createdAs === USER_TYPE.CUSTOMER) {
         setUserSellerId(JSON.stringify(data.user.sellerId));
