@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { BackGroundDiv } from "../../shared/components/BackGroundDiv";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
@@ -6,7 +7,26 @@ import { Text } from "@/components/atoms/text";
 export const HeroSection = () => {
   return (
     <Container className="bg-white">
+      <Container className="relative">
+        <Container className="absolute top-0 left-0 bg-transparent opacity-20 sm:block">
+          <Image src="/assets/bg.png" width={460} height={400} alt="box" />
+        </Container>
+        <Container className="absolute top-0 right-0 bg-transparent opacity-20 mt-10 hidden md:block">
+          <Image src="/assets/boxes.png" width={400} height={460} alt="boxes" />
+        </Container>
+      </Container>
       <BackGroundDiv>
+        <Container className="absolute bottom-0 left-0 bg-transparent opacity-20 p-10 hidden lg:block -z-10">
+          <Image src="/assets/box.png" width={300} height={300} alt="box" />
+        </Container>
+        <Container className="absolute bottom-0 right-0 bg-transparent opacity-20 p-10 hidden lg:block -z-10">
+          <Image
+            src="/assets/storage.png"
+            width={300}
+            height={300}
+            alt="storage"
+          />
+        </Container>
         <Container className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <Container className="hidden sm:mb-8 sm:flex sm:justify-center">
             <Container className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
@@ -18,6 +38,13 @@ export const HeroSection = () => {
             </Container>
           </Container>
           <Container className="text-center">
+            {/* <Image
+              src="/assets/delivery-man.png"
+              width={480}
+              height={480}
+              alt="delivery man"
+              className="absolute bg-transparent opacity-20 right-0 left-24 -top-48 bottom-0 hidden lg:block -z-10"
+            /> */}
             <Text
               as="h1"
               className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
@@ -45,6 +72,7 @@ export const HeroSection = () => {
             </Container>
           </Container>
         </Container>
+
         <Container
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"

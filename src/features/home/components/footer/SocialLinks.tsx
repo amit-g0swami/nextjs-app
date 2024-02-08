@@ -7,7 +7,11 @@ type SocialLinkProps = {
 };
 
 export const SocialLinks = ({ href, svg, label }: SocialLinkProps) => (
-  <a href={href} className="text-gray-900 hover:text-gray-500 ms-5">
+  <a
+    href={href}
+    target="_blank"
+    className="text-gray-900 hover:text-gray-500 ms-5"
+  >
     {svg}
     <Text className="sr-only">{label}</Text>
   </a>
