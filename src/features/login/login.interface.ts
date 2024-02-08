@@ -6,4 +6,5 @@ export interface IUser {
   email: string;
   createdAs: USER_TYPE;
   __v: number;
+  sellerId?: string;
 }

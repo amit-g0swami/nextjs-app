@@ -8,6 +8,7 @@ import { FormRadioInput } from "@/components/molecules/form-radio";
 import { useParams } from "next/navigation";
 import { useCreateOrderMutation } from "../hooks/useCreateOrderMutation";
 import { ICreateOrderPayload } from "../seller.interface";
+import { Button } from "@/components/atoms/button";
 
 const createOrderSchema = Joi.object({
   fullName: Joi.string().required(),
@@ -255,12 +256,10 @@ export const CreateOrder = () => {
       </div>
 
       <div className="mt-0 flex items-center justify-end gap-x-6">
-        <button
-          type="submit"
+        <Button
+          btnText="Submit"
           className="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Submit
-        </button>
+        />
       </div>
     </Form>
   );

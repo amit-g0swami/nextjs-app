@@ -34,6 +34,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const { removeItem: removeUserDetails } = useLocalStorage(
     USE_LOCAL_STORAGE.USER_DETAILS
   );
+  const { removeItem: removeUserSellerId } = useLocalStorage(
+    USE_LOCAL_STORAGE.USER_SELLED_ID
+  );
 
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
@@ -51,6 +54,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     await signOut(auth);
     removeItem();
     removeUserDetails();
+    removeUserSellerId();
     setUser(null);
   };
 

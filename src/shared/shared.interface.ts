@@ -11,6 +11,7 @@ export enum USER_TYPE {
 export enum USE_LOCAL_STORAGE {
   LOGGED_IN_TYPE = "loggedInType",
   USER_DETAILS = "userDetails",
+  USER_SELLED_ID = "userSelledId",
 }
 
 export const ROUTES = {
