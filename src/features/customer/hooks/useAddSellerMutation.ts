@@ -7,6 +7,7 @@ import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 
 export const useAddSellerMutation = () => {
   const { setIsAddSellerIdModelOpen } = useCustomerStore();
+  const { setSearchedSellerId } = useCustomerStore();
   const { setItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_SELLED_ID);
 
   return useMutation({
@@ -16,6 +17,7 @@ export const useAddSellerMutation = () => {
     onSuccess: (data) => {
       setItem(JSON.stringify(data.user.sellerId));
       setIsAddSellerIdModelOpen(false);
+      setSearchedSellerId(null);
     },
     onError: () => {},
   });

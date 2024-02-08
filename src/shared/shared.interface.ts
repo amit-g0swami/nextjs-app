@@ -19,6 +19,7 @@ export const ROUTES = {
   LOGIN: "/login",
   SELLER: "/seller/[id]",
   CUSTOMER: "/customer",
+  CUSTOMER_CREATE_ORDER: "/customer/[id]",
 };
 
 export enum HTTP_STATUS_CODE {

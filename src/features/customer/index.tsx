@@ -4,14 +4,16 @@ import { UserAuth } from "../shared/contexts/AuthContext";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
 import { useLocalStorage } from "../shared/hooks/useLocalStorage";
-import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
+import { ROUTES, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { Modal } from "@/components/molecules/modal";
 import { CustomSearch } from "@/components/organisms/custom-search";
 import { useGetSearchedSeller } from "./hooks/useGetSearchedSeller";
 import { useAddSellerMutation } from "./hooks/useAddSellerMutation";
+import { useRouter } from "next/navigation";
 
 export const CustomerComponent = () => {
+  const router = useRouter();
   const { user } = UserAuth();
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_SELLED_ID);
   const { getItem: getUserId } = useLocalStorage(
@@ -36,6 +38,11 @@ export const CustomerComponent = () => {
 
   const handleCloseModal = () => {
     setIsAddSellerIdModelOpen(false);
+    setSearchedSellerId(null);
+  };
+
+  const handleAddOrderClicked = () => {
+    router.push(ROUTES.CUSTOMER_CREATE_ORDER.replace("[id]", `${sellerId}`));
   };
 
   const handleAddSellerMutate = (sellerId: string) => {
@@ -94,6 +101,22 @@ export const CustomerComponent = () => {
                   )}
                 </dd>
               </Container>
+              {sellerId !== null && (
+                <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <dt className="text-sm font-medium leading-6 text-gray-900">
+                    Add Order
+                  </dt>
+                  <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                    <Container
+                      className="flex cursor-pointer"
+                      onClick={() => handleAddOrderClicked()}
+                    >
+                      <PlusCircleIcon className="mr-2 h-5 w-5" />
+                      Add Order
+                    </Container>
+                  </dd>
+                </Container>
+              )}
             </dl>
           </Container>
         </Container>
