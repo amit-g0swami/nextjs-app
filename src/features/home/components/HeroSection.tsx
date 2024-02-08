@@ -8,22 +8,22 @@ export const HeroSection = () => {
   return (
     <Container className="bg-white">
       <Container className="relative">
-        <Container className="absolute top-0 left-0 bg-transparent opacity-20 sm:block">
+        <Container className="absolute top-0 left-0 bg-transparent opacity-30 sm:block">
           <Image src="/assets/bg.png" width={460} height={400} alt="box" />
         </Container>
-        <Container className="absolute top-0 right-0 bg-transparent opacity-20 mt-10 hidden md:block">
+        <Container className="absolute top-0 right-0 bg-transparent opacity-30 mt-10 hidden md:block">
           <Image src="/assets/boxes.png" width={400} height={460} alt="boxes" />
         </Container>
       </Container>
       <BackGroundDiv>
-        <Container className="absolute bottom-0 left-0 bg-transparent opacity-20 p-10 hidden lg:block -z-10">
+        <Container className="absolute bottom-0 left-0 bg-transparent opacity-30 p-16 hidden lg:block -z-10">
           <Image src="/assets/box.png" width={300} height={300} alt="box" />
         </Container>
-        <Container className="absolute bottom-0 right-0 bg-transparent opacity-20 p-10 hidden lg:block -z-10">
+        <Container className="absolute bottom-0 right-0 bg-transparent opacity-30 p-8 hidden lg:block -z-10">
           <Image
             src="/assets/storage.png"
-            width={300}
-            height={300}
+            width={360}
+            height={200}
             alt="storage"
           />
         </Container>
