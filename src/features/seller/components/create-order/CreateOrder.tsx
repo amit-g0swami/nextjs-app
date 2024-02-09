@@ -5,7 +5,7 @@ import { PAYMENT_TYPE } from "@/shared/shared.interface";
 import { useParams } from "next/navigation";
 import { useCreateOrderMutation } from "../../hooks/useCreateOrderMutation";
 import { ICreateOrderPayload } from "../../seller.interface";
-import { CreateOrderForm } from "./CreateOrderForm";
+import { CreateOrderForm } from "../../../shared/components/CreateOrderForm";
 
 const createOrderSchema = Joi.object({
   fullName: Joi.string().required(),

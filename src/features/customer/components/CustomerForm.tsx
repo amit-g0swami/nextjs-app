@@ -5,9 +5,9 @@ import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { useAddressMutation } from "@/features/customer/hooks/useAddressMutation";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
-import { CustomerAddressForm } from "./CustomerAddressForm";
 import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { Container } from "@/components/atoms/container";
+import { CreateOrderForm } from "@/features/shared/components/CreateOrderForm";
 
 const validationSchema = Joi.object({
   streetAddress: Joi.string().required(),
@@ -37,9 +37,9 @@ export const CustomerFormComponent = () => {
   };
 
   return (
-    <Container className="bg-white py-24 sm:py-32 h-screen">
+    <Container className="bg-white py-8 sm:py-10 h-screen">
       <BackGroundDiv>
-        <CustomerAddressForm
+        <CreateOrderForm
           getFormData={getFormData}
           validationSchema={validationSchema}
         />
