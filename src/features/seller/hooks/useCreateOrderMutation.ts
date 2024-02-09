@@ -4,13 +4,13 @@ import { ICreateOrderPayload } from "../seller.interface";
 import { useMutation } from "@tanstack/react-query";
 
 export const useCreateOrderMutation = () => {
-  const { setSelectedTab } = useSellerStore();
+  const { setSelected } = useSellerStore();
   return useMutation({
     mutationFn: (createOrderPayload: ICreateOrderPayload) => {
       return SellerService.createOrder(createOrderPayload);
     },
     onSuccess: () => {
-      setSelectedTab(0);
+      setSelected(0);
     },
     onError: () => {},
   });

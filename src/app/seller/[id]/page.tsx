@@ -3,7 +3,7 @@
 import withSellerOnly from "@/utils/withSellerOnly";
 
 const SellerPage = () => {
-  return <></>;
+  return <div />;
 };
 
 export default withSellerOnly(SellerPage);

@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { Container } from "../../atoms/container";
 
 interface PanelProps {
   children: ReactNode;
@@ -6,5 +7,5 @@ interface PanelProps {
 }
 
 export const Panel = (props: PanelProps) => {
-  return <div>{props.children}</div>;
+  return <Container>{props.children}</Container>;
 };

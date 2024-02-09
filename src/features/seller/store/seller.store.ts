@@ -1,16 +1,16 @@
 import { create } from "zustand";
 
 type SellerManagementState = {
-  selectedTab: number;
+  selected: number;
   isTabOpen: boolean;
-  setSelectedTab: (id: number) => void;
+  setSelected: (id: number) => void;
   setIsTabOpen: (open: boolean) => void;
 };
 
 const useSellerStore = create<SellerManagementState>((set) => ({
-  selectedTab: 0,
+  selected: 0,
   isTabOpen: false,
-  setSelectedTab: (id) => set({ selectedTab: id }),
+  setSelected: (id) => set({ selected: id }),
   setIsTabOpen: (open) => set({ isTabOpen: open }),
 }));
 

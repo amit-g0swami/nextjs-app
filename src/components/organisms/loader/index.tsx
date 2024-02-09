@@ -26,11 +26,6 @@ export const Loader = () => {
               fill="currentFill"
             />
           </svg>
-          <Container className="flex gap-1 ml-auto flex-col ">
-            <Text as="p" className="text-neutral-600">
-              Loading...
-            </Text>
-          </Container>
         </div>
       </BackGroundDiv>
     </Container>
