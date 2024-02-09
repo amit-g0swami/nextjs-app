@@ -1,13 +1,10 @@
+import { useState } from "react";
 import { LoginForm } from "./components/LoginForm";
 import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { CardComponent } from "@/features/login/components/CardComponent";
-import { USER_TYPE } from "@/shared/shared.interface";
+import { USER_TYPE, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { Container } from "@/components/atoms/container";
-
-type LoginComponentProps = {
-  loginType: USER_TYPE | null;
-  setType: (type: USER_TYPE) => void;
-};
+import { useLocalStorage } from "../shared/hooks/useLocalStorage";
 
 type getRenderedLoginTypeProps = {
   loginType: USER_TYPE | null;
@@ -26,7 +23,15 @@ const getRenderedLoginType = ({
   }
 };
 
-export const LoginComponent = ({ loginType, setType }: LoginComponentProps) => {
+export const LoginComponent = () => {
+  const [loginType, setLoginType] = useState<USER_TYPE | null>(null);
+  const { setItem } = useLocalStorage(USE_LOCAL_STORAGE.LOGGED_IN_TYPE);
+
+  const setType = (type: USER_TYPE) => {
+    setItem(type);
+    setLoginType(type);
+  };
+
   return (
     <Container className="bg-white py-24 sm:py-32 h-screen">
       <BackGroundDiv>
