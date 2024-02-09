@@ -1,19 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import useHomeStore from "../../store/home.store";
+import React, { useEffect, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { UserAuth } from "@/contexts/AuthContext";
-import { ROUTES } from "@/shared/shared.interface";
 import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { Menu } from "./Menu";
 import { Button } from "@/components/atoms/button";
-import { User } from "firebase/auth";
 import { RenderButtonType } from "./RenderButtonType";
 
 export const HeaderSection = () => {
@@ -30,7 +26,7 @@ export const HeaderSection = () => {
       return setNavigationData(navigation);
     }
     return setNavigationData([]);
-  }, [user]);
+  }, [user, navigation]);
 
   const handleSignOut = () => {
     logOut();

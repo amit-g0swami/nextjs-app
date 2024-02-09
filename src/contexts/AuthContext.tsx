@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect, ReactNode } from "react";
 import toast from "react-hot-toast";
+import React, { useContext, useState, useEffect, ReactNode } from "react";
 import { auth } from "../config/firebase";
 import {
   signInWithPopup,
@@ -64,7 +64,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     toast.success(AUTH_MESSAGE.USER_LOGGED_OUT);
   };
 
-  const checkAuth = onAuthStateChanged(auth, (currentUser) => {
+  const checkIsUserLoggedIn = onAuthStateChanged(auth, (currentUser) => {
     if (!currentUser) {
       return setUser(null);
     }
@@ -73,7 +73,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     setLoading(false);
-    return () => checkAuth();
+    return () => checkIsUserLoggedIn();
   }, []);
 
   return (
