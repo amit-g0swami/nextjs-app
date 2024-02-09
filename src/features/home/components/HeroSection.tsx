@@ -38,13 +38,6 @@ export const HeroSection = () => {
             </Container>
           </Container>
           <Container className="text-center">
-            {/* <Image
-              src="/assets/delivery-man.png"
-              width={480}
-              height={480}
-              alt="delivery man"
-              className="absolute bg-transparent opacity-20 right-0 left-24 -top-48 bottom-0 hidden lg:block -z-10"
-            /> */}
             <Text
               as="h1"
               className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
