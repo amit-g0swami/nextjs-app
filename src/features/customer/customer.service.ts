@@ -6,7 +6,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export interface IAddressPayload {
   id: string | string[];
-  address: Record<string, any>;
+  address: Record<string, string | number | boolean>;
 }
 
 const createAddress = async (addressPayload: IAddressPayload) => {

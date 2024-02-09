@@ -6,7 +6,7 @@ import { FormRadioInput } from "@/components/molecules/form-radio";
 import { PAYMENT_TYPE } from "@/shared/shared.interface";
 
 type CreateOrderFormProps = {
-  validationSchema: Joi.ObjectSchema<any>;
+  validationSchema: Joi.ObjectSchema;
   getFormData: (data: Record<string, string | number | boolean>) => void;
 };
 

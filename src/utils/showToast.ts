@@ -1,10 +1,20 @@
 import toast from "react-hot-toast";
-import { AxiosResponse } from "axios";
+import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { HTTP_STATUS_CODE } from "@/shared/shared.interface";
 import { AUTH_MESSAGE } from "@/features/login/login.interface";
 
+interface IResponseData {
+  message: AUTH_MESSAGE;
+  status: HTTP_STATUS_CODE;
+}
+
+interface IAxiosConfig {}
+
 interface IShowToast {
-  response: AxiosResponse<any, any>;
+  response: AxiosResponse<
+    IResponseData,
+    InternalAxiosRequestConfig<IAxiosConfig>
+  >;
 }
 
 export const showToast = ({ response }: IShowToast) => {
