@@ -1,5 +1,7 @@
 import React from "react";
 import { useFormContext } from "../form";
+import { Container } from "@/components/atoms/container";
+import { Text } from "@/components/atoms/text";
 
 interface IFormInputProps {
   placeholder?: string;
@@ -25,7 +27,7 @@ export const FormInput: React.FC<IFormInputProps> = ({
   };
 
   return (
-    <div className={className}>
+    <Container className={className}>
       <label
         htmlFor="street-address"
         className="block text-sm font-medium leading-6 text-gray-900"
@@ -33,7 +35,7 @@ export const FormInput: React.FC<IFormInputProps> = ({
         {label}
         {labelRequired && <span className="text-red-500"> * </span>}
       </label>
-      <div className="mt-2">
+      <Container className="mt-2">
         <input
           type={type}
           name={name}
@@ -43,9 +45,11 @@ export const FormInput: React.FC<IFormInputProps> = ({
           placeholder={placeholder}
         />
         {errors[name] && (
-          <p className="text-red-500 mt-1 text-sm">{errors[name]}</p>
+          <Text as="p" className="text-red-500 mt-1 text-sm">
+            {errors[name]}
+          </Text>
         )}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 };

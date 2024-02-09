@@ -1,5 +1,7 @@
 import React from "react";
 import { useFormContext } from "../form";
+import { Container } from "@/components/atoms/container";
+import { Text } from "@/components/atoms/text";
 
 interface IFormRadioInputProps {
   name: string;
@@ -23,8 +25,8 @@ export const FormRadioInput: React.FC<IFormRadioInputProps> = ({
   };
 
   return (
-    <div className={className}>
-      <div className="flex items-center gap-x-3">
+    <Container className={className}>
+      <Container className="flex items-center gap-x-3">
         <input
           id={`${name}-${value}`}
           name={name}
@@ -41,10 +43,12 @@ export const FormRadioInput: React.FC<IFormRadioInputProps> = ({
           {label}
           {labelRequired && <span className="text-red-500"> * </span>}
         </label>
-      </div>
+      </Container>
       {errors[name] && (
-        <p className="text-red-500 mt-1 text-sm">{errors[name]}</p>
+        <Text as="p" className="text-red-500 mt-1 text-sm">
+          {errors[name]}
+        </Text>
       )}
-    </div>
+    </Container>
   );
 };
