@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, ReactNode } from "react";
-import { auth } from "../../../config/firebase";
+import { auth } from "../config/firebase";
 import {
   signInWithPopup,
   signOut,
@@ -11,6 +11,7 @@ import { useCreateUserMutation } from "@/features/login/hooks/useLoginMutation";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { IUserLoginPayload } from "@/features/login/login.service";
 import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
+import { Loader } from "@/components/organisms/loader";
 
 interface IAuthContext {
   user: User | null;
@@ -26,6 +27,8 @@ const AuthContext = React.createContext<IAuthContext>({
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<Boolean>(true);
+
   const useLoginMutate = useCreateUserMutation();
 
   const { getItem, removeItem } = useLocalStorage(
@@ -51,11 +54,11 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logOut = async () => {
-    await signOut(auth);
+    setUser(null);
     removeItem();
     removeUserDetails();
     removeUserSellerId();
-    setUser(null);
+    return await signOut(auth);
   };
 
   const checkAuth = onAuthStateChanged(auth, (currentUser) => {
@@ -66,16 +69,15 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    checkAuth();
+    setLoading(false);
+    return () => checkAuth();
   }, []);
 
   return (
     <AuthContext.Provider value={{ user, googleSignIn, logOut }}>
-      {children}
+      {loading ? <Loader /> : children}
     </AuthContext.Provider>
   );
 };
 
-export const UserAuth = () => {
-  return useContext(AuthContext);
-};
+export const UserAuth = () => useContext(AuthContext);

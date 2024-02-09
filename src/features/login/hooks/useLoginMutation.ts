@@ -1,7 +1,7 @@
 import AuthService, { IUserLoginPayload } from "@/features/login/login.service";
 import { useMutation } from "@tanstack/react-query";
 import { useLocalStorage } from "../../shared/hooks/useLocalStorage";
-import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import { UserAuth } from "@/contexts/AuthContext";
 import { IUser } from "../login.interface";
 import { USER_TYPE, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 

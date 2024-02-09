@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import { UserAuth } from "@/contexts/AuthContext";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import { UserAuth } from "@/contexts/AuthContext";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
 

@@ -6,7 +6,7 @@ import useHomeStore from "../../store/home.store";
 import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
-import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import { UserAuth } from "@/contexts/AuthContext";
 import { ROUTES } from "@/shared/shared.interface";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";

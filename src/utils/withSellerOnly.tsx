@@ -1,6 +1,6 @@
 import NotFound from "@/app/not-found";
 import { useEffect, useState } from "react";
-import { UserAuth } from "@/features/shared/contexts/AuthContext";
+import { UserAuth } from "@/contexts/AuthContext";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { USER_TYPE, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 

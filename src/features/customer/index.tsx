@@ -1,6 +1,6 @@
 import useCustomerStore from "./store/customer.store";
 import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
-import { UserAuth } from "../shared/contexts/AuthContext";
+import { UserAuth } from "../../contexts/AuthContext";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
 import { useLocalStorage } from "../shared/hooks/useLocalStorage";
