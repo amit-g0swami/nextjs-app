@@ -1,95 +1,21 @@
-"use client";
-
 import Joi from "joi";
+import { Button } from "@/components/atoms/button";
 import { Form } from "@/components/molecules/form";
 import { FormInput } from "@/components/molecules/form-input";
-import { PAYMENT_TYPE } from "@/shared/shared.interface";
 import { FormRadioInput } from "@/components/molecules/form-radio";
-import { useParams } from "next/navigation";
-import { useCreateOrderMutation } from "../hooks/useCreateOrderMutation";
-import { ICreateOrderPayload } from "../seller.interface";
-import { Button } from "@/components/atoms/button";
+import { PAYMENT_TYPE } from "@/shared/shared.interface";
 
-const createOrderSchema = Joi.object({
-  fullName: Joi.string().required(),
-  email: Joi.string().required(),
-  mobileNumber: Joi.string()
-    .pattern(/^\d{10}$/)
-    .required(),
-  completeAddress: Joi.string().required(),
-  landMark: Joi.string().required(),
-  pinCode: Joi.string()
-    .pattern(/^\d{6}$/)
-    .required(),
-  city: Joi.string().required(),
-  state: Joi.string().required(),
-  country: Joi.string().required(),
-  productName: Joi.string().required(),
-  quantity: Joi.number().required(),
-  unitPrice: Joi.number().required(),
-  totalAmount: Joi.number().required(),
-  deadWeight: Joi.number().required(),
-  length: Joi.number().required(),
-  width: Joi.number().required(),
-  height: Joi.number().required(),
-  paymentMode: Joi.string()
-    .valid(PAYMENT_TYPE.COD, PAYMENT_TYPE.PREPAID)
-    .required(),
-});
+type CreateOrderFormProps = {
+  validationSchema: Joi.ObjectSchema<any>;
+  getFormData: (data: Record<string, string | number | boolean>) => void;
+};
 
-export const CreateOrder = () => {
-  const params = useParams();
-  const sellerId = params?.id;
-
-  const useCreateOrderMutate = useCreateOrderMutation();
-
-  const getFormData = (data: Record<string, string | number | boolean>) => {
-    const buyerDetails = {
-      fullName: data.fullName,
-      email: data.email,
-      mobileNumber: data.mobileNumber,
-    };
-    const orderPlaced = {
-      completeAddress: data.completeAddress,
-      landMark: data.landMark,
-      pinCode: data.pinCode,
-      city: data.city,
-      state: data.state,
-      country: data.country,
-    };
-    const orderDetails = [
-      {
-        productName: data.productName,
-        quantity: data.quantity,
-        unitPrice: data.unitPrice,
-        totalAmount: data.totalAmount,
-      },
-    ];
-    const packageDetails = {
-      deadWeight: data.deadWeight,
-      packageDimension: {
-        length: data.length,
-        width: data.width,
-        height: data.height,
-      },
-    };
-    const paymentDetails = {
-      paymentMode: data.paymentMode,
-    };
-    const orderPayload = {
-      sellerId,
-      buyerDetails,
-      orderPlaced,
-      orderDetails,
-      packageDetails,
-      paymentDetails,
-    } as ICreateOrderPayload;
-
-    useCreateOrderMutate.mutate(orderPayload);
-  };
-
+export const CreateOrderForm = ({
+  getFormData,
+  validationSchema,
+}: CreateOrderFormProps) => {
   return (
-    <Form getFormData={getFormData} validationSchema={createOrderSchema}>
+    <Form getFormData={getFormData} validationSchema={validationSchema}>
       <div className="pb-6">
         <h2 className="text-base font-semibold leading-7 text-gray-900">
           Personal Information

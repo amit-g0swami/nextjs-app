@@ -1,7 +1,5 @@
+import { CreateOrder } from "@/features/seller/components/create-order/CreateOrder";
+
 export default function Order() {
-  return (
-    <div className="text-red">
-      <h2 className="text-xl font-semibold">order</h2>
-    </div>
-  );
+  return <CreateOrder />;
 }
