@@ -1,6 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { AUTH_MESSAGE, HTTP_STATUS_CODE } from "@/shared/shared.interface";
+import { HTTP_STATUS_CODE } from "@/shared/shared.interface";
+import { AUTH_MESSAGE } from "@/features/login/login.interface";
 
 const TIMEOUT = 5000;
 

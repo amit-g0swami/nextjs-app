@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthContextProvider } from "../contexts/AuthContext";
 
-interface Props {
+interface TanStackQueryProviderProps {
   children: ReactNode;
 }
 
@@ -18,12 +18,10 @@ const queryClient = new QueryClient({
   },
 });
 
-const Providers = (props: Props) => {
+export const TanStackQueryProvider = (props: TanStackQueryProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>{props.children}</AuthContextProvider>
     </QueryClientProvider>
   );
 };
-
-export default Providers;

@@ -1,3 +1,4 @@
+import React from "react";
 import useCustomerStore from "./store/customer.store";
 import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
 import { UserAuth } from "../../contexts/AuthContext";
@@ -6,12 +7,12 @@ import { Text } from "@/components/atoms/text";
 import { useLocalStorage } from "../shared/hooks/useLocalStorage";
 import { ROUTES, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
-import { Modal } from "@/components/molecules/modal";
-import { CustomSearch } from "@/components/organisms/custom-search";
 import { useGetSearchedSeller } from "./hooks/useGetSearchedSeller";
 import { useAddSellerMutation } from "./hooks/useAddSellerMutation";
 import { useRouter } from "next/navigation";
 import { ShowDetails } from "../shared/components/ShowDetails";
+import { AddSellerModel } from "./components/AddSellerModel";
+import { Tooltip } from "@/components/molecules/tooltip";
 
 export const CustomerComponent = () => {
   const router = useRouter();
@@ -73,26 +74,28 @@ export const CustomerComponent = () => {
               <ShowDetails
                 title="Seller"
                 description={
-                  <>
+                  <React.Fragment>
                     {sellerId === null ? (
-                      <Container
-                        className="flex cursor-pointer"
-                        onClick={() => handleAddSeller()}
-                      >
-                        <PlusCircleIcon className="mr-2 h-5 w-5" />
-                        Add Seller
-                      </Container>
+                      <Tooltip text="Please Add Your Seller">
+                        <Container
+                          className="flex cursor-pointer"
+                          onClick={() => handleAddSeller()}
+                        >
+                          <PlusCircleIcon className="mr-2 h-5 w-5" />
+                          Add Seller
+                        </Container>
+                      </Tooltip>
                     ) : (
                       sellerId
                     )}
-                  </>
+                  </React.Fragment>
                 }
               />
               {sellerId !== null && (
                 <ShowDetails
                   title="Add Order"
                   description={
-                    <>
+                    <React.Fragment>
                       <Container
                         className="flex cursor-pointer"
                         onClick={() => handleAddOrderClicked()}
@@ -100,7 +103,7 @@ export const CustomerComponent = () => {
                         <PlusCircleIcon className="mr-2 h-5 w-5" />
                         Add Order
                       </Container>
-                    </>
+                    </React.Fragment>
                   }
                 />
               )}
@@ -109,35 +112,12 @@ export const CustomerComponent = () => {
         </Container>
       </BackGroundDiv>
 
-      <Modal
+      <AddSellerModel
         isOpen={isAddSellerIdModelOpen}
-        title="Add SellerId"
-        content={
-          <Container>
-            <CustomSearch
-              name="sellerId"
-              placeholder="Please Enter SellerId"
-              type="text"
-              charLimit={23}
-              getSuggestions={(value) => setSearchedSellerId(value)}
-              handleEmptyInput={() => setSearchedSellerId(null)}
-            />
-            {searchedSeller && (
-              <Container
-                className="mt-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
-                onClick={() => handleAddSellerMutate(searchedSeller._id)}
-              >
-                <Text as="h2" className="text-sm font-semibold text-gray-900">
-                  {searchedSeller.name}
-                </Text>
-                <Text as="p" className="text-xs text-gray-600">
-                  {searchedSeller.email}
-                </Text>
-              </Container>
-            )}
-          </Container>
-        }
-        onClose={handleCloseModal}
+        searchedSeller={searchedSeller}
+        setSearchedSellerId={setSearchedSellerId}
+        handleAddSellerMutate={handleAddSellerMutate}
+        handleCloseModal={handleCloseModal}
       />
     </Container>
   );

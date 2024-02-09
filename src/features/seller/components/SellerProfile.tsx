@@ -1,3 +1,4 @@
+import React from "react";
 import toast from "react-hot-toast";
 import { UserAuth } from "@/contexts/AuthContext";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
@@ -38,7 +39,7 @@ export const SellerProfile = () => {
           <ShowDetails
             title="Seller Code"
             description={
-              <>
+              <React.Fragment>
                 {sellerId && (
                   <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex">
                     {JSON.parse(sellerId)}
@@ -48,7 +49,7 @@ export const SellerProfile = () => {
                     />
                   </dd>
                 )}
-              </>
+              </React.Fragment>
             }
           />
         </dl>

@@ -1,10 +1,25 @@
-import DashboardLayout from "@/features/seller";
+"use client";
 
-export default function Layout({ order }: { order: React.ReactNode }) {
+import { useState } from "react";
+
+export default function Layout({
+  children,
+  order,
+  profile,
+}: {
+  children: React.ReactNode;
+  order: React.ReactNode;
+  profile: React.ReactNode;
+}) {
+  const [isTabOpen, setIsTabOpen] = useState(0);
   return (
-    <>
-      {order}
-      <DashboardLayout />
-    </>
+    <div className="p-40">
+      {children}
+      {isTabOpen === 0 ? (
+        <div onClick={() => setIsTabOpen(1)}>{profile}</div>
+      ) : (
+        <>{order}</>
+      )}
+    </div>
   );
 }

@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 
 interface UseLoggedOutOnlyProps {}
 
-export function useLoggedOutOnly() {
+function useLoggedOutOnly() {
   const [isNotLoggedIn, setIsNotLoggedIn] = useState(true);
   const { user } = UserAuth();
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.LOGGED_IN_TYPE);
