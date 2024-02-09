@@ -23,14 +23,14 @@ export const CustomerFormComponent = () => {
 
   const useAddressMutate = useAddressMutation();
   const params = useParams();
-  const userID = JSON.parse(getItem() as string);
+  const userID = getItem() as string | undefined;
 
   const getFormData = (data: Record<string, string | number | boolean>) => {
     const addressPayload = {
       id: params?.id,
       address: {
         ...data,
-        userId: userID,
+        userId: JSON.parse(userID as string),
       },
     };
     useAddressMutate.mutate(addressPayload);

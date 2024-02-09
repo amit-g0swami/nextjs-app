@@ -40,4 +40,5 @@ export enum HTTP_STATUS_CODE {
 export enum AUTH_MESSAGE {
   USER_ALREADY_EXISTS = "User already exists",
   USER_LOGGED_IN = "User logged in",
+  USER_LOGGED_OUT = "Logged out successfully",
 }

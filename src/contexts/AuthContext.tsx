@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, ReactNode } from "react";
+import toast from "react-hot-toast";
 import { auth } from "../config/firebase";
 import {
   signInWithPopup,
@@ -10,7 +11,7 @@ import {
 import { useCreateUserMutation } from "@/features/login/hooks/useLoginMutation";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { IUserLoginPayload } from "@/features/login/login.service";
-import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
+import { AUTH_MESSAGE, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { Loader } from "@/components/organisms/loader";
 
 interface IAuthContext {
@@ -54,11 +55,12 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logOut = async () => {
+    await signOut(auth);
     setUser(null);
     removeItem();
     removeUserDetails();
     removeUserSellerId();
-    return await signOut(auth);
+    toast.success(AUTH_MESSAGE.USER_LOGGED_OUT);
   };
 
   const checkAuth = onAuthStateChanged(auth, (currentUser) => {
