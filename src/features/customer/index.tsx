@@ -11,6 +11,7 @@ import { CustomSearch } from "@/components/organisms/custom-search";
 import { useGetSearchedSeller } from "./hooks/useGetSearchedSeller";
 import { useAddSellerMutation } from "./hooks/useAddSellerMutation";
 import { useRouter } from "next/navigation";
+import { ShowDetails } from "../shared/components/ShowDetails";
 
 export const CustomerComponent = () => {
   const router = useRouter();
@@ -67,55 +68,41 @@ export const CustomerComponent = () => {
           </Container>
           <Container className="mt-6 border-t border-gray-100">
             <dl className="divide-y divide-gray-100">
-              <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm font-medium leading-6 text-gray-900">
-                  Full name
-                </dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {user?.displayName}
-                </dd>
-              </Container>
-              <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm font-medium leading-6 text-gray-900">
-                  Email address
-                </dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {user?.email}
-                </dd>
-              </Container>
-              <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm font-medium leading-6 text-gray-900">
-                  Seller
-                </dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {sellerId === null ? (
-                    <Container
-                      className="flex cursor-pointer"
-                      onClick={() => handleAddSeller()}
-                    >
-                      <PlusCircleIcon className="mr-2 h-5 w-5" />
-                      Add Seller
-                    </Container>
-                  ) : (
-                    sellerId
-                  )}
-                </dd>
-              </Container>
+              <ShowDetails title="Full Name" description={user?.displayName} />
+              <ShowDetails title="Email" description={user?.email} />
+              <ShowDetails
+                title="Seller"
+                description={
+                  <>
+                    {sellerId === null ? (
+                      <Container
+                        className="flex cursor-pointer"
+                        onClick={() => handleAddSeller()}
+                      >
+                        <PlusCircleIcon className="mr-2 h-5 w-5" />
+                        Add Seller
+                      </Container>
+                    ) : (
+                      sellerId
+                    )}
+                  </>
+                }
+              />
               {sellerId !== null && (
-                <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                  <dt className="text-sm font-medium leading-6 text-gray-900">
-                    Add Order
-                  </dt>
-                  <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                    <Container
-                      className="flex cursor-pointer"
-                      onClick={() => handleAddOrderClicked()}
-                    >
-                      <PlusCircleIcon className="mr-2 h-5 w-5" />
-                      Add Order
-                    </Container>
-                  </dd>
-                </Container>
+                <ShowDetails
+                  title="Add Order"
+                  description={
+                    <>
+                      <Container
+                        className="flex cursor-pointer"
+                        onClick={() => handleAddOrderClicked()}
+                      >
+                        <PlusCircleIcon className="mr-2 h-5 w-5" />
+                        Add Order
+                      </Container>
+                    </>
+                  }
+                />
               )}
             </dl>
           </Container>

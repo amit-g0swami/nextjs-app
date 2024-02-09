@@ -1,10 +1,10 @@
 "use client";
 
 import withSellerOnly from "@/utils/withSellerOnly";
-import { SellerComponent } from "@/features/seller";
+import DashboardLayout from "@/features/seller";
 
 const SellerPage = () => {
-  return <SellerComponent />;
+  return <DashboardLayout />;
 };
 
 export default withSellerOnly(SellerPage);

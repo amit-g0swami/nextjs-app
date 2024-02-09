@@ -5,6 +5,7 @@ import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
+import { ShowDetails } from "@/features/shared/components/ShowDetails";
 
 export const SellerProfile = () => {
   const { user } = UserAuth();
@@ -32,36 +33,24 @@ export const SellerProfile = () => {
       </Container>
       <Container className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">
-          <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Full name
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {user?.displayName}
-            </dd>
-          </Container>
-          <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Email address
-            </dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-              {user?.email}
-            </dd>
-          </Container>
-          <Container className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">
-              Seller Code
-            </dt>
-            {sellerId && (
-              <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex">
-                {JSON.parse(sellerId)}
-                <DocumentDuplicateIcon
-                  onClick={() => handleClick()}
-                  className="ml-2 h-5 w-5 cursor-pointer"
-                />
-              </dd>
-            )}
-          </Container>
+          <ShowDetails title="Full Name" description={user?.displayName} />
+          <ShowDetails title="Email" description={user?.email} />
+          <ShowDetails
+            title="Seller Code"
+            description={
+              <>
+                {sellerId && (
+                  <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex">
+                    {JSON.parse(sellerId)}
+                    <DocumentDuplicateIcon
+                      onClick={() => handleClick()}
+                      className="ml-2 h-5 w-5 cursor-pointer"
+                    />
+                  </dd>
+                )}
+              </>
+            }
+          />
         </dl>
       </Container>
     </Container>
