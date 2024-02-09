@@ -12,6 +12,7 @@ export const Button: React.FC<ButtonProps> = ({
   disable = false,
   className = "rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
   onClick,
+  ...rest
 }) => {
   return React.createElement(
     "button",
@@ -19,6 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
       className,
       onClick,
       disabled: disable,
+      ...rest,
     },
     btnText
   );

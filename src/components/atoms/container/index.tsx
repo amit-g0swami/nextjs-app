@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-interface ContainerProps {
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   className?: string;
   style?: React.CSSProperties;

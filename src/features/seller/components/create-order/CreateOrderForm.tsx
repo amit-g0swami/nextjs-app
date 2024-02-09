@@ -4,6 +4,8 @@ import { Form } from "@/components/molecules/form";
 import { FormInput } from "@/components/molecules/form-input";
 import { FormRadioInput } from "@/components/molecules/form-radio";
 import { PAYMENT_TYPE } from "@/shared/shared.interface";
+import { Container } from "@/components/atoms/container";
+import { Text } from "@/components/atoms/text";
 
 type CreateOrderFormProps = {
   validationSchema: Joi.ObjectSchema;
@@ -16,11 +18,14 @@ export const CreateOrderForm = ({
 }: CreateOrderFormProps) => {
   return (
     <Form getFormData={getFormData} validationSchema={validationSchema}>
-      <div className="pb-6">
-        <h2 className="text-base font-semibold leading-7 text-gray-900">
+      <Container className="pb-6">
+        <Text
+          as="h2"
+          className="text-base font-semibold leading-7 text-gray-900"
+        >
           Personal Information
-        </h2>
-        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        </Text>
+        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="Full Name"
@@ -40,14 +45,17 @@ export const CreateOrderForm = ({
             labelRequired
             type="number"
           />
-        </div>
-      </div>
+        </Container>
+      </Container>
 
-      <div className="pb-6">
-        <h2 className="text-base font-semibold leading-7 text-gray-900">
+      <Container className="pb-6">
+        <Text
+          as="h2"
+          className="text-base font-semibold leading-7 text-gray-900"
+        >
           Where order is placed
-        </h2>
-        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        </Text>
+        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="Complete Address"
@@ -67,8 +75,8 @@ export const CreateOrderForm = ({
             type="number"
             labelRequired
           />
-        </div>
-        <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        </Container>
+        <Container className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="City"
@@ -87,14 +95,17 @@ export const CreateOrderForm = ({
             name="country"
             labelRequired
           />
-        </div>
-      </div>
+        </Container>
+      </Container>
 
-      <div className="pb-6">
-        <h2 className="text-base font-semibold leading-7 text-gray-900">
+      <Container className="pb-6">
+        <Text
+          as="h2"
+          className="text-base font-semibold leading-7 text-gray-900"
+        >
           Order Details
-        </h2>
-        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+        </Text>
+        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="Product Name"
@@ -122,14 +133,17 @@ export const CreateOrderForm = ({
             type="number"
             labelRequired
           />
-        </div>
-      </div>
+        </Container>
+      </Container>
 
-      <div className="pb-6">
-        <h2 className="text-base font-semibold leading-7 text-gray-900">
+      <Container className="pb-6">
+        <Text
+          as="h2"
+          className="text-base font-semibold leading-7 text-gray-900"
+        >
           Package Details
-        </h2>
-        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+        </Text>
+        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="Dead weight"
@@ -158,14 +172,17 @@ export const CreateOrderForm = ({
             type="number"
             labelRequired
           />
-        </div>
-      </div>
+        </Container>
+      </Container>
 
-      <div className="pb-0">
-        <h2 className="text-base font-semibold leading-7 text-gray-900">
+      <Container className="pb-0">
+        <Text
+          as="h2"
+          className="text-base font-semibold leading-7 text-gray-900"
+        >
           Payment Details
-        </h2>
-        <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+        </Text>
+        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
           <FormRadioInput
             name="paymentMode"
             label="Prepaid"
@@ -178,15 +195,15 @@ export const CreateOrderForm = ({
             labelRequired
             value={PAYMENT_TYPE.COD}
           />
-        </div>
-      </div>
+        </Container>
+      </Container>
 
-      <div className="mt-0 flex items-center justify-end gap-x-6">
+      <Container className="mt-0 flex items-center justify-end gap-x-6">
         <Button
           btnText="Submit"
           className="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         />
-      </div>
+      </Container>
     </Form>
   );
 };

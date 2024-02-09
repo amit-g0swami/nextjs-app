@@ -41,17 +41,15 @@ export const SellerProfile = () => {
           <ShowDetails
             title="Seller Code"
             description={
-              <React.Fragment>
-                {sellerId && (
-                  <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex">
-                    {JSON.parse(sellerId)}
-                    <DocumentDuplicateIcon
-                      onClick={() => handleClick()}
-                      className="ml-2 h-5 w-5 cursor-pointer"
-                    />
-                  </dd>
-                )}
-              </React.Fragment>
+              sellerId && (
+                <Container className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex">
+                  {JSON.parse(sellerId)}
+                  <DocumentDuplicateIcon
+                    onClick={() => handleClick()}
+                    className="ml-2 h-5 w-5 cursor-pointer"
+                  />
+                </Container>
+              )
             }
           />
         </dl>
