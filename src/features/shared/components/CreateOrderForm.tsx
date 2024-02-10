@@ -8,16 +8,39 @@ import { Container } from "@/components/atoms/container";
 import { FormSection } from "@/components/molecules/form-section";
 
 type CreateOrderFormProps = {
-  validationSchema: Joi.ObjectSchema;
   getFormData: (data: Record<string, string | number | boolean>) => void;
 };
 
-export const CreateOrderForm = ({
-  getFormData,
-  validationSchema,
-}: CreateOrderFormProps) => {
+const createOrderSchema = Joi.object({
+  fullName: Joi.string().required(),
+  email: Joi.string().required(),
+  mobileNumber: Joi.string()
+    .pattern(/^\d{10}$/)
+    .required(),
+  completeAddress: Joi.string().required(),
+  landMark: Joi.string().required(),
+  pinCode: Joi.string()
+    .pattern(/^\d{6}$/)
+    .required(),
+  city: Joi.string().required(),
+  state: Joi.string().required(),
+  country: Joi.string().required(),
+  productName: Joi.string().required(),
+  quantity: Joi.number().required(),
+  unitPrice: Joi.number().required(),
+  totalAmount: Joi.number().required(),
+  deadWeight: Joi.number().required(),
+  length: Joi.number().required(),
+  width: Joi.number().required(),
+  height: Joi.number().required(),
+  paymentMode: Joi.string()
+    .valid(PAYMENT_TYPE.COD, PAYMENT_TYPE.PREPAID)
+    .required(),
+});
+
+export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
   return (
-    <Form getFormData={getFormData} validationSchema={validationSchema}>
+    <Form getFormData={getFormData} validationSchema={createOrderSchema}>
       <FormSection title="Personal Information">
         <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput

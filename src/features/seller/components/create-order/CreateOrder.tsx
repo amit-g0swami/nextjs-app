@@ -1,38 +1,9 @@
 "use client";
 
-import Joi from "joi";
-import { PAYMENT_TYPE } from "@/shared/shared.interface";
 import { useParams } from "next/navigation";
 import { useCreateOrderMutation } from "../../hooks/useCreateOrderMutation";
 import { ICreateOrderPayload } from "../../seller.interface";
 import { CreateOrderForm } from "../../../shared/components/CreateOrderForm";
-
-const createOrderSchema = Joi.object({
-  fullName: Joi.string().required(),
-  email: Joi.string().required(),
-  mobileNumber: Joi.string()
-    .pattern(/^\d{10}$/)
-    .required(),
-  completeAddress: Joi.string().required(),
-  landMark: Joi.string().required(),
-  pinCode: Joi.string()
-    .pattern(/^\d{6}$/)
-    .required(),
-  city: Joi.string().required(),
-  state: Joi.string().required(),
-  country: Joi.string().required(),
-  productName: Joi.string().required(),
-  quantity: Joi.number().required(),
-  unitPrice: Joi.number().required(),
-  totalAmount: Joi.number().required(),
-  deadWeight: Joi.number().required(),
-  length: Joi.number().required(),
-  width: Joi.number().required(),
-  height: Joi.number().required(),
-  paymentMode: Joi.string()
-    .valid(PAYMENT_TYPE.COD, PAYMENT_TYPE.PREPAID)
-    .required(),
-});
 
 export const CreateOrder = () => {
   const params = useParams();
@@ -85,10 +56,5 @@ export const CreateOrder = () => {
     useCreateOrderMutate.mutate(orderPayload);
   };
 
-  return (
-    <CreateOrderForm
-      getFormData={getFormData}
-      validationSchema={createOrderSchema}
-    />
-  );
+  return <CreateOrderForm getFormData={getFormData} />;
 };
