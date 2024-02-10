@@ -1,5 +1,5 @@
 import { USER_TYPE } from "@/shared/shared.interface";
-import { Card } from "./Card";
+import { Card } from "../card";
 import { Container } from "@/components/atoms/container";
 
 type CardComponentProps = {

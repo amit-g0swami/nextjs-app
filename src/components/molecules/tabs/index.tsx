@@ -67,7 +67,9 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
                 className="sm:mr-2 relative z-50 inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-gray-400 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 btnText={
                   <React.Fragment>
-                    <Text className="absolute -inset-0.5" children="" />
+                    <Text className="absolute -inset-0.5">
+                      <div />
+                    </Text>
                     <Text className="sr-only">Open main menu</Text>
                     {renderToggleButton(isTabOpen)}
                   </React.Fragment>

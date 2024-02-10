@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SocialLinks } from "./SocialLinks";
+import { SocialLinks } from "./social-links";
 import { Text } from "@/components/atoms/text";
 import { Container } from "@/components/atoms/container";
 

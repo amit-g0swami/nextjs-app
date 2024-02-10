@@ -1,6 +1,6 @@
 "use client";
 
-import withCustomerOnly from "@/utils/withCustomerOnly";
+import withCustomerOnly from "@/utils/middlewares/withCustomerOnly";
 import { CustomerComponent } from "@/features/customer";
 
 const CustomerPage = () => {

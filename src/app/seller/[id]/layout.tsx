@@ -1,19 +1,15 @@
 import { SellerDashboardLayout } from "@/features/seller";
 
-export default function Layout({
-  children,
-  order,
-  profile,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-  order: React.ReactNode;
-  profile: React.ReactNode;
-}) {
+  order?: React.ReactNode;
+  profile?: React.ReactNode;
+};
+
+export default function Layout({ children, order, profile }: LayoutProps) {
   return (
-    <SellerDashboardLayout
-      order={order}
-      profile={profile}
-      children={children}
-    />
+    <SellerDashboardLayout order={order} profile={profile}>
+      {children}
+    </SellerDashboardLayout>
   );
 }

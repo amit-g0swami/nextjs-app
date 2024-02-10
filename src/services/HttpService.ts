@@ -1,6 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { showToast } from "@/utils/showToast";
+import { showToast } from "@/utils/show-toast";
 
 const TIMEOUT = 5000;
 

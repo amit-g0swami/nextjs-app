@@ -1,8 +1,8 @@
 "use client";
 
 import useHomeStore from "../../store/home.store";
-import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
-import { ServiceSectionList } from "./ServiceSectionList";
+import { BackGroundDiv } from "@/features/shared/components/background-dev";
+import { ServiceSectionList } from "./service-section-list";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
 

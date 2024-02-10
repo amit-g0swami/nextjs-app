@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { LoginForm } from "./components/LoginForm";
-import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
-import { CardComponent } from "@/features/login/components/CardComponent";
+import { LoginForm } from "./components/login-form";
+import { BackGroundDiv } from "@/features/shared/components/background-dev";
+import { CardComponent } from "@/features/login/components/card-component";
 import { USER_TYPE, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { Container } from "@/components/atoms/container";
 import { useLocalStorage } from "../shared/hooks/useLocalStorage";

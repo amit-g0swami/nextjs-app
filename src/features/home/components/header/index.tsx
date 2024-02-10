@@ -6,11 +6,11 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { UserAuth } from "@/contexts/AuthContext";
 import { Container } from "@/components/atoms/container";
-import { Logo } from "./Logo";
-import { MobileMenu } from "./MobileMenu";
-import { Menu } from "./Menu";
+import { Logo } from "./logo";
+import { MobileMenu } from "./mobile-menu";
+import { Menu } from "./menu";
 import { Button } from "@/components/atoms/button";
-import { RenderButtonType } from "./RenderButtonType";
+import { RenderButtonType } from "./render-button-type";
 
 export const HeaderSection = () => {
   const pathname = usePathname();

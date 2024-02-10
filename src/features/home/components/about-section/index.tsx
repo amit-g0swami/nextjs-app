@@ -1,6 +1,6 @@
 "use client";
 
-import useHomeStore from "../store/home.store";
+import useHomeStore from "../../store/home.store";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
 

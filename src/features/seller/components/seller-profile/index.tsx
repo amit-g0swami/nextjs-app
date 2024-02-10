@@ -8,7 +8,7 @@ import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
-import { ShowDetails } from "@/features/shared/components/ShowDetails";
+import { ShowDetails } from "@/features/shared/components/show-details";
 
 export const SellerProfile = () => {
   const { user } = UserAuth();

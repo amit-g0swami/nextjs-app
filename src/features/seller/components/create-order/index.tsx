@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useCreateOrderMutation } from "../../hooks/useCreateOrderMutation";
 import { ICreateOrderPayload } from "../../seller.interface";
-import { CreateOrderForm } from "../../../shared/components/CreateOrderForm";
+import { CreateOrderForm } from "../../../shared/components/create-order-form";
 
 export const CreateOrder = () => {
   const params = useParams();

@@ -1,6 +1,6 @@
 import React from "react";
 import useCustomerStore from "./store/customer.store";
-import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
+import { BackGroundDiv } from "@/features/shared/components/background-dev";
 import { UserAuth } from "../../contexts/AuthContext";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
@@ -10,8 +10,8 @@ import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useGetSearchedSeller } from "./hooks/useGetSearchedSeller";
 import { useAddSellerMutation } from "./hooks/useAddSellerMutation";
 import { useRouter } from "next/navigation";
-import { ShowDetails } from "../shared/components/ShowDetails";
-import { AddSellerModel } from "./components/AddSellerModel";
+import { ShowDetails } from "../shared/components/show-details";
+import { AddSellerModel } from "./components/add-seller-model";
 import { Tooltip } from "@/components/molecules/tooltip";
 
 export const CustomerComponent = () => {

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { ErrorBoundary } from "@/templates/error-boundary";
-import { HeaderSection } from "@/features/home/components/header/HeaderSection";
+import { HeaderSection } from "@/features/home/components/header";
 import { TanStackQueryProvider } from "@/providers/TanStackQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -1,9 +1,9 @@
 import React from "react";
-import { AboutSection } from "@/features/home/components/AboutSection";
-import { HeroSection } from "@/features/home/components/HeroSection";
-import { ServicesSection } from "./components/service-section/ServicesSection";
-import { FooterSection } from "./components/footer/FooterSection";
-import { SupportSection } from "./components/SupportSection";
+import { AboutSection } from "@/features/home/components/about-section";
+import { HeroSection } from "@/features/home/components/hero-section";
+import { ServicesSection } from "./components/service-section";
+import { FooterSection } from "./components/footer";
+import { SupportSection } from "./components/support-section";
 
 export const HomeComponent = () => {
   return (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/atoms/container";
-import { INavigationData } from "../../home.interface";
+import { INavigationData } from "../../../home.interface";
 
 type MenuProps = {
   navigationData: INavigationData[];

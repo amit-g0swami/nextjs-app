@@ -5,9 +5,9 @@ import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { User } from "firebase/auth";
-import { INavigationData } from "../../home.interface";
+import { INavigationData } from "../../../home.interface";
 import { Button } from "@/components/atoms/button";
-import { RenderButtonType } from "./RenderButtonType";
+import { RenderButtonType } from "../render-button-type";
 
 type MobileMenuProps = {
   user: User | null;

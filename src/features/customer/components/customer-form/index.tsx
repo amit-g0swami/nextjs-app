@@ -1,12 +1,12 @@
 "use client";
 
-import { BackGroundDiv } from "@/features/shared/components/BackGroundDiv";
+import { BackGroundDiv } from "@/features/shared/components/background-dev";
 import { useAddressMutation } from "@/features/customer/hooks/useAddressMutation";
 import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
 import { useParams } from "next/navigation";
 import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
 import { Container } from "@/components/atoms/container";
-import { CreateOrderForm } from "@/features/shared/components/CreateOrderForm";
+import { CreateOrderForm } from "@/features/shared/components/create-order-form";
 
 export const CustomerFormComponent = () => {
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS);

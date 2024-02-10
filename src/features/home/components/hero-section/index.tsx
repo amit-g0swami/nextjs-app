@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BackGroundDiv } from "../../shared/components/BackGroundDiv";
+import { BackGroundDiv } from "../../../shared/components/background-dev";
 import { Container } from "@/components/atoms/container";
 import { Text } from "@/components/atoms/text";
 
