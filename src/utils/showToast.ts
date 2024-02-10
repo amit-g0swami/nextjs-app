@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import Logger from "@/libs/logger.util";
 import { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { HTTP_STATUS_CODE } from "@/shared/shared.interface";
 import { AUTH_MESSAGE } from "@/features/login/login.interface";
@@ -20,6 +21,7 @@ interface IShowToast {
 export const showToast = ({ response }: IShowToast) => {
   if (response.data.message === AUTH_MESSAGE.USER_ALREADY_EXISTS) {
     toast.success(AUTH_MESSAGE.USER_LOGGED_IN);
+    Logger.info(AUTH_MESSAGE.USER_LOGGED_IN);
     return;
   }
   switch (response.data.status) {
@@ -27,9 +29,11 @@ export const showToast = ({ response }: IShowToast) => {
     case HTTP_STATUS_CODE.CREATED:
     case HTTP_STATUS_CODE.UPDATED:
       toast.success(response.data.message);
+      Logger.info(response.data.message);
       break;
     default:
       toast.error(response.data.message);
+      Logger.error(response.data.message);
       break;
   }
 };
