@@ -8,7 +8,13 @@ export const Logo = () => {
     <Container className="flex lg:flex-1">
       <a href={ROUTES.HOME} className="-m-1.5 p-1.5">
         <Text className="sr-only">Your Company</Text>
-        <Image src="/assets/logo.png" alt="" width={98} height={98} priority />
+        <Image
+          src="/assets/logo.png"
+          alt="logo"
+          width={100}
+          height={98}
+          priority
+        />
         <link
           rel="icon"
           href="/icon?<generated>"

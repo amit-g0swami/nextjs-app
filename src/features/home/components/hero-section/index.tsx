@@ -9,7 +9,13 @@ export const HeroSection = () => {
     <Container className="bg-white">
       <Container className="relative">
         <Container className="absolute top-0 left-0 bg-transparent opacity-30 sm:block">
-          <Image src="/assets/bg.png" width={460} height={400} alt="box" />
+          <Image
+            src="/assets/bg.png"
+            width={460}
+            height={400}
+            alt="box"
+            priority
+          />
         </Container>
         <Container className="absolute top-0 right-0 bg-transparent opacity-30 mt-10 hidden md:block">
           <Image src="/assets/boxes.png" width={400} height={460} alt="boxes" />
