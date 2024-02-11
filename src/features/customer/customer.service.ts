@@ -22,7 +22,7 @@ const createAddress = async (addressPayload: IAddressPayload) => {
 const getSearchedSeller = async (sellerId: string | null) => {
   try {
     const { data } = await HttpService.get(`${baseUrl}/seller/${sellerId}`)
-    const seller: IUser = data.seller[0]
+    const seller: IUser[] | [] = data.seller || []
     return seller
   } catch (error) {
     throw error

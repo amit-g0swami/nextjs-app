@@ -1,16 +1,18 @@
 import { Container } from '@/components/atoms/container'
-import { Text } from '@/components/atoms/text'
+import { MenuOption } from '@/components/molecules/menu-option'
 import { Modal } from '@/components/molecules/modal'
 import { CustomSearch } from '@/components/organisms/custom-search'
 import { IUser } from '@/features/login/login.interface'
 
 type AddSellerModelProps = {
   isOpen: boolean
-  searchedSeller: IUser | undefined
+  searchedSeller: IUser[] | [] | undefined
   setSearchedSellerId: (value: string | null) => void
   handleAddSellerMutate: (sellerId: string) => void
   handleCloseModal: () => void
 }
+
+const lengthZero = 0
 
 export const AddSellerModel = ({
   isOpen,
@@ -19,6 +21,7 @@ export const AddSellerModel = ({
   handleAddSellerMutate,
   handleCloseModal
 }: AddSellerModelProps) => {
+  console.log(searchedSeller)
   return (
     <Modal
       isOpen={isOpen}
@@ -33,18 +36,19 @@ export const AddSellerModel = ({
             getSuggestions={(value) => setSearchedSellerId(value)}
             handleEmptyInput={() => setSearchedSellerId(null)}
           />
-          {searchedSeller && (
-            <Container
-              className="mt-2 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
-              onClick={() => handleAddSellerMutate(searchedSeller._id)}
-            >
-              <Text as="h2" className="text-sm font-semibold text-gray-900">
-                {searchedSeller.name}
-              </Text>
-              <Text as="p" className="text-xs text-gray-600">
-                {searchedSeller.email}
-              </Text>
-            </Container>
+          {searchedSeller && searchedSeller.length !== lengthZero && (
+            <MenuOption
+              onClick={() => handleAddSellerMutate(searchedSeller[0]?._id)}
+              title={searchedSeller[0]?.name}
+              discription={searchedSeller[0]?.email}
+            />
+          )}
+          {searchedSeller && searchedSeller.length === lengthZero && (
+            <MenuOption
+              onClick={() => {}}
+              title="Seller not found"
+              discription="No Seller Exist with this SellerId"
+            />
           )}
         </Container>
       }

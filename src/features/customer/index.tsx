@@ -73,7 +73,7 @@ export const CustomerComponent = () => {
                 title="Seller"
                 description={
                   <React.Fragment>
-                    {sellerId === null ? (
+                    {!sellerId ? (
                       <Tooltip text="Please Add Your Seller">
                         <Container
                           className="flex cursor-pointer"
