@@ -19,14 +19,14 @@ function useLoggedOutOnly() {
       return setIsNotLoggedIn(true)
     }
 
-    if (getItem() === USER_TYPE.SELLER && getUserDetails() !== undefined) {
-      setIsNotLoggedIn(false)
-      return redirect(ROUTES.SELLER.replace('[id]', `${getUserDetails()}`))
-    }
-
     if (getItem() === USER_TYPE.CUSTOMER) {
       setIsNotLoggedIn(false)
       return redirect(ROUTES.CUSTOMER)
+    }
+
+    if (getItem() === USER_TYPE.SELLER && getUserDetails()) {
+      setIsNotLoggedIn(false)
+      return redirect(ROUTES.SELLER.replace('[id]', `${getUserDetails()}`))
     }
   }, [user, getItem, getUserDetails])
 

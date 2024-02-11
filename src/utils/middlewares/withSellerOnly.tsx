@@ -15,7 +15,7 @@ export function withSellerOnly<P extends WithSellerOnlyProps>(
     const { user } = UserAuth()
 
     useEffect(() => {
-      if (getItem() !== USER_TYPE.SELLER || user === null) {
+      if (!user || getItem() !== USER_TYPE.SELLER) {
         return setIsSeller(false)
       }
       return setIsSeller(true)

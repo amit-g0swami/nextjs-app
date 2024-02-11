@@ -15,7 +15,7 @@ export function withCustomerOnly<P extends WithCustomerOnlyProps>(
     const { user } = UserAuth()
 
     useEffect(() => {
-      if (getItem() !== USER_TYPE.CUSTOMER || user === null) {
+      if (!user || getItem() !== USER_TYPE.CUSTOMER) {
         return setIsCustomer(false)
       }
       return setIsCustomer(true)
