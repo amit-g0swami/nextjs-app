@@ -8,6 +8,7 @@ interface IFormRadioInputProps {
   label: string
   value: string
   labelRequired?: boolean
+  disabled?: boolean
   className?: string
 }
 
@@ -16,6 +17,7 @@ export const FormRadioInput: React.FC<IFormRadioInputProps> = ({
   label,
   value,
   labelRequired = false,
+  disabled = false,
   className = ''
 }) => {
   const { values, setValues, errors } = useFormContext()
@@ -31,10 +33,11 @@ export const FormRadioInput: React.FC<IFormRadioInputProps> = ({
           id={`${name}-${value}`}
           name={name}
           type="radio"
-          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600 disabled:cursor-not-allowed"
           value={value}
           checked={values[name] === value}
           onChange={handleRadioChange}
+          disabled={disabled}
         />
         <label
           htmlFor={`${name}-${value}`}

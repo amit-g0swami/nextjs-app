@@ -8,6 +8,9 @@ import { Container } from '@/components/atoms/container'
 import { FormSection } from '@/components/molecules/form-section'
 
 type CreateOrderFormProps = {
+  disabled?: boolean
+  showSubmitButton?: boolean
+  initialValues?: Record<string, string | number | boolean>
   getFormData: (data: Record<string, string | number | boolean>) => void
 }
 
@@ -38,29 +41,41 @@ const createOrderSchema = Joi.object({
     .required()
 })
 
-export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
+export const CreateOrderForm = ({
+  getFormData,
+  showSubmitButton = true,
+  disabled = false,
+  initialValues = {}
+}: CreateOrderFormProps) => {
   return (
-    <Form getFormData={getFormData} validationSchema={createOrderSchema}>
+    <Form
+      getFormData={getFormData}
+      validationSchema={createOrderSchema}
+      initialValues={initialValues}
+    >
       <FormSection title="Personal Information">
         <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="Full Name"
             name="fullName"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
             className="sm:col-span-2"
             label="Email address"
             name="email"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
             className="sm:col-span-2"
             label="Mobile Number"
             name="mobileNumber"
-            labelRequired
             type="number"
+            disabled={disabled}
+            labelRequired
           />
         </Container>
       </FormSection>
@@ -71,12 +86,14 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             className="sm:col-span-2 sm:col-start-1"
             label="Complete Address"
             name="completeAddress"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
             className="sm:col-span-2"
             label="landmark"
             name="landMark"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
@@ -84,6 +101,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Pincode"
             name="pinCode"
             type="number"
+            disabled={disabled}
             labelRequired
           />
         </Container>
@@ -92,18 +110,21 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             className="sm:col-span-2 sm:col-start-1"
             label="City"
             name="city"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
             className="sm:col-span-2"
             label="State"
             name="state"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
             className="sm:col-span-2"
             label="Country"
             name="country"
+            disabled={disabled}
             labelRequired
           />
         </Container>
@@ -115,6 +136,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             className="sm:col-span-2 sm:col-start-1"
             label="Product Name"
             name="productName"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
@@ -122,6 +144,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Quantity"
             name="quantity"
             type="number"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
@@ -129,6 +152,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Unit Price"
             name="unitPrice"
             type="number"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
@@ -136,6 +160,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Total Amount"
             name="totalAmount"
             type="number"
+            disabled={disabled}
             labelRequired
           />
         </Container>
@@ -148,6 +173,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Dead weight"
             name="deadWeight"
             type="number"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
@@ -155,6 +181,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Length (in cm)"
             name="length"
             type="number"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
@@ -162,6 +189,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Width (in cm)"
             name="width"
             type="number"
+            disabled={disabled}
             labelRequired
           />
           <FormInput
@@ -169,6 +197,7 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
             label="Height (in cm)"
             name="height"
             type="number"
+            disabled={disabled}
             labelRequired
           />
         </Container>
@@ -179,24 +208,28 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
           <FormRadioInput
             name="paymentMode"
             label="Prepaid"
-            labelRequired
             value={PAYMENT_TYPE.PREPAID}
+            disabled={disabled}
+            labelRequired
           />
           <FormRadioInput
             name="paymentMode"
             label="COD"
-            labelRequired
             value={PAYMENT_TYPE.COD}
+            disabled={disabled}
+            labelRequired
           />
         </Container>
       </FormSection>
 
-      <Container className="-mt-6 flex items-center justify-end gap-x-6">
-        <Button
-          btnText="Submit"
-          className="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        />
-      </Container>
+      {showSubmitButton && (
+        <Container className="-mt-6 flex items-center justify-end gap-x-6">
+          <Button
+            btnText="Submit"
+            className="rounded-md bg-indigo-600 px-8 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          />
+        </Container>
+      )}
     </Form>
   )
 }

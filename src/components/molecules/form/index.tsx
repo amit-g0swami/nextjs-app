@@ -5,7 +5,7 @@ interface IFormProps {
   children: ReactNode
   className?: string
   validationSchema: Joi.ObjectSchema
-  initialValues?: Record<string, string | number | boolean>
+  initialValues: Record<string, string | number | boolean>
   id?: string
   getFormData: (data: Record<string, string | number | boolean>) => void
 }
@@ -31,9 +31,7 @@ export const useFormContext = (): IFormContext => {
 }
 
 export const Form = ({ ...props }: IFormProps) => {
-  const [values, setValues] = useState(
-    props.initialValues ? props.initialValues : {}
-  )
+  const [values, setValues] = useState(props.initialValues)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   const handleValidation = (event: React.FormEvent) => {
