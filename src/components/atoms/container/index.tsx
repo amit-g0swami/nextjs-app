@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react'
 
 interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  id?: string;
-  onClick?: () => void;
+  children?: ReactNode
+  className?: string
+  style?: React.CSSProperties
+  id?: string
+  onClick?: () => void
 }
 
 export const Container = ({
@@ -15,9 +15,5 @@ export const Container = ({
   id,
   ...rest
 }: ContainerProps) => {
-  return React.createElement(
-    "div",
-    { ...rest, style, id, className },
-    children
-  );
-};
+  return React.createElement('div', { ...rest, style, id, className }, children)
+}

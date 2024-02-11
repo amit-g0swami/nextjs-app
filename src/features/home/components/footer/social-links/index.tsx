@@ -1,10 +1,10 @@
-import { Text } from "@/components/atoms/text";
+import { Text } from '@/components/atoms/text'
 
 type SocialLinkProps = {
-  href: string;
-  svg: React.ReactNode;
-  label: string;
-};
+  href: string
+  svg: React.ReactNode
+  label: string
+}
 
 export const SocialLinks = ({ href, svg, label }: SocialLinkProps) => (
   <a
@@ -15,4 +15,4 @@ export const SocialLinks = ({ href, svg, label }: SocialLinkProps) => (
     {svg}
     <Text className="sr-only">{label}</Text>
   </a>
-);
+)

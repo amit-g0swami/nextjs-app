@@ -1,46 +1,46 @@
-import { useDebounce } from "@/features/shared/hooks/useDebounceSearch";
-import { useEffect, useState } from "react";
+import { useDebounce } from '@/features/shared/hooks/useDebounceSearch'
+import { useEffect, useState } from 'react'
 
 type CustomSearchProps = {
-  placeholder: string;
-  name: string;
-  type?: string;
-  debounceTime?: number;
-  charLimit?: number;
-  handleEmptyInput?: () => void;
-  getSuggestions: (value: string) => void;
-};
+  placeholder: string
+  name: string
+  type?: string
+  debounceTime?: number
+  charLimit?: number
+  handleEmptyInput?: () => void
+  getSuggestions: (value: string) => void
+}
 
 export const CustomSearch = ({
-  placeholder = "",
+  placeholder = '',
   name,
-  type = "text",
+  type = 'text',
   debounceTime = 500,
   charLimit = 3,
   handleEmptyInput,
-  getSuggestions,
+  getSuggestions
 }: CustomSearchProps) => {
-  const [inputValue, setInputValue] = useState("");
-  const debouncedSearchInput = useDebounce(inputValue, debounceTime);
+  const [inputValue, setInputValue] = useState('')
+  const debouncedSearchInput = useDebounce(inputValue, debounceTime)
 
-  const zero = 0;
+  const zero = 0
 
   useEffect(() => {
     if (inputValue.length === zero) {
       if (handleEmptyInput) {
-        handleEmptyInput();
+        handleEmptyInput()
       }
     } else if (debouncedSearchInput.length > charLimit) {
-      getSuggestions(debouncedSearchInput);
+      getSuggestions(debouncedSearchInput)
     }
-  }, [debouncedSearchInput]);
+  }, [debouncedSearchInput])
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    const value = e.target.value;
-    setInputValue(value);
-  };
+    const value = e.target.value
+    setInputValue(value)
+  }
 
   return (
     <input
@@ -51,5 +51,5 @@ export const CustomSearch = ({
       onChange={handleInputChange}
       placeholder={placeholder}
     />
-  );
-};
+  )
+}

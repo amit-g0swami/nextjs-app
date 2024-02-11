@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { BackGroundDiv } from "@/features/shared/components/background-dev";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { ROUTES } from "@/shared/shared.interface";
+import Link from 'next/link'
+import { BackGroundDiv } from '@/features/shared/components/background-dev'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { ROUTES } from '@/shared/shared.interface'
 
 export const NotFoundComponent = () => {
   return (
@@ -21,5 +21,5 @@ export const NotFoundComponent = () => {
         </Container>
       </BackGroundDiv>
     </Container>
-  );
-};
+  )
+}

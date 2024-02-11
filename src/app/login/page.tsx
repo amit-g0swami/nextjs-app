@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import withLoggedOutOnly from "@/utils/middlewares/withLoggedOutOnly";
-import { LoginComponent } from "@/features/login";
+import withLoggedOutOnly from '@/utils/middlewares/withLoggedOutOnly'
+import { LoginComponent } from '@/features/login'
 
 const LoginPage = () => {
-  return <LoginComponent />;
-};
+  return <LoginComponent />
+}
 
-export default withLoggedOutOnly(LoginPage);
+export default withLoggedOutOnly(LoginPage)

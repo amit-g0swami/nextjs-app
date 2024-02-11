@@ -1,14 +1,14 @@
-import React from "react";
-import { useFormContext } from "../form";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
+import React from 'react'
+import { useFormContext } from '../form'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
 
 interface IFormRadioInputProps {
-  name: string;
-  label: string;
-  value: string;
-  labelRequired?: boolean;
-  className?: string;
+  name: string
+  label: string
+  value: string
+  labelRequired?: boolean
+  className?: string
 }
 
 export const FormRadioInput: React.FC<IFormRadioInputProps> = ({
@@ -16,13 +16,13 @@ export const FormRadioInput: React.FC<IFormRadioInputProps> = ({
   label,
   value,
   labelRequired = false,
-  className = "",
+  className = ''
 }) => {
-  const { values, setValues, errors } = useFormContext();
+  const { values, setValues, errors } = useFormContext()
 
   const handleRadioChange = () => {
-    setValues({ ...values, [name]: value });
-  };
+    setValues({ ...values, [name]: value })
+  }
 
   return (
     <Container className={className}>
@@ -50,5 +50,5 @@ export const FormRadioInput: React.FC<IFormRadioInputProps> = ({
         </Text>
       )}
     </Container>
-  );
-};
+  )
+}

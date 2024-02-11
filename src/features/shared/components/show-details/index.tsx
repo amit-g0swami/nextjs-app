@@ -1,9 +1,9 @@
-import { Container } from "@/components/atoms/container";
+import { Container } from '@/components/atoms/container'
 
 type ShowDetailsProps = {
-  title: string;
-  description: string | null | undefined | React.ReactNode;
-};
+  title: string
+  description: string | null | undefined | React.ReactNode
+}
 
 export const ShowDetails = ({ title, description }: ShowDetailsProps) => {
   return (
@@ -15,5 +15,5 @@ export const ShowDetails = ({ title, description }: ShowDetailsProps) => {
         </dd>
       )}
     </Container>
-  );
-};
+  )
+}

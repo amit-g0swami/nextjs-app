@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import withSellerOnly from "@/utils/middlewares/withSellerOnly";
+import withSellerOnly from '@/utils/middlewares/withSellerOnly'
 
 const SellerPage = () => {
-  return <div />;
-};
+  return <div />
+}
 
-export default withSellerOnly(SellerPage);
+export default withSellerOnly(SellerPage)

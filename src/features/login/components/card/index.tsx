@@ -1,23 +1,23 @@
-import Image from "next/image";
-import { USER_TYPE } from "@/shared/shared.interface";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { Button } from "@/components/atoms/button";
+import Image from 'next/image'
+import { USER_TYPE } from '@/shared/shared.interface'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { Button } from '@/components/atoms/button'
 
 type CardProps = {
-  icon: string;
-  title: string;
-  description: string;
-  setLoginType: (type: USER_TYPE) => void;
-  type: USER_TYPE;
-};
+  icon: string
+  title: string
+  description: string
+  setLoginType: (type: USER_TYPE) => void
+  type: USER_TYPE
+}
 
 export const Card = ({
   icon,
   title,
   description,
   type,
-  setLoginType,
+  setLoginType
 }: Readonly<CardProps>) => (
   <Container className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
     <Container className="rounded-2xl bg-gray-50 py-6 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
@@ -36,4 +36,4 @@ export const Card = ({
       </Container>
     </Container>
   </Container>
-);
+)

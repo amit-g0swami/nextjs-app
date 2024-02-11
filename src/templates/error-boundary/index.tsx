@@ -1,28 +1,28 @@
-"use client";
+'use client'
 
-import React, { ReactNode } from "react";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { Button } from "@/components/atoms/button";
+import React, { ReactNode } from 'react'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { Button } from '@/components/atoms/button'
 
 export type ErrorBoundaryProps = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
 export type ErrorBoundaryState = {
-  hasError: boolean;
-};
+  hasError: boolean
+}
 
 export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
   constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
+    super(props)
+    this.state = { hasError: false }
   }
   static getDerivedStateFromError() {
-    return { hasError: true };
+    return { hasError: true }
   }
   render() {
     if (this.state.hasError) {
@@ -36,8 +36,8 @@ export class ErrorBoundary extends React.Component<
             btnText=" Try Again"
           />
         </Container>
-      );
+      )
     }
-    return this.props.children;
+    return this.props.children
   }
 }

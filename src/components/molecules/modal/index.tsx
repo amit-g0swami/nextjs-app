@@ -1,24 +1,24 @@
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { useClickOutside } from "@/features/shared/hooks/useClickOutSide";
-import { Fragment, MouseEvent, useRef } from "react";
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { useClickOutside } from '@/features/shared/hooks/useClickOutSide'
+import { Fragment, MouseEvent, useRef } from 'react'
 
 type ModalProps = {
-  isOpen: boolean;
-  title: string;
-  content: React.ReactNode;
-  onClose: () => void;
-};
+  isOpen: boolean
+  title: string
+  content: React.ReactNode
+  onClose: () => void
+}
 
 export const Modal = ({ isOpen, title, content, onClose }: ModalProps) => {
-  const modalRef = useRef(null);
+  const modalRef = useRef(null)
 
   const handleCloseModal = (e: MouseEvent) => {
-    e.stopPropagation();
-    onClose();
-  };
+    e.stopPropagation()
+    onClose()
+  }
 
-  useClickOutside(modalRef, onClose);
+  useClickOutside(modalRef, onClose)
 
   return (
     <Fragment>
@@ -62,5 +62,5 @@ export const Modal = ({ isOpen, title, content, onClose }: ModalProps) => {
         </Container>
       )}
     </Fragment>
-  );
-};
+  )
+}

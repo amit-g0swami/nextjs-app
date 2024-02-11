@@ -1,10 +1,10 @@
-import Image from "next/image";
-import { UserAuth } from "@/contexts/AuthContext";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
+import Image from 'next/image'
+import { UserAuth } from '@/contexts/AuthContext'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
 
 interface ILoginFormProps {
-  disabled?: boolean;
+  disabled?: boolean
 }
 
 const DummyLoginForm = () => {
@@ -70,19 +70,19 @@ const DummyLoginForm = () => {
         </button>
       </Container>
     </form>
-  );
-};
+  )
+}
 
 export const LoginForm = ({ disabled = false }: ILoginFormProps) => {
-  const { googleSignIn } = UserAuth();
+  const { googleSignIn } = UserAuth()
 
   const handleSignIn = () => {
     try {
-      googleSignIn();
+      googleSignIn()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <Container className="flex min-h-full flex-1 flex-col justify-center px-1 py-1 lg:px-1">
@@ -105,7 +105,7 @@ export const LoginForm = ({ disabled = false }: ILoginFormProps) => {
         <DummyLoginForm />
 
         <Text as="p" className="my-6 text-center text-sm text-gray-500">
-          Not a member?{" "}
+          Not a member?{' '}
           <a
             href="#"
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
@@ -130,5 +130,5 @@ export const LoginForm = ({ disabled = false }: ILoginFormProps) => {
         </button>
       </Container>
     </Container>
-  );
-};
+  )
+}

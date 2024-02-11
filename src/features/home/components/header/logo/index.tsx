@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { ROUTES } from "@/shared/shared.interface";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
+import Image from 'next/image'
+import { ROUTES } from '@/shared/shared.interface'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
 
 export const Logo = () => {
   return (
@@ -23,5 +23,5 @@ export const Logo = () => {
         />
       </a>
     </Container>
-  );
-};
+  )
+}

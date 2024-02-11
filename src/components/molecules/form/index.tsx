@@ -1,57 +1,57 @@
-import Joi from "joi";
-import React, { ReactNode, useContext, useState } from "react";
+import Joi from 'joi'
+import React, { ReactNode, useContext, useState } from 'react'
 
 interface IFormProps {
-  children: ReactNode;
-  className?: string;
-  validationSchema: Joi.ObjectSchema;
-  initialValues?: Record<string, string | number | boolean>;
-  id?: string;
-  getFormData: (data: Record<string, string | number | boolean>) => void;
+  children: ReactNode
+  className?: string
+  validationSchema: Joi.ObjectSchema
+  initialValues?: Record<string, string | number | boolean>
+  id?: string
+  getFormData: (data: Record<string, string | number | boolean>) => void
 }
 
 interface IFormContext {
-  values: Record<string, string | number | boolean>;
-  errors: Record<string, string>;
+  values: Record<string, string | number | boolean>
+  errors: Record<string, string>
   setValues: React.Dispatch<
     React.SetStateAction<Record<string, string | number | boolean>>
-  >;
+  >
 }
 
 export const FormContext = React.createContext<IFormContext | undefined>(
   undefined
-);
+)
 
 export const useFormContext = (): IFormContext => {
-  const context = useContext(FormContext);
+  const context = useContext(FormContext)
   if (!context) {
-    throw new Error("useFormContext must be used within a FormProvider");
+    throw new Error('useFormContext must be used within a FormProvider')
   }
-  return context;
-};
+  return context
+}
 
 export const Form = ({ ...props }: IFormProps) => {
   const [values, setValues] = useState(
     props.initialValues ? props.initialValues : {}
-  );
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  )
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   const handleValidation = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
     const result = props.validationSchema.validate(values, {
-      abortEarly: false,
-    });
+      abortEarly: false
+    })
     if (result.error) {
-      const error: Record<string, string> = {};
+      const error: Record<string, string> = {}
       result.error.details.forEach((data) => {
-        error[data.path[0]] = data.message;
-      });
-      setErrors(error);
+        error[data.path[0]] = data.message
+      })
+      setErrors(error)
     } else {
-      setErrors({});
-      props.getFormData(values);
+      setErrors({})
+      props.getFormData(values)
     }
-  };
+  }
 
   return (
     <FormContext.Provider value={{ values, setValues, errors }}>
@@ -63,5 +63,5 @@ export const Form = ({ ...props }: IFormProps) => {
         {props.children}
       </form>
     </FormContext.Provider>
-  );
-};
+  )
+}

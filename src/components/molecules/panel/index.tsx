@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
-import { Container } from "../../atoms/container";
+import React, { ReactNode } from 'react'
+import { Container } from '../../atoms/container'
 
 interface PanelProps {
-  children: ReactNode;
-  title: string;
+  children: ReactNode
+  title: string
 }
 
 export const Panel = (props: PanelProps) => {
-  return <Container>{props.children}</Container>;
-};
+  return <Container>{props.children}</Container>
+}

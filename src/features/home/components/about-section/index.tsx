@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import useHomeStore from "../../store/home.store";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
+import Image from 'next/image'
+import useHomeStore from '../../store/home.store'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
 
 export const AboutSection = () => {
-  const { features } = useHomeStore();
+  const { features } = useHomeStore()
   return (
     <section className="overflow-hidden py-10 sm:py-20" id="about-us">
       <Container className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -39,7 +39,7 @@ export const AboutSection = () => {
                         aria-hidden="true"
                       />
                       {feature.name}
-                    </dt>{" "}
+                    </dt>{' '}
                     <dd className="inline">{feature.description}</dd>
                   </Container>
                 ))}
@@ -56,5 +56,5 @@ export const AboutSection = () => {
         </Container>
       </Container>
     </section>
-  );
-};
+  )
+}

@@ -1,16 +1,16 @@
-import React from "react";
-import { useFormContext } from "../form";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
+import React from 'react'
+import { useFormContext } from '../form'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
 
 interface IFormInputProps {
-  placeholder?: string;
-  showHideToggle?: boolean;
-  name: string;
-  label: string;
-  labelRequired?: boolean;
-  className?: string;
-  type?: string;
+  placeholder?: string
+  showHideToggle?: boolean
+  name: string
+  label: string
+  labelRequired?: boolean
+  className?: string
+  type?: string
 }
 
 export const FormInput: React.FC<IFormInputProps> = ({
@@ -18,13 +18,13 @@ export const FormInput: React.FC<IFormInputProps> = ({
   name,
   label,
   labelRequired = false,
-  className = "",
-  type = "text",
+  className = '',
+  type = 'text'
 }) => {
-  const { values, setValues, errors } = useFormContext();
+  const { values, setValues, errors } = useFormContext()
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+    setValues({ ...values, [name]: event.target.value })
+  }
 
   return (
     <Container className={className}>
@@ -40,7 +40,7 @@ export const FormInput: React.FC<IFormInputProps> = ({
           type={type}
           name={name}
           className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          value={String(values[name] || "")}
+          value={String(values[name] || '')}
           onChange={handleInputChange}
           placeholder={placeholder}
         />
@@ -51,5 +51,5 @@ export const FormInput: React.FC<IFormInputProps> = ({
         )}
       </Container>
     </Container>
-  );
-};
+  )
+}

@@ -1,15 +1,15 @@
-import Joi from "joi";
-import { Button } from "@/components/atoms/button";
-import { Form } from "@/components/molecules/form";
-import { FormInput } from "@/components/molecules/form-input";
-import { FormRadioInput } from "@/components/molecules/form-radio";
-import { PAYMENT_TYPE } from "@/shared/shared.interface";
-import { Container } from "@/components/atoms/container";
-import { FormSection } from "@/components/molecules/form-section";
+import Joi from 'joi'
+import { Button } from '@/components/atoms/button'
+import { Form } from '@/components/molecules/form'
+import { FormInput } from '@/components/molecules/form-input'
+import { FormRadioInput } from '@/components/molecules/form-radio'
+import { PAYMENT_TYPE } from '@/shared/shared.interface'
+import { Container } from '@/components/atoms/container'
+import { FormSection } from '@/components/molecules/form-section'
 
 type CreateOrderFormProps = {
-  getFormData: (data: Record<string, string | number | boolean>) => void;
-};
+  getFormData: (data: Record<string, string | number | boolean>) => void
+}
 
 const createOrderSchema = Joi.object({
   fullName: Joi.string().required(),
@@ -35,8 +35,8 @@ const createOrderSchema = Joi.object({
   height: Joi.number().required(),
   paymentMode: Joi.string()
     .valid(PAYMENT_TYPE.COD, PAYMENT_TYPE.PREPAID)
-    .required(),
-});
+    .required()
+})
 
 export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
   return (
@@ -198,5 +198,5 @@ export const CreateOrderForm = ({ getFormData }: CreateOrderFormProps) => {
         />
       </Container>
     </Form>
-  );
-};
+  )
+}

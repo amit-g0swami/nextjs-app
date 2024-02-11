@@ -1,6 +1,6 @@
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { BackGroundDiv } from "@/features/shared/components/background-dev";
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { BackGroundDiv } from '@/features/shared/components/background-dev'
 
 export const Loader = () => {
   return (
@@ -29,5 +29,5 @@ export const Loader = () => {
         </div>
       </BackGroundDiv>
     </Container>
-  );
-};
+  )
+}

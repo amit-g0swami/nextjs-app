@@ -1,36 +1,36 @@
-"use client";
+'use client'
 
-import useHomeStore from "../../store/home.store";
-import React, { useEffect, useState } from "react";
-import { Bars3Icon } from "@heroicons/react/24/outline";
-import { usePathname } from "next/navigation";
-import { UserAuth } from "@/contexts/AuthContext";
-import { Container } from "@/components/atoms/container";
-import { Logo } from "./logo";
-import { MobileMenu } from "./mobile-menu";
-import { Menu } from "./menu";
-import { Button } from "@/components/atoms/button";
-import { RenderButtonType } from "./render-button-type";
+import useHomeStore from '../../store/home.store'
+import React, { useEffect, useState } from 'react'
+import { Bars3Icon } from '@heroicons/react/24/outline'
+import { usePathname } from 'next/navigation'
+import { UserAuth } from '@/contexts/AuthContext'
+import { Container } from '@/components/atoms/container'
+import { Logo } from './logo'
+import { MobileMenu } from './mobile-menu'
+import { Menu } from './menu'
+import { Button } from '@/components/atoms/button'
+import { RenderButtonType } from './render-button-type'
 
 export const HeaderSection = () => {
-  const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [navigationData, setNavigationData] = useState<[] | typeof navigation>(
     []
-  );
-  const { user, logOut } = UserAuth();
-  const { navigation } = useHomeStore();
+  )
+  const { user, logOut } = UserAuth()
+  const { navigation } = useHomeStore()
 
   useEffect(() => {
     if (!user) {
-      return setNavigationData(navigation);
+      return setNavigationData(navigation)
     }
-    return setNavigationData([]);
-  }, [user, navigation]);
+    return setNavigationData([])
+  }, [user, navigation])
 
   const handleSignOut = () => {
-    logOut();
-  };
+    logOut()
+  }
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -71,5 +71,5 @@ export const HeaderSection = () => {
         setMobileMenuOpen={setMobileMenuOpen}
       />
     </header>
-  );
-};
+  )
+}

@@ -1,59 +1,57 @@
-import React from "react";
-import useCustomerStore from "./store/customer.store";
-import { BackGroundDiv } from "@/features/shared/components/background-dev";
-import { UserAuth } from "../../contexts/AuthContext";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { useLocalStorage } from "../shared/hooks/useLocalStorage";
-import { ROUTES, USE_LOCAL_STORAGE } from "@/shared/shared.interface";
-import { PlusCircleIcon } from "@heroicons/react/20/solid";
-import { useGetSearchedSeller } from "./hooks/useGetSearchedSeller";
-import { useAddSellerMutation } from "./hooks/useAddSellerMutation";
-import { useRouter } from "next/navigation";
-import { ShowDetails } from "../shared/components/show-details";
-import { AddSellerModel } from "./components/add-seller-model";
-import { Tooltip } from "@/components/molecules/tooltip";
+import React from 'react'
+import useCustomerStore from './store/customer.store'
+import { BackGroundDiv } from '@/features/shared/components/background-dev'
+import { UserAuth } from '../../contexts/AuthContext'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { useLocalStorage } from '../shared/hooks/useLocalStorage'
+import { ROUTES, USE_LOCAL_STORAGE } from '@/shared/shared.interface'
+import { PlusCircleIcon } from '@heroicons/react/20/solid'
+import { useGetSearchedSeller } from './hooks/useGetSearchedSeller'
+import { useAddSellerMutation } from './hooks/useAddSellerMutation'
+import { useRouter } from 'next/navigation'
+import { ShowDetails } from '../shared/components/show-details'
+import { AddSellerModel } from './components/add-seller-model'
+import { Tooltip } from '@/components/molecules/tooltip'
 
 export const CustomerComponent = () => {
-  const router = useRouter();
-  const { user } = UserAuth();
-  const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_SELLED_ID);
-  const { getItem: getUserId } = useLocalStorage(
-    USE_LOCAL_STORAGE.USER_DETAILS
-  );
-  const sellerIdValue = getItem();
-  const userIdValue = getUserId();
-  const sellerId = sellerIdValue ? JSON.parse(sellerIdValue as string) : null;
-  const userId = userIdValue ? JSON.parse(userIdValue as string) : null;
+  const router = useRouter()
+  const { user } = UserAuth()
+  const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_SELLED_ID)
+  const { getItem: getUserId } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS)
+  const sellerIdValue = getItem()
+  const userIdValue = getUserId()
+  const sellerId = sellerIdValue ? JSON.parse(sellerIdValue as string) : null
+  const userId = userIdValue ? JSON.parse(userIdValue as string) : null
 
-  const { isAddSellerIdModelOpen } = useCustomerStore();
-  const { searchedSellerId } = useCustomerStore();
-  const { setIsAddSellerIdModelOpen } = useCustomerStore();
-  const { setSearchedSellerId } = useCustomerStore();
+  const { isAddSellerIdModelOpen } = useCustomerStore()
+  const { searchedSellerId } = useCustomerStore()
+  const { setIsAddSellerIdModelOpen } = useCustomerStore()
+  const { setSearchedSellerId } = useCustomerStore()
 
-  const { data: searchedSeller } = useGetSearchedSeller(searchedSellerId);
-  const useAddSellerMutate = useAddSellerMutation();
+  const { data: searchedSeller } = useGetSearchedSeller(searchedSellerId)
+  const useAddSellerMutate = useAddSellerMutation()
 
   const handleAddSeller = () => {
-    setIsAddSellerIdModelOpen(true);
-  };
+    setIsAddSellerIdModelOpen(true)
+  }
 
   const handleCloseModal = () => {
-    setIsAddSellerIdModelOpen(false);
-    setSearchedSellerId(null);
-  };
+    setIsAddSellerIdModelOpen(false)
+    setSearchedSellerId(null)
+  }
 
   const handleAddOrderClicked = () => {
-    router.push(ROUTES.CUSTOMER_CREATE_ORDER.replace("[id]", `${sellerId}`));
-  };
+    router.push(ROUTES.CUSTOMER_CREATE_ORDER.replace('[id]', `${sellerId}`))
+  }
 
   const handleAddSellerMutate = (sellerId: string) => {
     const addSellerIdPayload = {
       userId,
-      sellerId,
-    };
-    useAddSellerMutate.mutate(addSellerIdPayload);
-  };
+      sellerId
+    }
+    useAddSellerMutate.mutate(addSellerIdPayload)
+  }
 
   return (
     <Container className="bg-white py-10 sm:py-14 h-screen">
@@ -120,5 +118,5 @@ export const CustomerComponent = () => {
         handleCloseModal={handleCloseModal}
       />
     </Container>
-  );
-};
+  )
+}

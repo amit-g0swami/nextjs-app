@@ -1,40 +1,40 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 type TooltipProps = {
-  text: string;
-  position?: "top" | "right" | "bottom" | "left";
-  children: React.ReactNode;
-};
+  text: string
+  position?: 'top' | 'right' | 'bottom' | 'left'
+  children: React.ReactNode
+}
 
 export const Tooltip = ({
   text,
-  position = "bottom",
-  children,
+  position = 'bottom',
+  children
 }: TooltipProps) => {
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false)
 
   const handleMouseEnter = () => {
-    setShowTooltip(true);
-  };
+    setShowTooltip(true)
+  }
 
   const handleMouseLeave = () => {
-    setShowTooltip(false);
-  };
+    setShowTooltip(false)
+  }
 
   const getTooltipStyle = () => {
     switch (position) {
-      case "top":
-        return { bottom: "100%", left: "50%", transform: "translateX(-50%)" };
-      case "right":
-        return { top: "50%", left: "100%", transform: "translateY(-50%)" };
-      case "bottom":
-        return { top: "100%", left: "50%", transform: "translateX(-50%)" };
-      case "left":
-        return { top: "50%", right: "100%", transform: "translateY(-50%)" };
+      case 'top':
+        return { bottom: '100%', left: '50%', transform: 'translateX(-50%)' }
+      case 'right':
+        return { top: '50%', left: '100%', transform: 'translateY(-50%)' }
+      case 'bottom':
+        return { top: '100%', left: '50%', transform: 'translateX(-50%)' }
+      case 'left':
+        return { top: '50%', right: '100%', transform: 'translateY(-50%)' }
       default:
-        return {};
+        return {}
     }
-  };
+  }
 
   return (
     <div className="relative inline-block">
@@ -52,5 +52,5 @@ export const Tooltip = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}

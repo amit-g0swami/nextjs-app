@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import withCustomerOnly from "@/utils/middlewares/withCustomerOnly";
-import { CustomerComponent } from "@/features/customer";
+import withCustomerOnly from '@/utils/middlewares/withCustomerOnly'
+import { CustomerComponent } from '@/features/customer'
 
 const CustomerPage = () => {
-  return <CustomerComponent />;
-};
+  return <CustomerComponent />
+}
 
-export default withCustomerOnly(CustomerPage);
+export default withCustomerOnly(CustomerPage)

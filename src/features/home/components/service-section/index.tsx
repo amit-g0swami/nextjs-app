@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import useHomeStore from "../../store/home.store";
-import { BackGroundDiv } from "@/features/shared/components/background-dev";
-import { ServiceSectionList } from "./service-section-list";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
+import useHomeStore from '../../store/home.store'
+import { BackGroundDiv } from '@/features/shared/components/background-dev'
+import { ServiceSectionList } from './service-section-list'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
 
 export const ServicesSection = () => {
-  const { services } = useHomeStore((state) => state);
+  const { services } = useHomeStore((state) => state)
   return (
     <BackGroundDiv>
       <Container className="py-10 sm:py-20" id="services">
@@ -52,5 +52,5 @@ export const ServicesSection = () => {
         </Container>
       </Container>
     </BackGroundDiv>
-  );
-};
+  )
+}

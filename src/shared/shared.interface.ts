@@ -1,26 +1,26 @@
 export enum PAYMENT_TYPE {
-  COD = "COD",
-  PREPAID = "PREPAID",
+  COD = 'COD',
+  PREPAID = 'PREPAID'
 }
 
 export enum USER_TYPE {
-  CUSTOMER = "CUSTOMER",
-  SELLER = "SELLER",
+  CUSTOMER = 'CUSTOMER',
+  SELLER = 'SELLER'
 }
 
 export enum USE_LOCAL_STORAGE {
-  LOGGED_IN_TYPE = "loggedInType",
-  USER_DETAILS = "userDetails",
-  USER_SELLED_ID = "userSelledId",
+  LOGGED_IN_TYPE = 'loggedInType',
+  USER_DETAILS = 'userDetails',
+  USER_SELLED_ID = 'userSelledId'
 }
 
 export const ROUTES = {
-  HOME: "/",
-  LOGIN: "/login",
-  SELLER: "/seller/[id]",
-  CUSTOMER: "/customer",
-  CUSTOMER_CREATE_ORDER: "/customer/[id]",
-};
+  HOME: '/',
+  LOGIN: '/login',
+  SELLER: '/seller/[id]',
+  CUSTOMER: '/customer',
+  CUSTOMER_CREATE_ORDER: '/customer/[id]'
+}
 
 export enum HTTP_STATUS_CODE {
   BAD_REQUEST = 400,
@@ -34,5 +34,5 @@ export enum HTTP_STATUS_CODE {
   OK = 200,
   CREATED = 201,
   UPDATED = 200,
-  CONFLICT = 409,
+  CONFLICT = 409
 }

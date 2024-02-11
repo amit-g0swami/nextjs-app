@@ -1,36 +1,36 @@
-import React from "react";
-import useSellerStore from "@/features/seller/store/seller.store";
-import { Container } from "@/components/atoms/container";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
-import { Text } from "@/components/atoms/text";
-import { Button } from "@/components/atoms/button";
+import React from 'react'
+import useSellerStore from '@/features/seller/store/seller.store'
+import { Container } from '@/components/atoms/container'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid'
+import { Text } from '@/components/atoms/text'
+import { Button } from '@/components/atoms/button'
 
 interface TabsProps {
-  children: React.ReactElement[];
+  children: React.ReactElement[]
 }
 
 const renderToggleButton = (isTabOpen: boolean) => {
   switch (isTabOpen) {
     case true:
-      return <XMarkIcon className=" h-6 w-6" aria-hidden="true" />;
+      return <XMarkIcon className=" h-6 w-6" aria-hidden="true" />
     default:
-      return <Bars3Icon className="block h-6 w-6" aria-hidden="true" />;
+      return <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
   }
-};
+}
 
 export const Tabs: React.FC<TabsProps> = ({ children }) => {
-  const { isTabOpen } = useSellerStore();
-  const { selected } = useSellerStore();
-  const { setSelected } = useSellerStore();
-  const { setIsTabOpen } = useSellerStore();
+  const { isTabOpen } = useSellerStore()
+  const { selected } = useSellerStore()
+  const { setSelected } = useSellerStore()
+  const { setIsTabOpen } = useSellerStore()
 
   const handleChange = (index: number) => {
-    setSelected(index);
-  };
+    setSelected(index)
+  }
 
   const toggleMenu = () => {
-    setIsTabOpen(!isTabOpen);
-  };
+    setIsTabOpen(!isTabOpen)
+  }
 
   return (
     <React.Fragment>
@@ -45,8 +45,8 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
                     (elem: React.ReactElement, index: number) => {
                       const className =
                         index === selected
-                          ? "bg-indigo-600 text-white"
-                          : "text-gray-600 hover:bg-indigo-500 hover:text-white";
+                          ? 'bg-indigo-600 text-white'
+                          : 'text-gray-600 hover:bg-indigo-500 hover:text-white'
                       return (
                         <Button
                           key={index}
@@ -54,7 +54,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
                           onClick={() => handleChange(index)}
                           btnText={elem.props.title}
                         />
-                      );
+                      )
                     }
                   )}
                 </Container>
@@ -89,8 +89,8 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
                 (elem: React.ReactElement, index: number) => {
                   const className =
                     index === selected
-                      ? "bg-indigo-600 text-white"
-                      : "text-gray-600 hover:bg-indigo-500 hover:text-white";
+                      ? 'bg-indigo-600 text-white'
+                      : 'text-gray-600 hover:bg-indigo-500 hover:text-white'
                   return (
                     <Button
                       key={index}
@@ -98,7 +98,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
                       onClick={() => handleChange(index)}
                       btnText={elem.props.title}
                     />
-                  );
+                  )
                 }
               )}
             </React.Fragment>
@@ -112,5 +112,5 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
         </Container>
       </main>
     </React.Fragment>
-  );
-};
+  )
+}

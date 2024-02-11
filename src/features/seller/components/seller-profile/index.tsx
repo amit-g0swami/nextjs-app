@@ -1,25 +1,25 @@
-"use client";
+'use client'
 
-import React from "react";
-import toast from "react-hot-toast";
-import { UserAuth } from "@/contexts/AuthContext";
-import { useLocalStorage } from "@/features/shared/hooks/useLocalStorage";
-import { USE_LOCAL_STORAGE } from "@/shared/shared.interface";
-import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { ShowDetails } from "@/features/shared/components/show-details";
+import React from 'react'
+import toast from 'react-hot-toast'
+import { UserAuth } from '@/contexts/AuthContext'
+import { useLocalStorage } from '@/features/shared/hooks/useLocalStorage'
+import { USE_LOCAL_STORAGE } from '@/shared/shared.interface'
+import { DocumentDuplicateIcon } from '@heroicons/react/24/outline'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { ShowDetails } from '@/features/shared/components/show-details'
 
 export const SellerProfile = () => {
-  const { user } = UserAuth();
-  const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS);
-  const sellerId = getItem() as string | undefined;
+  const { user } = UserAuth()
+  const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS)
+  const sellerId = getItem() as string | undefined
 
   const handleClick = () => {
     navigator.clipboard.writeText(JSON.parse(sellerId as string)).then(() => {
-      toast.success("Copied to clipboard");
-    });
-  };
+      toast.success('Copied to clipboard')
+    })
+  }
 
   return (
     <Container>
@@ -55,5 +55,5 @@ export const SellerProfile = () => {
         </dl>
       </Container>
     </Container>
-  );
-};
+  )
+}

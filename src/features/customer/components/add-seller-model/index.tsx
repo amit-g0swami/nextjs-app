@@ -1,23 +1,23 @@
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { Modal } from "@/components/molecules/modal";
-import { CustomSearch } from "@/components/organisms/custom-search";
-import { IUser } from "@/features/login/login.interface";
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { Modal } from '@/components/molecules/modal'
+import { CustomSearch } from '@/components/organisms/custom-search'
+import { IUser } from '@/features/login/login.interface'
 
 type AddSellerModelProps = {
-  isOpen: boolean;
-  searchedSeller: IUser | undefined;
-  setSearchedSellerId: (value: string | null) => void;
-  handleAddSellerMutate: (sellerId: string) => void;
-  handleCloseModal: () => void;
-};
+  isOpen: boolean
+  searchedSeller: IUser | undefined
+  setSearchedSellerId: (value: string | null) => void
+  handleAddSellerMutate: (sellerId: string) => void
+  handleCloseModal: () => void
+}
 
 export const AddSellerModel = ({
   isOpen,
   searchedSeller,
   setSearchedSellerId,
   handleAddSellerMutate,
-  handleCloseModal,
+  handleCloseModal
 }: AddSellerModelProps) => {
   return (
     <Modal
@@ -50,5 +50,5 @@ export const AddSellerModel = ({
       }
       onClose={handleCloseModal}
     />
-  );
-};
+  )
+}

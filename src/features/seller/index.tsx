@@ -1,20 +1,20 @@
-"use client";
+'use client'
 
-import { Container } from "@/components/atoms/container";
-import { Panel } from "@/components/molecules/panel";
-import { Tabs } from "@/components/molecules/tabs";
-import { DashboardBackground } from "./components/seller-layout";
+import { Container } from '@/components/atoms/container'
+import { Panel } from '@/components/molecules/panel'
+import { Tabs } from '@/components/molecules/tabs'
+import { DashboardBackground } from './components/seller-layout'
 
 type sellerDashboardLayoutProps = {
-  children: React.ReactNode;
-  profile: React.ReactNode;
-  order: React.ReactNode;
-};
+  children: React.ReactNode
+  profile: React.ReactNode
+  order: React.ReactNode
+}
 
 export const SellerDashboardLayout = ({
   children,
   profile,
-  order,
+  order
 }: sellerDashboardLayoutProps) => {
   return (
     <DashboardBackground>
@@ -24,5 +24,5 @@ export const SellerDashboardLayout = ({
         <Panel title="Create Order">{order}</Panel>
       </Tabs>
     </DashboardBackground>
-  );
-};
+  )
+}

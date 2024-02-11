@@ -1,22 +1,22 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
-import { XMarkIcon } from "@heroicons/react/20/solid";
-import { User } from "firebase/auth";
-import { INavigationData } from "../../../home.interface";
-import { Button } from "@/components/atoms/button";
-import { RenderButtonType } from "../render-button-type";
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
+import { XMarkIcon } from '@heroicons/react/20/solid'
+import { User } from 'firebase/auth'
+import { INavigationData } from '../../../home.interface'
+import { Button } from '@/components/atoms/button'
+import { RenderButtonType } from '../render-button-type'
 
 type MobileMenuProps = {
-  user: User | null;
-  pathname: string;
-  mobileMenuOpen: boolean;
-  navigationData: [] | INavigationData[];
-  handleSignOut: () => void;
-  setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+  user: User | null
+  pathname: string
+  mobileMenuOpen: boolean
+  navigationData: [] | INavigationData[]
+  handleSignOut: () => void
+  setMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 export const MobileMenu = ({
   user,
@@ -24,7 +24,7 @@ export const MobileMenu = ({
   mobileMenuOpen,
   navigationData,
   handleSignOut,
-  setMobileMenuOpen,
+  setMobileMenuOpen
 }: MobileMenuProps) => {
   return (
     <React.Fragment>
@@ -80,5 +80,5 @@ export const MobileMenu = ({
         </Container>
       )}
     </React.Fragment>
-  );
-};
+  )
+}

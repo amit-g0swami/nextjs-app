@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Container } from "@/components/atoms/container";
-import { INavigationData } from "../../../home.interface";
+import Link from 'next/link'
+import { Container } from '@/components/atoms/container'
+import { INavigationData } from '../../../home.interface'
 
 type MenuProps = {
-  navigationData: INavigationData[];
-};
+  navigationData: INavigationData[]
+}
 
 export const Menu = ({ navigationData }: MenuProps) => {
   return (
@@ -19,5 +19,5 @@ export const Menu = ({ navigationData }: MenuProps) => {
         </Link>
       ))}
     </Container>
-  );
-};
+  )
+}

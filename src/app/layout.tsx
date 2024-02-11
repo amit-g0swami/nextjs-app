@@ -1,22 +1,22 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Toaster } from "react-hot-toast";
-import { ErrorBoundary } from "@/templates/error-boundary";
-import { HeaderSection } from "@/features/home/components/header";
-import { TanStackQueryProvider } from "@/providers/TanStackQueryProvider";
+import './globals.css'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
+import { ErrorBoundary } from '@/templates/error-boundary'
+import { HeaderSection } from '@/features/home/components/header'
+import { TanStackQueryProvider } from '@/providers/TanStackQueryProvider'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Shippivot",
-  description: "Your Gateway to Global Logistics Excellence",
-};
+  title: 'Shippivot',
+  description: 'Your Gateway to Global Logistics Excellence'
+}
 
 export default async function RootLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -30,5 +30,5 @@ export default async function RootLayout({
         </ErrorBoundary>
       </body>
     </html>
-  );
+  )
 }

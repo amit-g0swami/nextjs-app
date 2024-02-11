@@ -1,10 +1,10 @@
-import { Container } from "@/components/atoms/container";
-import { Text } from "@/components/atoms/text";
+import { Container } from '@/components/atoms/container'
+import { Text } from '@/components/atoms/text'
 
 type FormSectionProps = {
-  children: React.ReactNode;
-  title: string;
-};
+  children: React.ReactNode
+  title: string
+}
 
 export const FormSection = ({ children, title }: FormSectionProps) => {
   return (
@@ -14,5 +14,5 @@ export const FormSection = ({ children, title }: FormSectionProps) => {
       </Text>
       {children}
     </Container>
-  );
-};
+  )
+}
