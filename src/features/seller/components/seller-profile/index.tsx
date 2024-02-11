@@ -13,10 +13,11 @@ import { ShowDetails } from '@/features/shared/components/show-details'
 export const SellerProfile = () => {
   const { user } = UserAuth()
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS)
-  const sellerId = getItem() as string | undefined
+  const sellerId = getItem()
 
   const handleClick = () => {
-    navigator.clipboard.writeText(JSON.parse(sellerId as string)).then(() => {
+    if (!sellerId) return
+    navigator.clipboard.writeText(sellerId).then(() => {
       toast.success('Copied to clipboard')
     })
   }
@@ -43,7 +44,7 @@ export const SellerProfile = () => {
             description={
               sellerId && (
                 <Container className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex">
-                  {JSON.parse(sellerId)}
+                  {sellerId}
                   <DocumentDuplicateIcon
                     onClick={() => handleClick()}
                     className="ml-2 h-5 w-5 cursor-pointer"

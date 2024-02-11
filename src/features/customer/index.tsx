@@ -19,10 +19,8 @@ export const CustomerComponent = () => {
   const { user } = UserAuth()
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_SELLED_ID)
   const { getItem: getUserId } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS)
-  const sellerIdValue = getItem()
-  const userIdValue = getUserId()
-  const sellerId = sellerIdValue ? JSON.parse(sellerIdValue as string) : null
-  const userId = userIdValue ? JSON.parse(userIdValue as string) : null
+  const sellerId = getItem()
+  const userId = getUserId()
 
   const { isAddSellerIdModelOpen } = useCustomerStore()
   const { searchedSellerId } = useCustomerStore()
@@ -42,10 +40,12 @@ export const CustomerComponent = () => {
   }
 
   const handleAddOrderClicked = () => {
+    if (!sellerId) return
     router.push(ROUTES.CUSTOMER_CREATE_ORDER.replace('[id]', `${sellerId}`))
   }
 
   const handleAddSellerMutate = (sellerId: string) => {
+    if (!userId) return
     const addSellerIdPayload = {
       userId,
       sellerId
@@ -89,7 +89,7 @@ export const CustomerComponent = () => {
                   </React.Fragment>
                 }
               />
-              {sellerId !== null && (
+              {sellerId && (
                 <ShowDetails
                   title="Add Order"
                   description={

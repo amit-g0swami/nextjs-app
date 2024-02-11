@@ -15,28 +15,18 @@ function useLoggedOutOnly() {
   )
 
   useEffect(() => {
-    const loggedInType = getItem()
-    const userDetailsString = getUserDetails() as string | undefined
-
-    if (
-      loggedInType === USER_TYPE.SELLER &&
-      userDetailsString !== undefined &&
-      user
-    ) {
-      const sellerId = JSON.parse(userDetailsString)
-      setIsNotLoggedIn(false)
-      redirect(ROUTES.SELLER.replace('[id]', `${sellerId}`))
-    }
-
-    if (loggedInType === USER_TYPE.CUSTOMER && user) {
-      setIsNotLoggedIn(false)
-      redirect(ROUTES.CUSTOMER)
-    }
-
     if (!user) {
-      setIsNotLoggedIn(true)
-    } else {
+      return setIsNotLoggedIn(true)
+    }
+
+    if (getItem() === USER_TYPE.SELLER && getUserDetails() !== undefined) {
       setIsNotLoggedIn(false)
+      return redirect(ROUTES.SELLER.replace('[id]', `${getUserDetails()}`))
+    }
+
+    if (getItem() === USER_TYPE.CUSTOMER) {
+      setIsNotLoggedIn(false)
+      return redirect(ROUTES.CUSTOMER)
     }
   }, [user, getItem, getUserDetails])
 

@@ -12,7 +12,7 @@ interface TabsProps {
 const renderToggleButton = (isTabOpen: boolean) => {
   switch (isTabOpen) {
     case true:
-      return <XMarkIcon className=" h-6 w-6" aria-hidden="true" />
+      return <XMarkIcon className="h-6 w-6" aria-hidden="true" />
     default:
       return <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
   }
@@ -50,7 +50,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
                       return (
                         <Button
                           key={index}
-                          className={`rounded-md px-3 py-2 z-50 text-sm font-medium cursor-pointer ${className}`}
+                          className={`rounded-md px-3 py-2 z-40 text-sm font-medium cursor-pointer ${className}`}
                           onClick={() => handleChange(index)}
                           btnText={elem.props.title}
                         />
@@ -64,7 +64,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
             <Container className="flex md:hidden">
               <Button
                 onClick={() => toggleMenu()}
-                className="sm:mr-2 relative z-50 inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-gray-400 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                className="sm:mr-2 relative z-40 inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-gray-400 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 btnText={
                   <React.Fragment>
                     <Text className="absolute -inset-0.5">
@@ -94,7 +94,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
                   return (
                     <Button
                       key={index}
-                      className={`block rounded-md z-50 px-3 py-2 text-base font-medium ${className}`}
+                      className={`block rounded-md z-40 px-3 py-2 text-base font-medium ${className}`}
                       onClick={() => handleChange(index)}
                       btnText={elem.props.title}
                     />

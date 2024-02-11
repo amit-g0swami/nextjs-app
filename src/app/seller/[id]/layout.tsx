@@ -1,3 +1,6 @@
+'use client'
+
+import withSellerOnly from '@/utils/middlewares/withSellerOnly'
 import { SellerDashboardLayout } from '@/features/seller'
 
 type LayoutProps = {
@@ -6,10 +9,12 @@ type LayoutProps = {
   profile?: React.ReactNode
 }
 
-export default function Layout({ children, order, profile }: LayoutProps) {
+const Layout = ({ children, order, profile }: LayoutProps) => {
   return (
     <SellerDashboardLayout order={order} profile={profile}>
       {children}
     </SellerDashboardLayout>
   )
 }
+
+export default withSellerOnly(Layout)

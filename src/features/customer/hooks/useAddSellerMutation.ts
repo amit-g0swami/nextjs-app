@@ -15,7 +15,7 @@ export const useAddSellerMutation = () => {
       return CustomerService.addSellerId(addSellerIdPayload)
     },
     onSuccess: (data) => {
-      setItem(JSON.stringify(data.user.sellerId))
+      setItem(data.user.sellerId)
       setIsAddSellerIdModelOpen(false)
       setSearchedSellerId(null)
     },

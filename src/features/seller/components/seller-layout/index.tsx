@@ -4,8 +4,8 @@ type DashboardBackgroundProps = {
 
 export const DashboardBackground = ({ children }: DashboardBackgroundProps) => {
   return (
-    <div className="bg-white pt-0 sm:pt-10 h-screen">
-      <div className="relative isolate px-0 pt-20 lg:pt-12 md:pt-10">
+    <div className="pt-0 sm:pt-10 h-screen">
+      <div className="relative isolate px-0 pt-20 lg:pt-12 md:pt-10 -z-10">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
