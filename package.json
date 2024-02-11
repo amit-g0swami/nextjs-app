@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run compile",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "lint:fix": "next lint --fix",
-    "format:check": "prettier --check \"**/*.{css,js,json,jsx,ts,tsx}\"",
-    "format:fix": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\""
+    "prettier-all": "prettier --check \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "format:fix": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "compile": "next build",
+    "precompile": "npm run prettier-all && npm run lint"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
