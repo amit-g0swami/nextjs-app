@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "npm run compile",
     "start": "next start",
-    "lint": "next lint",
     "test": "jest",
+    "lint:check": "next lint",
+    "lint-all": "npm run lint:check",
     "test:watch": "jest --watchAll",
-    "prettier-all": "prettier --check \"**/*.{css,js,json,jsx,ts,tsx}\"",
-    "format:fix": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "prettier:check": "prettier --check \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "prettier:fix": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "prettier-all": "npm run prettier:check && npm run prettier:fix",
     "compile": "next build",
-    "precompile": "npm run prettier-all && npm run lint"
+    "precompile": "npm run prettier-all && npm run lint-all"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
