@@ -11,7 +11,7 @@ import { FormSwitch } from '@/components/organisms/form/form-swich'
 type CreateOrderFormProps = {
   disabled?: boolean
   showSubmitButton?: boolean
-  initialValues?: Record<string, string | number | boolean>
+  initialValues?: Record<string, any>
   getFormData: (data: Record<string, string | number | boolean>) => void
 }
 
@@ -224,6 +224,7 @@ export const CreateOrderForm = ({
             className="sm:col-span-2"
             name="isSavedToShiprocket"
             label="Save To Shiprocket"
+            disabled={disabled}
           />
         </Container>
       </FormSection>

@@ -11,7 +11,7 @@ interface IFormProps {
 }
 
 interface IFormContext {
-  values: Record<string, string | number | boolean>
+  values: Record<string, any>
   errors: Record<string, string>
   setValues: React.Dispatch<
     React.SetStateAction<Record<string, string | number | boolean>>

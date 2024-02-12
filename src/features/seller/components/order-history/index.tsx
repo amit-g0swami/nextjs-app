@@ -1,23 +1,103 @@
 'use client'
 
+import useSellerStore from '../../store/seller.store'
 import { Container } from '@/components/atoms/container'
-import { Text } from '@/components/atoms/text'
+import { TableComponent } from '@/components/organisms/table'
 import { CreateOrderForm } from '@/features/shared/components/create-order-form'
 
 const formData = [
   {
     buyerDetails: {
-      fullName: 'John Doe',
+      fullName: 'test',
+      email: 'test@gmail.com',
+      mobileNumber: '7878786756'
+    },
+    orderPlaced: {
+      completeAddress: 'test',
+      landMark: 'test',
+      pinCode: '121212',
+      city: 'test',
+      state: 'test',
+      country: 'test'
+    },
+    orderDetails: {
+      productName: '1',
+      quantity: 1,
+      unitPrice: 1,
+      totalAmount: 1
+    },
+    packageDetails: {
+      packageDimension: {
+        length: 1,
+        width: 1,
+        height: -1
+      },
+      deadWeight: 1
+    },
+    paymentDetails: {
+      paymentMode: 'COD'
+    },
+    _id: '65ca0128564ace62ca277fa9',
+    sellerId: '65c9fdd3564ace62ca277fa6',
+    isSavedToShiprocket: false,
+    createdAt: '2024-02-12T11:29:44.761Z',
+    __v: 0
+  },
+  {
+    buyerDetails: {
+      fullName: 'test',
+      email: 'test@gmail.com',
+      mobileNumber: '8585858585'
+    },
+    orderPlaced: {
+      completeAddress: 'test',
+      pinCode: '858585',
+      city: 'test',
+      state: 'test',
+      country: 'test'
+    },
+    orderDetails: {
+      productName: '1',
+      quantity: 1,
+      unitPrice: 1,
+      totalAmount: 1
+    },
+    packageDetails: {
+      packageDimension: {
+        length: 1,
+        width: 1,
+        height: 1
+      },
+      deadWeight: -2
+    },
+    paymentDetails: {
+      paymentMode: 'COD'
+    },
+    _id: '65ca1ab645996e3dd716c758',
+    sellerId: '65c9fdd3564ace62ca277fa6',
+    isSavedToShiprocket: false,
+    createdAt: '2024-02-12T13:18:46.680Z',
+    __v: 0
+  },
+  {
+    buyerDetails: {
+      fullName: 'test Kumar',
       email: 'john.doe@example.com',
       mobileNumber: '1234567890'
     },
     orderPlaced: {
       completeAddress: '123 Main St, Anytown USA',
-      landMark: 'Anytown USA',
+      landMark: 'q',
       pinCode: '123456',
       city: 'Anytown',
       state: 'USA',
       country: 'USA'
+    },
+    orderDetails: {
+      productName: 'Product 1',
+      quantity: 2,
+      unitPrice: 500,
+      totalAmount: 1000
     },
     packageDetails: {
       packageDimension: {
@@ -30,94 +110,201 @@ const formData = [
     paymentDetails: {
       paymentMode: 'COD'
     },
-    _id: '65c9300be2172f0bc68cf8d2',
-    sellerId: '65bfcd8ad579297be5b611f6',
-    orderDetails: [
-      {
-        productName: 'Product 1',
-        quantity: 2,
-        unitPrice: 500,
-        totalAmount: 1000,
-        _id: '65c9300be2172f0bc68cf8d3'
+    _id: '65ca03f4564ace62ca277fb9',
+    userId: '65ca0145564ace62ca277fad',
+    sellerId: '65c9fdd3564ace62ca277fa6',
+    isSavedToShiprocket: false,
+    createdAt: '2024-02-12T11:41:40.778Z',
+    __v: 0
+  },
+  {
+    buyerDetails: {
+      fullName: 'test',
+      email: 'test@gmail.com',
+      mobileNumber: '8876543456'
+    },
+    orderPlaced: {
+      completeAddress: 'test',
+      pinCode: '121212',
+      city: 'test',
+      state: 'test',
+      country: 'test'
+    },
+    orderDetails: {
+      productName: 'test',
+      quantity: 2,
+      unitPrice: 2,
+      totalAmount: 2
+    },
+    packageDetails: {
+      packageDimension: {
+        length: 3,
+        width: 3,
+        height: 3
       },
-      {
-        productName: 'Product 2',
-        quantity: 1,
-        unitPrice: 800,
-        totalAmount: 800,
-        _id: '65c9300be2172f0bc68cf8d4'
-      }
-    ],
-    createdAt: '2024-02-11T20:37:31.883Z',
+      deadWeight: 3
+    },
+    paymentDetails: {
+      paymentMode: 'PREPAID'
+    },
+    _id: '65ca0476564ace62ca277fbd',
+    userId: '65ca0145564ace62ca277fad',
+    sellerId: '65c9fdd3564ace62ca277fa6',
+    isSavedToShiprocket: false,
+    createdAt: '2024-02-12T11:43:50.144Z',
+    __v: 0
+  },
+  {
+    buyerDetails: {
+      fullName: 'test',
+      email: 'test@gmail.com',
+      mobileNumber: '8876543456'
+    },
+    orderPlaced: {
+      completeAddress: 'test',
+      pinCode: '121212',
+      city: 'test',
+      state: 'test',
+      country: 'test'
+    },
+    orderDetails: {
+      productName: 'test',
+      quantity: 2,
+      unitPrice: 2,
+      totalAmount: 2
+    },
+    packageDetails: {
+      packageDimension: {
+        length: 3,
+        width: 3,
+        height: 3
+      },
+      deadWeight: 3
+    },
+    paymentDetails: {
+      paymentMode: 'PREPAID'
+    },
+    _id: '65ca04d3564ace62ca277fc1',
+    userId: '65ca0145564ace62ca277fad',
+    sellerId: '65c9fdd3564ace62ca277fa6',
+    isSavedToShiprocket: false,
+    createdAt: '2024-02-12T11:45:23.575Z',
+    __v: 0
+  },
+  {
+    buyerDetails: {
+      fullName: 'testing',
+      email: 'a@gmail.com',
+      mobileNumber: '1212232323'
+    },
+    orderPlaced: {
+      completeAddress: 'test',
+      pinCode: '121212',
+      city: 'test',
+      state: 'test',
+      country: 'est'
+    },
+    orderDetails: {
+      productName: 'e',
+      quantity: 1,
+      unitPrice: 1,
+      totalAmount: 1
+    },
+    packageDetails: {
+      packageDimension: {
+        length: 1,
+        width: 1,
+        height: 1
+      },
+      deadWeight: 1
+    },
+    paymentDetails: {
+      paymentMode: 'PREPAID'
+    },
+    _id: '65ca16ad45996e3dd716c74f',
+    userId: '65ca0145564ace62ca277fad',
+    sellerId: '65c9fdd3564ace62ca277fa6',
+    isSavedToShiprocket: false,
+    createdAt: '2024-02-12T13:01:33.815Z',
+    __v: 0
+  },
+  {
+    buyerDetails: {
+      fullName: 'test',
+      email: 'test@gmail.com',
+      mobileNumber: '9999999999'
+    },
+    orderPlaced: {
+      completeAddress: 'test',
+      pinCode: '999999',
+      city: 'test',
+      state: 'test',
+      country: 'test'
+    },
+    orderDetails: {
+      productName: 'test',
+      quantity: 1,
+      unitPrice: 1,
+      totalAmount: 1
+    },
+    packageDetails: {
+      packageDimension: {
+        length: 1,
+        width: 1,
+        height: 1
+      },
+      deadWeight: 1
+    },
+    paymentDetails: {
+      paymentMode: 'COD'
+    },
+    _id: '65ca191245996e3dd716c753',
+    userId: '65ca0145564ace62ca277fad',
+    sellerId: '65c9fdd3564ace62ca277fa6',
+    isSavedToShiprocket: false,
+    createdAt: '2024-02-12T13:11:46.339Z',
     __v: 0
   }
 ]
 
+const columns = [{ key: 'fullName', label: 'Name', text: 'buyerDetails' }]
+
+const data = formData[0]
+const initialValues = {
+  ...data.buyerDetails,
+  ...data.orderPlaced,
+  ...data.paymentDetails,
+  ...data.paymentDetails,
+  ...data.orderDetails,
+  ...data.packageDetails.packageDimension,
+  isSavedToShiprocket: true,
+  deadWeight: data.packageDetails.deadWeight
+}
+
 export const OrderHistory = () => {
+  const { isViewOrderDetailsOpen } = useSellerStore()
+  const { setIsViewOrderDetailsOpen } = useSellerStore()
   const getFormData = (data: Record<string, string | number | boolean>) => {
     console.log(data)
   }
-  const data = formData[0]
-  const initialValues = {
-    ...data.buyerDetails,
-    ...data.orderPlaced,
-    ...data.paymentDetails,
-    ...data.paymentDetails,
-    ...data.orderDetails[0],
-    ...data.packageDetails.packageDimension,
-    deadWeight: data.packageDetails.deadWeight
-  }
   return (
     <Container className="px-4 sm:px-0">
-      <Text as="h3" className="text-base font-semibold leading-7 text-gray-900">
+      <button
+        onClick={() => setIsViewOrderDetailsOpen(!isViewOrderDetailsOpen)}
+      >
+        toggle
+      </button>
+      {!isViewOrderDetailsOpen && (
         <CreateOrderForm
           disabled
           showSubmitButton={false}
           initialValues={initialValues}
           getFormData={getFormData}
         />
-      </Text>
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Name
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Email
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Phone
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            <tr>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">John Doe</div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
-                  john.doe@example.com
-                </div>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">123-456-7890</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      )}
+      {isViewOrderDetailsOpen && (
+        <TableComponent data={formData} columns={columns} />
+      )}
     </Container>
   )
 }
