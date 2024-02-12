@@ -44,3 +44,7 @@ export interface ICreateOrderPayload {
   paymentDetails: IPaymentDetails
   isSavedToShiprocket: boolean
 }
+
+export enum SELLER_QUERY_KEYS {
+  GET_TABLE_DATA = 'getTableData'
+}

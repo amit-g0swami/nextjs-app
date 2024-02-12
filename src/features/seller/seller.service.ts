@@ -28,8 +28,26 @@ const createOrder = async (createOrderPayload: ICreateOrderPayload) => {
   }
 }
 
+const getSellerOrdersList = async ({
+  sellerId,
+  appliedFilters
+}: {
+  sellerId: string | string[]
+  appliedFilters: string
+}) => {
+  try {
+    const { data } = await HttpService.get(
+      `${baseUrl}/seller/${sellerId}/orders?filters=date:${appliedFilters}`
+    )
+    return data.orders as ICreateOrderPayload[]
+  } catch (error) {
+    throw error
+  }
+}
+
 const SellerService = {
-  createOrder
+  createOrder,
+  getSellerOrdersList
 }
 
 export default SellerService
