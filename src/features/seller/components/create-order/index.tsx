@@ -25,14 +25,12 @@ export const CreateOrder = () => {
       state: data.state,
       country: data.country
     }
-    const orderDetails = [
-      {
-        productName: data.productName,
-        quantity: data.quantity,
-        unitPrice: data.unitPrice,
-        totalAmount: data.totalAmount
-      }
-    ]
+    const orderDetails = {
+      productName: data.productName,
+      quantity: data.quantity,
+      unitPrice: data.unitPrice,
+      totalAmount: data.totalAmount
+    }
     const packageDetails = {
       deadWeight: data.deadWeight,
       packageDimension: {

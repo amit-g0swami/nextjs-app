@@ -1,28 +1,28 @@
 import { PAYMENT_TYPE } from '@/shared/shared.interface'
 
-interface IBuyerDetails {
+export interface IBuyerDetails {
   fullName: string
   email: string
   mobileNumber: string
 }
 
-interface IOrderPlaced {
+export interface IOrderPlaced {
   completeAddress: string
-  landMark: string
+  landMark?: string
   pinCode: string
   city: string
   state: string
   country: string
 }
 
-interface IOrderDetails {
+export interface IOrderDetails {
   productName: string
   quantity: number
   unitPrice: number
   totalAmount: number
 }
 
-interface IPackageDetails {
+export interface IPackageDetails {
   deadWeight: number
   packageDimension: {
     length: number
@@ -31,7 +31,7 @@ interface IPackageDetails {
   }
 }
 
-interface IPaymentDetails {
+export interface IPaymentDetails {
   paymentMode: PAYMENT_TYPE
 }
 
@@ -39,7 +39,8 @@ export interface ICreateOrderPayload {
   sellerId: string | string[]
   buyerDetails: IBuyerDetails
   orderPlaced: IOrderPlaced
-  orderDetails: IOrderDetails[]
+  orderDetails: IOrderDetails
   packageDetails: IPackageDetails
   paymentDetails: IPaymentDetails
+  isSavedToShiprocket?: boolean
 }

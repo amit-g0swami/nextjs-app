@@ -24,7 +24,6 @@ const createOrder = async (createOrderPayload: ICreateOrderPayload) => {
     toast(data.message)
     return data
   } catch (error) {
-    console.error('Error during login request:', error)
     throw error
   }
 }

@@ -21,7 +21,7 @@ const createOrderSchema = Joi.object({
     .pattern(/^\d{10}$/)
     .required(),
   completeAddress: Joi.string().required(),
-  landMark: Joi.string().required(),
+  landMark: Joi.string().allow(''),
   pinCode: Joi.string()
     .pattern(/^\d{6}$/)
     .required(),
@@ -94,7 +94,6 @@ export const CreateOrderForm = ({
             label="landmark"
             name="landMark"
             disabled={disabled}
-            labelRequired
           />
           <FormInput
             className="sm:col-span-2"

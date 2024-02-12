@@ -1,18 +1,34 @@
 import HttpService from '@/services/HttpService'
 import { IUser } from '../login/login.interface'
-import { IAddSellerIdPayload } from './customer.interface'
+import {
+  IAddSellerIdPayload,
+  ICreateCustomerOrderPayload
+} from './customer.interface'
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 
-export interface IAddressPayload {
-  id: string | string[]
-  address: Record<string, string | number | boolean>
-}
-
-const createAddress = async (addressPayload: IAddressPayload) => {
+const createCustomerOrder = async (
+  addressPayload: ICreateCustomerOrderPayload
+) => {
   try {
-    const { id, address } = addressPayload
-    const { data } = await HttpService.post(`${baseUrl}/address/${id}`, address)
+    const { sellerId, createOrderPayload } = addressPayload
+    const {
+      userId,
+      buyerDetails,
+      orderPlaced,
+      orderDetails,
+      packageDetails,
+      paymentDetails
+    } = createOrderPayload
+
+    const { data } = await HttpService.post(`${baseUrl}/order/${sellerId}`, {
+      userId,
+      buyerDetails,
+      orderPlaced,
+      orderDetails,
+      packageDetails,
+      paymentDetails
+    })
     return data
   } catch (error) {
     throw error
@@ -42,7 +58,7 @@ const addSellerId = async (addSellerIdPayload: IAddSellerIdPayload) => {
 }
 
 const CustomerService = {
-  createAddress,
+  createCustomerOrder,
   getSearchedSeller,
   addSellerId
 }

@@ -21,7 +21,6 @@ export const AddSellerModel = ({
   handleAddSellerMutate,
   handleCloseModal
 }: AddSellerModelProps) => {
-  console.log(searchedSeller)
   return (
     <Modal
       isOpen={isOpen}
