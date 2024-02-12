@@ -10,6 +10,8 @@ import { ICreateOrderPayload } from '../../seller.interface'
 import { Button } from '@/components/atoms/button'
 import { useGetSellerOrdersTableData } from '../../hooks/useGetSellerOrdersTableData'
 import { useParams } from 'next/navigation'
+import { handleExportToExcel } from '@/utils/export-to-excel'
+import { ArrowDownTrayIcon } from '@heroicons/react/20/solid'
 
 const columns: IColumnData[] = [
   {
@@ -71,7 +73,7 @@ export const OrderHistory = () => {
     isSavedToShiprocket: selectedRowdata?.isSavedToShiprocket ?? false
   }
 
-  const { data, isLoading, isError } = useGetSellerOrdersTableData({
+  const { data, isLoading } = useGetSellerOrdersTableData({
     sellerId,
     appliedFilters
   })
@@ -96,12 +98,30 @@ export const OrderHistory = () => {
         </React.Fragment>
       )}
       {!isViewOrderDetailsOpen && (
-        <TableComponent
-          rowData={data || []}
-          columns={columns}
-          handleEdit={(rowData) => handleViewClick(rowData)}
-          getAppliedFilter={(value) => handleFilterChange(value)}
-        />
+        <React.Fragment>
+          <Container className="flex items-center justify-end">
+            {!isLoading && data?.length !== 0 && (
+              <Button
+                btnText={
+                  <Container className="flex items-center justify-center gap-2">
+                    Export Orders
+                    <ArrowDownTrayIcon className="h-4 w-4" />
+                  </Container>
+                }
+                className="rounded-md bg-indigo-600 px-8 py-2 -mb-10 text-sm font-semibold text-white shadow-sm
+               hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+               disabled:cursor-not-allowed disabled:opacity-50"
+                onClick={() => data && handleExportToExcel(data)}
+              />
+            )}
+          </Container>
+          <TableComponent
+            rowData={data || []}
+            columns={columns}
+            handleEdit={(rowData) => handleViewClick(rowData)}
+            getAppliedFilter={(value) => handleFilterChange(value)}
+          />
+        </React.Fragment>
       )}
     </Container>
   )
