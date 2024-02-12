@@ -42,5 +42,5 @@ export interface ICreateOrderPayload {
   orderDetails: IOrderDetails
   packageDetails: IPackageDetails
   paymentDetails: IPaymentDetails
-  isSavedToShiprocket?: boolean
+  isSavedToShiprocket: boolean
 }

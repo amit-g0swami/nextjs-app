@@ -1,6 +1,5 @@
 import {
   IBuyerDetails,
-  ICreateOrderPayload,
   IOrderDetails,
   IOrderPlaced,
   IPackageDetails,
@@ -24,7 +23,7 @@ export interface ICreateCustomerOrderPayload {
     orderDetails: IOrderDetails
     packageDetails: IPackageDetails
     paymentDetails: IPaymentDetails
-    isSavedToShiprocket?: boolean
+    isSavedToShiprocket: boolean
     userId: string
   }
 }

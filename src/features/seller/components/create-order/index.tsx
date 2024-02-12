@@ -1,15 +1,20 @@
 'use client'
 
+import useSellerStore from '../../store/seller.store'
 import { useParams } from 'next/navigation'
 import { useCreateOrderMutation } from '../../hooks/useCreateOrderMutation'
 import { ICreateOrderPayload } from '../../seller.interface'
 import { CreateOrderForm } from '../../../shared/components/create-order-form'
+import React from 'react'
+import { Loader } from '@/components/molecules/loader'
 
 export const CreateOrder = () => {
   const params = useParams()
   const sellerId = params?.id
 
   const useCreateOrderMutate = useCreateOrderMutation()
+  const { isCreateSellerOrderFormSubmitted } = useSellerStore()
+  const { setIsCreateSellerOrderFormSubmitted } = useSellerStore()
 
   const getFormData = (data: Record<string, string | number | boolean>) => {
     const buyerDetails = {
@@ -42,17 +47,28 @@ export const CreateOrder = () => {
     const paymentDetails = {
       paymentMode: data.paymentMode
     }
+    const isSavedToShiprocket = data.isSavedToShiprocket || false
+
     const orderPayload = {
       sellerId,
       buyerDetails,
       orderPlaced,
       orderDetails,
       packageDetails,
-      paymentDetails
+      paymentDetails,
+      isSavedToShiprocket
     } as ICreateOrderPayload
 
+    setIsCreateSellerOrderFormSubmitted(true)
     useCreateOrderMutate.mutate(orderPayload)
   }
 
-  return <CreateOrderForm getFormData={getFormData} />
+  return (
+    <React.Fragment>
+      {!isCreateSellerOrderFormSubmitted && (
+        <CreateOrderForm getFormData={getFormData} />
+      )}
+      {isCreateSellerOrderFormSubmitted && <Loader />}
+    </React.Fragment>
+  )
 }
