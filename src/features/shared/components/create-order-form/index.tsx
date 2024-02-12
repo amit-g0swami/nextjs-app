@@ -1,11 +1,12 @@
 import Joi from 'joi'
 import { Button } from '@/components/atoms/button'
-import { Form } from '@/components/molecules/form'
-import { FormInput } from '@/components/molecules/form-input'
-import { FormRadioInput } from '@/components/molecules/form-radio'
+import { Form } from '@/components/organisms/form'
+import { FormInput } from '@/components/organisms/form/form-input'
+import { FormRadioInput } from '@/components/organisms/form/form-radio'
 import { PAYMENT_TYPE } from '@/shared/shared.interface'
 import { Container } from '@/components/atoms/container'
-import { FormSection } from '@/components/molecules/form-section'
+import { FormSection } from '@/components/organisms/form/form-section'
+import { FormSwitch } from '@/components/organisms/form/form-swich'
 
 type CreateOrderFormProps = {
   disabled?: boolean
@@ -38,7 +39,8 @@ const createOrderSchema = Joi.object({
   height: Joi.number().required(),
   paymentMode: Joi.string()
     .valid(PAYMENT_TYPE.COD, PAYMENT_TYPE.PREPAID)
-    .required()
+    .required(),
+  isSavedToShiprocket: Joi.boolean()
 })
 
 export const CreateOrderForm = ({
@@ -217,6 +219,11 @@ export const CreateOrderForm = ({
             value={PAYMENT_TYPE.COD}
             disabled={disabled}
             labelRequired
+          />
+          <FormSwitch
+            className="sm:col-span-2"
+            name="isSavedToShiprocket"
+            label="Save To Shiprocket"
           />
         </Container>
       </FormSection>

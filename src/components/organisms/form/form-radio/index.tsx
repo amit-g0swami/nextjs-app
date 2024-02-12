@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormContext } from '../form'
+import { useFormContext } from '..'
 import { Container } from '@/components/atoms/container'
 import { Text } from '@/components/atoms/text'
 

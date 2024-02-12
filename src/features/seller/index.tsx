@@ -1,7 +1,7 @@
 'use client'
 
-import { Panel } from '@/components/molecules/panel'
-import { Tabs } from '@/components/molecules/tabs'
+import { Panel } from '@/components/organisms/tabs/panel'
+import { Tabs } from '@/components/organisms/tabs'
 import { DashboardBackground } from './components/seller-layout'
 
 type sellerDashboardLayoutProps = {

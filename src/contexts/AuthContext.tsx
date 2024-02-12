@@ -12,7 +12,7 @@ import { useCreateUserMutation } from '@/features/login/hooks/useLoginMutation'
 import { useLocalStorage } from '@/features/shared/hooks/useLocalStorage'
 import { IUserLoginPayload } from '@/features/login/login.service'
 import { USE_LOCAL_STORAGE } from '@/shared/shared.interface'
-import { Loader } from '@/components/organisms/loader'
+import { Loader } from '@/components/molecules/loader'
 import { AUTH_MESSAGE } from '@/features/login/login.interface'
 
 interface IAuthContext {
