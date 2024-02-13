@@ -90,6 +90,7 @@ export const OrderHistory = () => {
           isLoading={isLoading}
           isError={isError}
           columns={columns}
+          appliedFilters={appliedFilters}
           handleEdit={(rowData) => handleViewClick(rowData)}
           getAppliedFilter={(value) => handleFilterChange(value)}
         />

@@ -8,15 +8,17 @@ export const TableComponent: React.FC<TableComponentProps> = ({
   columns,
   isLoading,
   isError,
+  appliedFilters,
   handleEdit,
   getAppliedFilter
 }: TableComponentProps) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto h-[70vh]">
       <TableToolbar
         rowData={rowData}
         isLoading={isLoading}
         isError={isError}
+        appliedFilters={appliedFilters}
         getAppliedFilter={getAppliedFilter}
       />
       <table className="min-w-full divide-y divide-gray-200">
