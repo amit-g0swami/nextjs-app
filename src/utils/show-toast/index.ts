@@ -19,11 +19,6 @@ interface IShowToast {
 }
 
 export const showToast = ({ response }: IShowToast) => {
-  if (response.data.message === AUTH_MESSAGE.USER_ALREADY_EXISTS) {
-    toast.success(AUTH_MESSAGE.USER_LOGGED_IN)
-    Logger.info(AUTH_MESSAGE.USER_LOGGED_IN)
-    return
-  }
   switch (response.data.status) {
     case HTTP_STATUS_CODE.OK:
     case HTTP_STATUS_CODE.CREATED:

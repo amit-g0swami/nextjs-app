@@ -30,7 +30,7 @@ const features = [
 ]
 
 const stats = [
-  { name: '91-xxx-xxx-xxx', value: 'Phone' },
+  { name: '91-xxx-xxxx-xxx', value: 'Phone' },
   { name: 'coo@shippivot.in', value: 'Email' },
   { name: 'Dwarka, Delhi', value: 'Location' },
   { name: 'India', value: 'Country' }
