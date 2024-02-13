@@ -1,7 +1,7 @@
 import { Container } from '@/components/atoms/container'
 import { DateInputFilter } from './table-filters/DateInputFilter'
 import { IToolTipProps } from '../table.interface'
-import { ExportToExcelButton } from './table-filters/ExportToExcelButton'
+import { ExportToExcelButton } from './toolbar-elements/ExportToExcelButton'
 
 export const TableToolbar: React.FC<IToolTipProps> = ({
   rowData,
