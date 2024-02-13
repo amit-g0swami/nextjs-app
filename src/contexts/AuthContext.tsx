@@ -11,9 +11,10 @@ import {
 import { useCreateUserMutation } from '@/features/login/hooks/useLoginMutation'
 import { useLocalStorage } from '@/features/shared/hooks/useLocalStorage'
 import { IUserLoginPayload } from '@/features/login/login.service'
-import { USE_LOCAL_STORAGE } from '@/shared/shared.interface'
+import { ROUTES, USE_LOCAL_STORAGE } from '@/shared/shared.interface'
 import { Loader } from '@/components/molecules/loader'
 import { AUTH_MESSAGE } from '@/features/login/login.interface'
+import { useRouter } from 'next/navigation'
 
 interface IAuthContext {
   user: User | null
@@ -28,6 +29,7 @@ const AuthContext = React.createContext<IAuthContext>({
 })
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
+  const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState<Boolean>(true)
 
@@ -66,7 +68,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const checkIsUserLoggedIn = onAuthStateChanged(auth, (currentUser) => {
     if (!currentUser) {
-      return setUser(null)
+      setUser(null)
+      return router.push(ROUTES.HOME)
     }
     return setUser(currentUser)
   })

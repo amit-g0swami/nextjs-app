@@ -1,4 +1,3 @@
-import NotFound from '@/app/not-found'
 import { useEffect, useState } from 'react'
 import { UserAuth } from '@/contexts/AuthContext'
 import { useLocalStorage } from '@/features/shared/hooks/useLocalStorage'
@@ -21,7 +20,7 @@ export function withSellerOnly<P extends WithSellerOnlyProps>(
       return setIsSeller(true)
     }, [user, getItem])
 
-    return isSeller ? <Component {...props} /> : <NotFound />
+    return isSeller ? <Component {...props} /> : null
   }
 }
 

@@ -1,4 +1,3 @@
-import NotFound from '@/app/not-found'
 import { useEffect, useState } from 'react'
 import { UserAuth } from '@/contexts/AuthContext'
 import { useLocalStorage } from '@/features/shared/hooks/useLocalStorage'
@@ -21,7 +20,7 @@ export function withCustomerOnly<P extends WithCustomerOnlyProps>(
       return setIsCustomer(true)
     }, [user, getItem])
 
-    return isCustomer ? <Component {...props} /> : <NotFound />
+    return isCustomer ? <Component {...props} /> : null
   }
 }
 
