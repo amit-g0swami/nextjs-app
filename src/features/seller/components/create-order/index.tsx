@@ -13,6 +13,7 @@ export const CreateOrder = () => {
   const sellerId = params?.id
 
   const [totalAmount, setTotalAmount] = useState<number>(0)
+  const [applicableWeight, setApplicableWeight] = useState<number>(0)
 
   const useCreateOrderMutate = useCreateOrderMutation()
   const { isCreateSellerOrderFormSubmitted } = useSellerStore()
@@ -43,7 +44,8 @@ export const CreateOrder = () => {
       packageDimension: {
         length: data.length,
         width: data.width,
-        height: data.height
+        height: data.height,
+        applicableWeight: applicableWeight
       }
     }
     const paymentDetails = {
@@ -70,8 +72,10 @@ export const CreateOrder = () => {
       {!isCreateSellerOrderFormSubmitted && (
         <CreateOrderForm
           totalAmount={totalAmount}
+          applicableWeight={applicableWeight}
           getFormData={getFormData}
           setTotalAmount={setTotalAmount}
+          setApplicableWeight={setApplicableWeight}
         />
       )}
       {isCreateSellerOrderFormSubmitted && <Loader />}

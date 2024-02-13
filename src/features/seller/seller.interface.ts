@@ -28,6 +28,7 @@ export interface IPackageDetails {
     length: number
     width: number
     height: number
+    applicableWeight: number
   }
 }
 

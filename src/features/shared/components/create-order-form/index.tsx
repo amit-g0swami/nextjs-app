@@ -8,14 +8,19 @@ import { Container } from '@/components/atoms/container'
 import { FormSection } from '@/components/organisms/form/form-section'
 import { FormSwitch } from '@/components/organisms/form/form-swich'
 import { Input } from '@/components/atoms/input'
-import { calculateTotalAmount } from '@/utils/calculate-total-amount'
+import {
+  calculateApplicableWeight,
+  calculateTotalAmount
+} from '@/utils/calculate-amounts'
 
 type CreateOrderFormProps = {
   disabled?: boolean
   showSubmitButton?: boolean
   initialValues?: Record<string, any>
   totalAmount?: number
+  applicableWeight?: number
   setTotalAmount?: (totalAmount: number) => void
+  setApplicableWeight?: (applicableWeight: number) => void
   getFormData: (data: Record<string, string | number | boolean>) => void
 }
 
@@ -51,13 +56,19 @@ export const CreateOrderForm = ({
   disabled = false,
   initialValues = {},
   totalAmount = 0,
-  setTotalAmount = () => {},
-  getFormData
+  applicableWeight = 0,
+  getFormData,
+  setApplicableWeight = () => {},
+  setTotalAmount = () => {}
 }: CreateOrderFormProps) => {
   const getFormDetails = (data: Record<string, string | number | boolean>) => {
     const newTotalAmount = calculateTotalAmount(data)
+    const totalAmountWithApplicableWeight = calculateApplicableWeight(data)
     if (setTotalAmount) {
       setTotalAmount(newTotalAmount)
+    }
+    if (setApplicableWeight) {
+      setApplicableWeight(totalAmountWithApplicableWeight)
     }
   }
   return (
@@ -144,7 +155,7 @@ export const CreateOrderForm = ({
       </FormSection>
 
       <FormSection title="Order Details">
-        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="Product Name"
@@ -168,8 +179,10 @@ export const CreateOrderForm = ({
             disabled={disabled}
             labelRequired
           />
+        </Container>
+        <Container className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <Input
-            className="sm:col-span-2"
+            className="sm:col-span-2 sm:col-start-1"
             label="Total Amount"
             name="totalAmount"
             type="number"
@@ -181,7 +194,7 @@ export const CreateOrderForm = ({
       </FormSection>
 
       <FormSection title="Package Details">
-        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
+        <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
             className="sm:col-span-2 sm:col-start-1"
             label="Dead weight"
@@ -206,12 +219,23 @@ export const CreateOrderForm = ({
             disabled={disabled}
             labelRequired
           />
+        </Container>
+        <Container className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
-            className="sm:col-span-2"
+            className="sm:col-span-2 sm:col-start-1"
             label="Height (in cm)"
             name="height"
             type="number"
             disabled={disabled}
+            labelRequired
+          />
+          <Input
+            className="sm:col-span-2"
+            label="Applicable Weight"
+            name="applicableWeight"
+            type="number"
+            disabled={true}
+            value={applicableWeight}
             labelRequired
           />
         </Container>

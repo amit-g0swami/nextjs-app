@@ -48,6 +48,7 @@ export const OrderHistory = () => {
   const { setAppliedFilters } = useSellerStore()
 
   const [totalAmount, setTotalAmount] = useState<number>(0)
+  const [applicableWeight, setApplicableWeight] = useState<number>(0)
 
   const getFormData = (data: Record<string, string | number | boolean>) => {
     console.log(data)
@@ -76,6 +77,11 @@ export const OrderHistory = () => {
     if (selectedRowdata) {
       setTotalAmount(selectedRowdata?.orderDetails?.totalAmount)
     }
+    if (selectedRowdata) {
+      setApplicableWeight(
+        selectedRowdata?.packageDetails?.packageDimension?.applicableWeight
+      )
+    }
   }, [selectedRowdata])
 
   const { data, isLoading, isError } = useGetSellerOrdersTableData({
@@ -89,6 +95,7 @@ export const OrderHistory = () => {
         <CreateSellerOrderForm
           initialValues={initialValues}
           totalAmount={totalAmount}
+          applicableWeight={applicableWeight}
           getFormData={getFormData}
           setIsViewOrderDetailsOpen={setIsViewOrderDetailsOpen}
         />

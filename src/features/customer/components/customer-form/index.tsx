@@ -14,6 +14,7 @@ import { Loader } from '@/components/molecules/loader'
 
 export const CustomerFormComponent = () => {
   const [totalAmount, setTotalAmount] = useState<number>(0)
+  const [applicableWeight, setApplicableWeight] = useState<number>(0)
 
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS)
   const { setIsCreateCustomerOrderFormSubmitted } = useCustomerStore()
@@ -50,7 +51,8 @@ export const CustomerFormComponent = () => {
       packageDimension: {
         length: data.length,
         width: data.width,
-        height: data.height
+        height: data.height,
+        applicableWeight: applicableWeight
       }
     }
     const paymentDetails = {
@@ -81,8 +83,10 @@ export const CustomerFormComponent = () => {
           <BackGroundDiv>
             <CreateOrderForm
               totalAmount={totalAmount}
+              applicableWeight={applicableWeight}
               getFormData={getFormData}
               setTotalAmount={setTotalAmount}
+              setApplicableWeight={setApplicableWeight}
             />
           </BackGroundDiv>
         </Container>

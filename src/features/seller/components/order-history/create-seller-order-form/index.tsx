@@ -6,6 +6,7 @@ import { CreateOrderForm } from '@/features/shared/components/create-order-form'
 type CreateSellerOrderFormProps = {
   initialValues: Record<string, string | number | boolean>
   totalAmount: number
+  applicableWeight: number
   getFormData: (data: Record<string, string | number | boolean>) => void
   setIsViewOrderDetailsOpen: (data: boolean) => void
 }
@@ -13,6 +14,7 @@ type CreateSellerOrderFormProps = {
 export const CreateSellerOrderForm = ({
   initialValues,
   totalAmount,
+  applicableWeight,
   getFormData,
   setIsViewOrderDetailsOpen
 }: CreateSellerOrderFormProps) => {
@@ -29,6 +31,7 @@ export const CreateSellerOrderForm = ({
         disabled
         showSubmitButton={false}
         totalAmount={totalAmount}
+        applicableWeight={applicableWeight}
         initialValues={initialValues}
         getFormData={getFormData}
       />
