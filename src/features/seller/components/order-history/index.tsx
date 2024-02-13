@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
 import useSellerStore from '../../store/seller.store'
+import React, { useEffect, useState } from 'react'
 import { Container } from '@/components/atoms/container'
 import { TableComponent } from '@/components/organisms/table'
 import { IColumnData } from '@/components/organisms/table/table.interface'
@@ -47,6 +47,8 @@ export const OrderHistory = () => {
   const { setSelectedRowdata } = useSellerStore()
   const { setAppliedFilters } = useSellerStore()
 
+  const [totalAmount, setTotalAmount] = useState<number>(0)
+
   const getFormData = (data: Record<string, string | number | boolean>) => {
     console.log(data)
   }
@@ -70,6 +72,12 @@ export const OrderHistory = () => {
     isSavedToShiprocket: selectedRowdata?.isSavedToShiprocket ?? false
   }
 
+  useEffect(() => {
+    if (selectedRowdata) {
+      setTotalAmount(selectedRowdata?.orderDetails?.totalAmount)
+    }
+  }, [selectedRowdata])
+
   const { data, isLoading, isError } = useGetSellerOrdersTableData({
     sellerId,
     appliedFilters
@@ -80,6 +88,7 @@ export const OrderHistory = () => {
       {isViewOrderDetailsOpen && (
         <CreateSellerOrderForm
           initialValues={initialValues}
+          totalAmount={totalAmount}
           getFormData={getFormData}
           setIsViewOrderDetailsOpen={setIsViewOrderDetailsOpen}
         />

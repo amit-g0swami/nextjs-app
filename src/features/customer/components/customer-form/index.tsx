@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
 import useCustomerStore from '../../store/customer.store'
+import React, { useState } from 'react'
 import { BackGroundDiv } from '@/features/shared/components/background-dev'
 import { useAddressMutation } from '@/features/customer/hooks/useAddressMutation'
 import { useLocalStorage } from '@/features/shared/hooks/useLocalStorage'
@@ -13,13 +13,15 @@ import { ICreateCustomerOrderPayload } from '../../customer.interface'
 import { Loader } from '@/components/molecules/loader'
 
 export const CustomerFormComponent = () => {
+  const [totalAmount, setTotalAmount] = useState<number>(0)
+
   const { getItem } = useLocalStorage(USE_LOCAL_STORAGE.USER_DETAILS)
   const { setIsCreateCustomerOrderFormSubmitted } = useCustomerStore()
   const { isCreateCustomerOrderFormSubmitted } = useCustomerStore()
 
-  const useAddressMutate = useAddressMutation()
   const params = useParams()
   const userId = getItem()
+  const useAddressMutate = useAddressMutation()
 
   const getFormData = (data: Record<string, string | number | boolean>) => {
     if (!userId || !params) return
@@ -41,7 +43,7 @@ export const CustomerFormComponent = () => {
       productName: data.productName,
       quantity: data.quantity,
       unitPrice: data.unitPrice,
-      totalAmount: data.totalAmount
+      totalAmount: totalAmount
     }
     const packageDetails = {
       deadWeight: data.deadWeight,
@@ -77,7 +79,11 @@ export const CustomerFormComponent = () => {
       {!isCreateCustomerOrderFormSubmitted && (
         <Container className="bg-white py-8 sm:py-10 h-screen">
           <BackGroundDiv>
-            <CreateOrderForm getFormData={getFormData} />
+            <CreateOrderForm
+              totalAmount={totalAmount}
+              getFormData={getFormData}
+              setTotalAmount={setTotalAmount}
+            />
           </BackGroundDiv>
         </Container>
       )}

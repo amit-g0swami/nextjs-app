@@ -1,16 +1,18 @@
 'use client'
 
 import useSellerStore from '../../store/seller.store'
+import React, { useState } from 'react'
 import { useParams } from 'next/navigation'
 import { useCreateOrderMutation } from '../../hooks/useCreateOrderMutation'
 import { ICreateOrderPayload } from '../../seller.interface'
 import { CreateOrderForm } from '../../../shared/components/create-order-form'
-import React from 'react'
 import { Loader } from '@/components/molecules/loader'
 
 export const CreateOrder = () => {
   const params = useParams()
   const sellerId = params?.id
+
+  const [totalAmount, setTotalAmount] = useState<number>(0)
 
   const useCreateOrderMutate = useCreateOrderMutation()
   const { isCreateSellerOrderFormSubmitted } = useSellerStore()
@@ -34,7 +36,7 @@ export const CreateOrder = () => {
       productName: data.productName,
       quantity: data.quantity,
       unitPrice: data.unitPrice,
-      totalAmount: data.totalAmount
+      totalAmount: totalAmount
     }
     const packageDetails = {
       deadWeight: data.deadWeight,
@@ -66,7 +68,11 @@ export const CreateOrder = () => {
   return (
     <React.Fragment>
       {!isCreateSellerOrderFormSubmitted && (
-        <CreateOrderForm getFormData={getFormData} />
+        <CreateOrderForm
+          totalAmount={totalAmount}
+          getFormData={getFormData}
+          setTotalAmount={setTotalAmount}
+        />
       )}
       {isCreateSellerOrderFormSubmitted && <Loader />}
     </React.Fragment>

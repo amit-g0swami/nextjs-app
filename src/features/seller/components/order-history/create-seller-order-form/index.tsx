@@ -5,12 +5,14 @@ import { CreateOrderForm } from '@/features/shared/components/create-order-form'
 
 type CreateSellerOrderFormProps = {
   initialValues: Record<string, string | number | boolean>
+  totalAmount: number
   getFormData: (data: Record<string, string | number | boolean>) => void
   setIsViewOrderDetailsOpen: (data: boolean) => void
 }
 
 export const CreateSellerOrderForm = ({
   initialValues,
+  totalAmount,
   getFormData,
   setIsViewOrderDetailsOpen
 }: CreateSellerOrderFormProps) => {
@@ -26,6 +28,7 @@ export const CreateSellerOrderForm = ({
       <CreateOrderForm
         disabled
         showSubmitButton={false}
+        totalAmount={totalAmount}
         initialValues={initialValues}
         getFormData={getFormData}
       />

@@ -7,11 +7,15 @@ import { PAYMENT_TYPE } from '@/shared/shared.interface'
 import { Container } from '@/components/atoms/container'
 import { FormSection } from '@/components/organisms/form/form-section'
 import { FormSwitch } from '@/components/organisms/form/form-swich'
+import { Input } from '@/components/atoms/input'
+import { calculateTotalAmount } from '@/utils/calculate-total-amount'
 
 type CreateOrderFormProps = {
   disabled?: boolean
   showSubmitButton?: boolean
   initialValues?: Record<string, any>
+  totalAmount?: number
+  setTotalAmount?: (totalAmount: number) => void
   getFormData: (data: Record<string, string | number | boolean>) => void
 }
 
@@ -32,7 +36,6 @@ const createOrderSchema = Joi.object({
   productName: Joi.string().required(),
   quantity: Joi.number().required(),
   unitPrice: Joi.number().required(),
-  totalAmount: Joi.number().required(),
   deadWeight: Joi.number().required(),
   length: Joi.number().required(),
   width: Joi.number().required(),
@@ -44,16 +47,25 @@ const createOrderSchema = Joi.object({
 })
 
 export const CreateOrderForm = ({
-  getFormData,
   showSubmitButton = true,
   disabled = false,
-  initialValues = {}
+  initialValues = {},
+  totalAmount = 0,
+  setTotalAmount = () => {},
+  getFormData
 }: CreateOrderFormProps) => {
+  const getFormDetails = (data: Record<string, string | number | boolean>) => {
+    const newTotalAmount = calculateTotalAmount(data)
+    if (setTotalAmount) {
+      setTotalAmount(newTotalAmount)
+    }
+  }
   return (
     <Form
-      getFormData={getFormData}
       validationSchema={createOrderSchema}
       initialValues={initialValues}
+      getFormData={getFormData}
+      getFormDetails={getFormDetails}
     >
       <FormSection title="Personal Information">
         <Container className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -156,12 +168,13 @@ export const CreateOrderForm = ({
             disabled={disabled}
             labelRequired
           />
-          <FormInput
+          <Input
             className="sm:col-span-2"
             label="Total Amount"
             name="totalAmount"
             type="number"
-            disabled={disabled}
+            disabled={true}
+            value={totalAmount}
             labelRequired
           />
         </Container>
