@@ -11,6 +11,7 @@ import { MobileMenu } from './mobile-menu'
 import { Menu } from './menu'
 import { Button } from '@/components/atoms/button'
 import { RenderButtonType } from './render-button-type'
+import { ROUTES } from '@/shared/shared.interface'
 
 export const HeaderSection = () => {
   const pathname = usePathname()
@@ -22,11 +23,14 @@ export const HeaderSection = () => {
   const { navigation } = useHomeStore()
 
   useEffect(() => {
+    if (pathname === ROUTES.LOGIN) {
+      return setNavigationData([])
+    }
     if (!user) {
       return setNavigationData(navigation)
     }
     return setNavigationData([])
-  }, [user, navigation])
+  }, [user, navigation, pathname])
 
   const handleSignOut = () => {
     logOut()
