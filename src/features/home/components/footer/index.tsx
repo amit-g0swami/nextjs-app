@@ -5,7 +5,7 @@ import { Container } from '@/components/atoms/container'
 
 const socialLinks = [
   {
-    href: 'https://www.linkedin.com/company/shippivot/about/',
+    href: 'https://www.linkedin.com/in/shippivot-1555672b0/',
     svg: (
       <svg
         className="w-4 h-4"

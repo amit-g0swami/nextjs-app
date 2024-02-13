@@ -39,7 +39,7 @@ const stats = [
 const navigation = [
   { name: 'About Us', href: '#about-us' },
   { name: 'Services', href: '#services' },
-  { name: 'Suport', href: '#support' }
+  { name: 'Support', href: '#support' }
 ]
 
 const services = [
