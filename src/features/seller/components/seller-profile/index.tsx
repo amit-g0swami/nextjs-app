@@ -18,7 +18,7 @@ export const SellerProfile = () => {
   const handleClick = () => {
     if (!sellerId) return
     navigator.clipboard.writeText(sellerId).then(() => {
-      toast.success('Copied to clipboard')
+      toast.success('Seller Id Copied to clipboard')
     })
   }
 

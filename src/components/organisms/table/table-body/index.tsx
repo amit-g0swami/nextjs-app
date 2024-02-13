@@ -1,7 +1,9 @@
-import { ViewfinderCircleIcon } from '@heroicons/react/20/solid'
 import { ITableBodyProps } from '../table.interface'
 import { ICreateOrderPayload } from '@/features/seller/seller.interface'
-import { DocumentMagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import {
+  DocumentMagnifyingGlassIcon,
+  MagnifyingGlassCircleIcon
+} from '@heroicons/react/24/outline'
 
 export const TableBody: React.FC<ITableBodyProps> = ({
   rowData,
@@ -45,7 +47,7 @@ export const TableBody: React.FC<ITableBodyProps> = ({
             className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
             onClick={() => handleEditClick(data)}
           >
-            <ViewfinderCircleIcon className="text-gray-500 hover:text-red-500 cursor-pointer h-6 w-6" />
+            <MagnifyingGlassCircleIcon className="text-gray-500 hover:text-violet-700 cursor-pointer h-6 w-6" />
           </td>
         </tr>
       ))}

@@ -32,6 +32,8 @@ export type IColumnData = {
 export interface TableComponentProps {
   rowData: ICreateOrderPayload[]
   columns: IColumnData[]
+  isLoading: boolean
+  isError: boolean
   handleEdit: (row: ICreateOrderPayload) => void
   getAppliedFilter: (value: string) => void
 }
@@ -43,5 +45,8 @@ export interface ITableBodyProps {
 }
 
 export interface IToolTipProps {
+  rowData: ICreateOrderPayload[]
+  isLoading: boolean
+  isError: boolean
   getAppliedFilter: (value: string) => void
 }
