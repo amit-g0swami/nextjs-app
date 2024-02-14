@@ -8,8 +8,8 @@ type CardProps = {
   icon: string
   title: string
   description: string
-  setLoginType: (type: USER_TYPE) => void
   type: USER_TYPE
+  setLoginType: (type: USER_TYPE) => void
 }
 
 export const Card = ({
