@@ -20,6 +20,7 @@ const getHeaders = () => {
     'Package Dimension Length',
     'Package Dimension Width',
     'Package Dimension Height',
+    'Applicable Weight',
     'Payment Mode'
   ]
 }
@@ -43,6 +44,7 @@ const getRowDetails = (row: ICreateOrderPayload) => {
     row.packageDetails.packageDimension.length,
     row.packageDetails.packageDimension.width,
     row.packageDetails.packageDimension.height,
+    row.packageDetails.packageDimension.applicableWeight,
     row.paymentDetails.paymentMode
   ]
 }
