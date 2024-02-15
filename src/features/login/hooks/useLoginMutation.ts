@@ -21,6 +21,7 @@ export const useCreateUserMutation = () => {
       return AuthService.userLogin(userData)
     },
     onSuccess: (data: IResponse) => {
+      if(!data) return logOut()
       setItem(data.user._id)
       if (data.user.createdAs === USER_TYPE.CUSTOMER) {
         setUserSellerId(data.user.sellerId)

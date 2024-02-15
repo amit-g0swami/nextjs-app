@@ -7,14 +7,14 @@ export interface IUserLoginPayload {
   email: string | null | undefined
   createdAs: string | null
 }
-
+ 
 const userLogin = async (userData: IUserLoginPayload) => {
   try {
     const { data } = await HttpService.post(`${baseUrl}/login`, userData)
     return data
   } catch (error) {
     console.error('Error during login request:', error)
-    throw error
+    return null
   }
 }
 
