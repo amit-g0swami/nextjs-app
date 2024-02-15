@@ -18,14 +18,14 @@ import { useRouter } from 'next/navigation'
 
 interface IAuthContext {
   user: User | null
-  googleSignIn: () => void
-  logOut: () => void
+  googleSignIn: () => Promise<void>
+  logOut: () => Promise<void>
 }
 
 const AuthContext = React.createContext<IAuthContext>({
   user: null,
-  googleSignIn: () => {},
-  logOut: () => {}
+  googleSignIn: async () => {},
+  logOut: async () => {}
 })
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
