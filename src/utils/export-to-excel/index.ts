@@ -1,7 +1,7 @@
 import ExcelJS from 'exceljs'
 import { ICreateOrderPayload } from '@/features/seller/seller.interface'
 
-const getHeaders = () => {
+const getHeaders = (): string[] => {
   return [
     'Full Name',
     'Email',
@@ -18,14 +18,14 @@ const getHeaders = () => {
     'Total Amount',
     'Dead Weight',
     'Package Dimension Length',
-    'Package Dimension Width',
     'Package Dimension Height',
+    'Package Dimension Width',
     'Applicable Weight',
     'Payment Mode'
   ]
 }
 
-const getRowDetails = (row: ICreateOrderPayload) => {
+const getRowDetails = (row: ICreateOrderPayload): (string | number)[] => {
   return [
     row.buyerDetails.fullName,
     row.buyerDetails.email,
@@ -49,7 +49,9 @@ const getRowDetails = (row: ICreateOrderPayload) => {
   ]
 }
 
-export const handleExportToExcel = async (jsonData: ICreateOrderPayload[]) => {
+export const handleExportToExcel = async (
+  jsonData: ICreateOrderPayload[]
+): Promise<void> => {
   try {
     const workbook = new ExcelJS.Workbook()
     const worksheet = workbook.addWorksheet('Sheet1')

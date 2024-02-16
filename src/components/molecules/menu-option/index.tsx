@@ -2,15 +2,15 @@ import { Container } from '@/components/atoms/container'
 import { Text } from '@/components/atoms/text'
 
 type MenuOptionProps = {
-  onClick: () => void
   title: string
   discription: string
+  onClick: () => void
 }
 
 export const MenuOption = ({
-  onClick,
   title,
-  discription
+  discription,
+  onClick
 }: MenuOptionProps) => {
   return (
     <Container

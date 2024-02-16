@@ -1,6 +1,6 @@
 export const calculateTotalAmount = (
   data: Record<string, string | number | boolean>
-) => {
+): number => {
   if (data && data.quantity && data.unitPrice) {
     return Number(data.quantity) * Number(data.unitPrice)
   }
@@ -9,7 +9,7 @@ export const calculateTotalAmount = (
 
 export const calculateApplicableWeight = (
   data: Record<string, string | number | boolean>
-) => {
+): number => {
   if (data && data.deadWeight && data.length && data.width && data.height) {
     const dimensionsWeight =
       (Number(data.length) * Number(data.width) * Number(data.height)) / 10

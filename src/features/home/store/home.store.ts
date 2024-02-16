@@ -76,7 +76,7 @@ type HomeManagementState = {
   services: typeof services
 }
 
-const useHomeStore = create<HomeManagementState>((set) => ({
+const useHomeStore = create<HomeManagementState>(() => ({
   features: features,
   stats: stats,
   navigation: navigation,

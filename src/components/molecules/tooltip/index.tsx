@@ -11,7 +11,7 @@ export const Tooltip = ({
   position = 'bottom',
   children
 }: TooltipProps) => {
-  const [showTooltip, setShowTooltip] = useState(false)
+  const [showTooltip, setShowTooltip] = useState<boolean>(false)
 
   const handleMouseEnter = () => {
     setShowTooltip(true)
